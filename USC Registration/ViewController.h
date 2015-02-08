@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIImageView *animatedLogoImageView;
+@property (weak, nonatomic) IBOutlet UIView *logoViewBackground;
 
-
+@property (weak, nonatomic) IBOutlet UILabel *loadingLabel;
+@property (nonatomic) BOOL shownBefore;
 @end
 
