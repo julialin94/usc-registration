@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
+- (IBAction)goAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UIImageView *animatedLogoImageView;
 @property (weak, nonatomic) IBOutlet UIView *logoViewBackground;
 

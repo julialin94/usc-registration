@@ -55,4 +55,6 @@
     }
 }
 
+- (IBAction)goAction:(id)sender {
+}
 @end

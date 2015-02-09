@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B0618B51A8822290041E5D2 /* Course.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0618B41A8822290041E5D2 /* Course.m */; };
+		2B0618BC1A8830560041E5D2 /* Department.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0618BB1A8830560041E5D2 /* Department.m */; };
+		2B0618BF1A8830570041E5D2 /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0618BE1A8830570041E5D2 /* Section.m */; };
+		2B0618C21A8830570041E5D2 /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0618C11A8830570041E5D2 /* Session.m */; };
+		2B0618C51A8830570041E5D2 /* Term.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0618C41A8830570041E5D2 /* Term.m */; };
+		2B0618C81A8830570041E5D2 /* School.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0618C71A8830570041E5D2 /* School.m */; };
+		2B0618CB1A883B4A0041E5D2 /* RegistrationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0618CA1A883B4A0041E5D2 /* RegistrationRequest.m */; };
 		2B4206021A876718002ABE64 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4206011A876718002ABE64 /* main.m */; };
 		2B4206051A876718002ABE64 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4206041A876718002ABE64 /* AppDelegate.m */; };
 		2B4206081A876718002ABE64 /* USC_Registration.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2B4206061A876718002ABE64 /* USC_Registration.xcdatamodeld */; };
@@ -29,6 +36,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B0618B31A8822290041E5D2 /* Course.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Course.h; path = "Core Data/Course.h"; sourceTree = "<group>"; };
+		2B0618B41A8822290041E5D2 /* Course.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Course.m; path = "Core Data/Course.m"; sourceTree = "<group>"; };
+		2B0618BA1A8830560041E5D2 /* Department.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Department.h; path = "Core Data/Department.h"; sourceTree = "<group>"; };
+		2B0618BB1A8830560041E5D2 /* Department.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Department.m; path = "Core Data/Department.m"; sourceTree = "<group>"; };
+		2B0618BD1A8830570041E5D2 /* Section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Section.h; path = "Core Data/Section.h"; sourceTree = "<group>"; };
+		2B0618BE1A8830570041E5D2 /* Section.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Section.m; path = "Core Data/Section.m"; sourceTree = "<group>"; };
+		2B0618C01A8830570041E5D2 /* Session.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Session.h; path = "Core Data/Session.h"; sourceTree = "<group>"; };
+		2B0618C11A8830570041E5D2 /* Session.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Session.m; path = "Core Data/Session.m"; sourceTree = "<group>"; };
+		2B0618C31A8830570041E5D2 /* Term.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Term.h; path = "Core Data/Term.h"; sourceTree = "<group>"; };
+		2B0618C41A8830570041E5D2 /* Term.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Term.m; path = "Core Data/Term.m"; sourceTree = "<group>"; };
+		2B0618C61A8830570041E5D2 /* School.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = School.h; path = "Core Data/School.h"; sourceTree = "<group>"; };
+		2B0618C71A8830570041E5D2 /* School.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = School.m; path = "Core Data/School.m"; sourceTree = "<group>"; };
+		2B0618C91A883B4A0041E5D2 /* RegistrationRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistrationRequest.h; sourceTree = "<group>"; };
+		2B0618CA1A883B4A0041E5D2 /* RegistrationRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistrationRequest.m; sourceTree = "<group>"; };
 		2B4205FC1A876718002ABE64 /* USC Registration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "USC Registration.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B4206001A876718002ABE64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B4206011A876718002ABE64 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -65,6 +86,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B0618B61A88223A0041E5D2 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				2B0618B31A8822290041E5D2 /* Course.h */,
+				2B0618B41A8822290041E5D2 /* Course.m */,
+				2B0618BA1A8830560041E5D2 /* Department.h */,
+				2B0618BB1A8830560041E5D2 /* Department.m */,
+				2B0618C61A8830570041E5D2 /* School.h */,
+				2B0618C71A8830570041E5D2 /* School.m */,
+				2B0618BD1A8830570041E5D2 /* Section.h */,
+				2B0618BE1A8830570041E5D2 /* Section.m */,
+				2B0618C01A8830570041E5D2 /* Session.h */,
+				2B0618C11A8830570041E5D2 /* Session.m */,
+				2B0618C31A8830570041E5D2 /* Term.h */,
+				2B0618C41A8830570041E5D2 /* Term.m */,
+			);
+			name = "Core Data";
+			sourceTree = "<group>";
+		};
 		2B4205F31A876718002ABE64 = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +136,9 @@
 				2B42062E1A8768A4002ABE64 /* USColor.h */,
 				2B42062F1A8768A4002ABE64 /* USColor.m */,
 				2B4206061A876718002ABE64 /* USC_Registration.xcdatamodeld */,
+				2B0618C91A883B4A0041E5D2 /* RegistrationRequest.h */,
+				2B0618CA1A883B4A0041E5D2 /* RegistrationRequest.m */,
+				2B0618B61A88223A0041E5D2 /* Core Data */,
 				2B4205FF1A876718002ABE64 /* Supporting Files */,
 			);
 			path = "USC Registration";
@@ -228,11 +271,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B0618CB1A883B4A0041E5D2 /* RegistrationRequest.m in Sources */,
 				2B4206051A876718002ABE64 /* AppDelegate.m in Sources */,
+				2B0618BF1A8830570041E5D2 /* Section.m in Sources */,
 				2B4206021A876718002ABE64 /* main.m in Sources */,
 				2B42060B1A876718002ABE64 /* ViewController.m in Sources */,
+				2B0618C81A8830570041E5D2 /* School.m in Sources */,
 				2B4206301A8768A4002ABE64 /* USColor.m in Sources */,
+				2B0618C51A8830570041E5D2 /* Term.m in Sources */,
+				2B0618B51A8822290041E5D2 /* Course.m in Sources */,
 				2B4206081A876718002ABE64 /* USC_Registration.xcdatamodeld in Sources */,
+				2B0618BC1A8830560041E5D2 /* Department.m in Sources */,
+				2B0618C21A8830570041E5D2 /* Session.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,6 +481,7 @@
 				2B4206241A876718002ABE64 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2B4206251A876718002ABE64 /* Build configuration list for PBXNativeTarget "USC RegistrationTests" */ = {
 			isa = XCConfigurationList;
@@ -439,6 +490,7 @@
 				2B4206271A876718002ABE64 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
