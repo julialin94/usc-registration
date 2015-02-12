@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ViewController : UIViewController
-- (IBAction)goAction:(id)sender;
+#import "RequestParentViewController.h"
+@interface ViewController : RequestParentViewController<NSURLConnectionDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *animatedLogoImageView;
 @property (weak, nonatomic) IBOutlet UIView *logoViewBackground;
 
 @property (weak, nonatomic) IBOutlet UILabel *loadingLabel;
 @property (nonatomic) BOOL shownBefore;
+- (IBAction)goButtonAction:(id)sender;
+
 @end
 

@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-
+#import "Term.h"
 @interface ViewController ()
 
 @end
@@ -22,8 +22,10 @@
     if(self.shownBefore){
         [self.logoViewBackground removeFromSuperview];
     }
+    [self.navigationController setNavigationBarHidden:YES];
 }
 -(void)viewDidAppear:(BOOL)animated{
+    [self getTermsWithCode:nil andSender:self];
     if(!self.shownBefore){
         self.shownBefore = YES;
         [UIView animateWithDuration:1.0
@@ -55,6 +57,20 @@
     }
 }
 
-- (IBAction)goAction:(id)sender {
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    NSError * error;
+    NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:self.responseData options:kNilOptions error:&error];
+//    NSLog(@"dict: %@", dict);
+    
+    //should have received terms
+    for(NSDictionary * term in dict){
+        NSLog(@"%@", [term objectForKey:@"DESCRIPTION"]);
+    }
+}
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    NSLog(@"destination: %@", segue.destinationViewController);
+}
+- (IBAction)goButtonAction:(id)sender {
+    [self performSegueWithIdentifier:@"go" sender:self];
 }
 @end
