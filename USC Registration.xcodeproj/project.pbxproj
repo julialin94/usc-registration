@@ -25,6 +25,7 @@
 		89315FBF1A8C4EF60069E10F /* RequestParentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89315FBE1A8C4EF60069E10F /* RequestParentViewController.m */; };
 		89315FCF1A8C619F0069E10F /* VHTermViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89315FCE1A8C619F0069E10F /* VHTermViewController.m */; };
 		89315FD21A8C65A90069E10F /* TableViewRequestParentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89315FD11A8C65A90069E10F /* TableViewRequestParentViewController.m */; };
+		89ED113E1A93A6EB000565B9 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 89ED113D1A93A6EB000565B9 /* MBProgressHUD.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,8 @@
 		89315FCE1A8C619F0069E10F /* VHTermViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHTermViewController.m; sourceTree = "<group>"; };
 		89315FD01A8C65A90069E10F /* TableViewRequestParentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewRequestParentViewController.h; sourceTree = "<group>"; };
 		89315FD11A8C65A90069E10F /* TableViewRequestParentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewRequestParentViewController.m; sourceTree = "<group>"; };
+		89ED113C1A93A6EB000565B9 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		89ED113D1A93A6EB000565B9 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +151,7 @@
 				2B42062E1A8768A4002ABE64 /* USColor.h */,
 				2B42062F1A8768A4002ABE64 /* USColor.m */,
 				2B4206061A876718002ABE64 /* USC_Registration.xcdatamodeld */,
+				89ED113F1A93A6F2000565B9 /* External Libraries */,
 				2B0618B61A88223A0041E5D2 /* Core Data */,
 				2B4205FF1A876718002ABE64 /* Supporting Files */,
 			);
@@ -178,6 +182,23 @@
 				2B42061D1A876718002ABE64 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		89ED113F1A93A6F2000565B9 /* External Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				89ED11401A93A6FD000565B9 /* MBProgress */,
+			);
+			name = "External Libraries";
+			sourceTree = "<group>";
+		};
+		89ED11401A93A6FD000565B9 /* MBProgress */ = {
+			isa = PBXGroup;
+			children = (
+				89ED113C1A93A6EB000565B9 /* MBProgressHUD.h */,
+				89ED113D1A93A6EB000565B9 /* MBProgressHUD.m */,
+			);
+			name = MBProgress;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,6 +309,7 @@
 				89315FD21A8C65A90069E10F /* TableViewRequestParentViewController.m in Sources */,
 				2B42060B1A876718002ABE64 /* ViewController.m in Sources */,
 				2B0618C81A8830570041E5D2 /* School.m in Sources */,
+				89ED113E1A93A6EB000565B9 /* MBProgressHUD.m in Sources */,
 				2B4206301A8768A4002ABE64 /* USColor.m in Sources */,
 				2B0618C51A8830570041E5D2 /* Term.m in Sources */,
 				89315FBF1A8C4EF60069E10F /* RequestParentViewController.m in Sources */,

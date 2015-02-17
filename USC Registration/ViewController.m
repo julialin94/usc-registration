@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 #import "Term.h"
+#import "VHTermViewController.h"
+#import "MBProgressHUD.h"
 @interface ViewController ()
 
 @end
@@ -60,17 +62,39 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     NSError * error;
     NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:self.responseData options:kNilOptions error:&error];
-//    NSLog(@"dict: %@", dict);
-    
-    //should have received terms
-    for(NSDictionary * term in dict){
-        NSLog(@"%@", [term objectForKey:@"DESCRIPTION"]);
+    if(self.buttonClicked){
+        NSLog(@"dict: %@", dict);
+        self.buttonClicked = NO;
+        [self performSegueWithIdentifier:@"go" sender:self];
+    }
+    else{
+#pragma mark put terms in a container view
+        for(NSDictionary * term in dict){
+            //        NSLog(@"%@", [term objectForKey:@"DESCRIPTION"]);
+#pragma mark remove section (debugging only)
+            if(!self.selectedTerm)
+                self.selectedTerm = term;
+#pragma mark end remove
+        }
     }
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     NSLog(@"destination: %@", segue.destinationViewController);
+    VHTermViewController * vc = segue.destinationViewController;
+    vc.term = self.selectedTerm;
+    [self.navigationController setNavigationBarHidden:NO];
 }
 - (IBAction)goButtonAction:(id)sender {
-    [self performSegueWithIdentifier:@"go" sender:self];
+    [self getCoursesWithTerm:[self.selectedTerm objectForKey:@"TERM_CODE"] andOptions:@"ALL" andSender:self];
+    self.buttonClicked = YES;
+    self.progressHUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:self.progressHUD];
+    
+    self.progressHUD.delegate = self;
+    self.progressHUD.labelText = @"Loading";
+    self.progressHUD.detailsLabelText = @"updating data";
+    self.progressHUD.square = YES;
+    
+    [self.progressHUD showWhileExecuting:@selector(myTask) onTarget:self withObject:nil animated:YES];
 }
 @end
