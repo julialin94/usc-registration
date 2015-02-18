@@ -18,5 +18,7 @@
 @property (nonatomic, strong) NSString * termCode;
 @property (nonatomic, strong) NSString * termDescription;
 @property (nonatomic, strong) NSMutableArray * schools;
+@property (nonatomic, strong) NSMutableArray * departments;
+@property (nonatomic, strong) NSMutableArray * prefixedDepartments;
 
 @end

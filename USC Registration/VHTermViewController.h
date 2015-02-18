@@ -7,16 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RequestParentViewController.h"
-@interface VHTermViewController : RequestParentViewController
+#import "Term.h"  
+@interface VHTermViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+
 @property (weak, nonatomic) IBOutlet UILabel *schoolLabel;
 @property (weak, nonatomic) IBOutlet UILabel *prefixLabel;
 @property (weak, nonatomic) IBOutlet UILabel *departmentLabel;
 @property (weak, nonatomic) IBOutlet UIView *menuView;
 @property (strong, nonatomic) UIView *lineView;
+@property (strong, nonatomic) Term * term;
 @property (nonatomic) NSInteger index;
-@property (nonatomic, strong) NSDictionary * term;
 @property (nonatomic, strong) NSMutableArray * arrayOfLabels;
 @property (nonatomic, strong) NSDictionary * schools;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

@@ -8,10 +8,12 @@
 
 #import "Term.h"
 #import "AppDelegate.h"
+#import "Department.h"
 @implementation Term
 -(id)initWithDictionary:(NSDictionary *)dict{
     self = [super init];
     self.schools = [[NSMutableArray alloc] init];
+    self.departments = [[NSMutableArray alloc] init];
     self.commencementDate = [dict objectForKey:@"COMMENCEMENT_DATE"];
     self.termDescription = [dict objectForKey:@"DESCRIPTION"];
     self.earlyRegistrationStartDate = [dict objectForKey:@"EARLY_REG_START_DATE"];
@@ -38,6 +40,23 @@
             self.appDelegate.progressHUD.progress = count/max;
         });
     }
+    for (School * s in self.schools) {
+        NSLog(@"%@", s.schoolDescription);
+        for (Department * d in s.departments) {
+            NSLog(@"\t%@", d.departmentDescription);
+            [self.departments addObject:d];
+        }
+    }
+    NSSortDescriptor *sortDescriptor;
+    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"departmentDescription"
+                                                 ascending:YES];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    self.departments = [[self.departments sortedArrayUsingDescriptors:sortDescriptors] mutableCopy];
+    
+    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"departmentCode"
+                                                 ascending:YES];
+    sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    self.prefixedDepartments = [[self.departments sortedArrayUsingDescriptors:sortDescriptors] mutableCopy];
     return self;
 }
 -(void)add:(id)object{

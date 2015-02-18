@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
-#import "RequestParentViewController.h"
 #import "Term.h"
 @interface ViewController : UIViewController<NSURLConnectionDelegate>
 @property (nonatomic, strong) AppDelegate * appDelegate;

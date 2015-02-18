@@ -78,7 +78,7 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     NSLog(@"destination: %@", segue.destinationViewController);
     VHTermViewController * vc = segue.destinationViewController;
-    vc.term = self.selectedTerm;
+    vc.term = self.term;
     [self.navigationController setNavigationBarHidden:NO];
 }
 - (IBAction)goButtonAction:(id)sender {

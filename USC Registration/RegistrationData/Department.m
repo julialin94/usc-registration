@@ -14,9 +14,12 @@
     self.courses = [[NSMutableArray alloc] init];
     self.departmentCode = [dict objectForKey:@"SOC_DEPARTMENT_CODE"];
     self.departmentDescription = [dict objectForKey:@"SOC_DEPARTMENT_DESCRIPTION"];
-//    self.appDelegate.progressHUD.detailsLabelText = [NSString stringWithFormat:@"Loading %@.", self.departmentDescription];
     NSLog(@"\t->%@", self.departmentDescription);
     self.schoolCode = [dict objectForKey:@"SOC_SCHOOL_CODE"];
+    
+    /*
+     Don't download courses and their information
+     */
     
 //    NSString * url = [NSString stringWithFormat:@"%@/courses/%@/%@", [self.appDelegate URL], self.appDelegate.term, self.departmentCode];
 //    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];

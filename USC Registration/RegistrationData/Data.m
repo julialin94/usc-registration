@@ -15,4 +15,11 @@ static NSString * baseURL = @"http://petri.usc.edu/socAPI";
     self.appDelegate = [[UIApplication sharedApplication] delegate];
     return self;
 }
+#pragma mark Abstract Methods
+-(void)add:(id)object{
+    
+}
+-(id)initWithDictionary:(NSDictionary *)dict{
+    return [self init];
+}
 @end
