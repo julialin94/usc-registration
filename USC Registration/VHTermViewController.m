@@ -26,7 +26,7 @@
     [self.menuView addGestureRecognizer:leftSwipe];
     [self.menuView addGestureRecognizer:rightSwipe];
     self.arrayOfLabels = [[NSMutableArray alloc] initWithObjects:self.schoolLabel, self.departmentLabel, self.prefixLabel, nil];
-    [self getSchoolWithName:nil andSender:self];
+//    [self getSchoolWithName:nil andSender:self];
 }
 -(void)viewDidAppear:(BOOL)animated{
     
@@ -68,11 +68,11 @@
     [self setTitle:[term objectForKey:@"DESCRIPTION"]];
     NSLog(@"Term: %@", term);
 }
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    NSError * error;
-    NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:self.responseData options:kNilOptions error:&error];
-    for(NSDictionary * term in dict){
-        NSLog(@"%@", term);
-    }
-}
+//- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+//    NSError * error;
+//    NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:self.responseData options:kNilOptions error:&error];
+//    for(NSDictionary * term in dict){
+//        NSLog(@"%@", term);
+//    }
+//}
 @end

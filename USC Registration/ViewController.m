@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "Term.h"
 #import "VHTermViewController.h"
+#import "AppDelegate.h"
 #import "MBProgressHUD.h"
 @interface ViewController ()
 
@@ -18,7 +19,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    self.appDelegate = [UIApplication sharedApplication].delegate;
+    self.appDelegate.progressHUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    self.appDelegate.progressHUD.square = YES;
 }
 -(void)viewWillAppear:(BOOL)animated{
     if(self.shownBefore){
@@ -62,19 +65,13 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     NSError * error;
     NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:self.responseData options:kNilOptions error:&error];
-    if(self.buttonClicked){
-        NSLog(@"dict: %@", dict);
-        self.buttonClicked = NO;
-        [self performSegueWithIdentifier:@"go" sender:self];
-    }
-    else{
-#pragma mark put terms in a container view
-        for(NSDictionary * term in dict){
-            //        NSLog(@"%@", [term objectForKey:@"DESCRIPTION"]);
-#pragma mark remove section (debugging only)
-            if(!self.selectedTerm)
-                self.selectedTerm = term;
-#pragma mark end remove
+
+    NSLog(@"terms: %@", dict);
+#warning put terms in container view: bottom code hard codes first available term
+    for(NSDictionary * term in dict){
+        if(!self.selectedTerm){
+            self.selectedTerm = term;
+            self.appDelegate.term = [term objectForKey:@"TERM_CODE"];
         }
     }
 }
@@ -85,16 +82,58 @@
     [self.navigationController setNavigationBarHidden:NO];
 }
 - (IBAction)goButtonAction:(id)sender {
-    [self getCoursesWithTerm:[self.selectedTerm objectForKey:@"TERM_CODE"] andOptions:@"ALL" andSender:self];
     self.buttonClicked = YES;
-    self.progressHUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-    [self.navigationController.view addSubview:self.progressHUD];
+    self.appDelegate.progressHUD.labelText = @"Please wait.";
+    self.appDelegate.progressHUD.detailsLabelText = [NSString stringWithFormat:@"Loading %@.", [self.selectedTerm objectForKey:@"DESCRIPTION"]];
+    self.appDelegate.progressHUD.mode = MBProgressHUDModeDeterminateHorizontalBar;
+    [self.navigationController.view addSubview:self.appDelegate.progressHUD];
+    [self.appDelegate.progressHUD show:YES];
+    dispatch_queue_t loadingQueue = dispatch_queue_create("loadingQueue",NULL);
+    dispatch_async(loadingQueue, ^{
+        self.term = [[Term alloc] initWithDictionary:(NSDictionary *)self.selectedTerm];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.appDelegate.progressHUD hide:YES];
+            [self performSegueWithIdentifier:@"go" sender:self];
+        });
+    });
     
-    self.progressHUD.delegate = self;
-    self.progressHUD.labelText = @"Loading";
-    self.progressHUD.detailsLabelText = @"updating data";
-    self.progressHUD.square = YES;
-    
-    [self.progressHUD showWhileExecuting:@selector(myTask) onTarget:self withObject:nil animated:YES];
+}
+-(void)getTermsWithCode:(NSString *)code andSender:(id)sender{
+    //gets term details
+    if(code == nil)
+        code = @"";
+    NSString * url = [NSString stringWithFormat:@"%@/terms/%@", [self.appDelegate URL], code];
+    NSLog(@"request URL: %@", url);
+    [self performRequestWithURL:url andSender:sender];
+}
+-(void)performRequestWithURL:(NSString *)url andSender:(id)sender{
+    //    NSLog(@"RequestParentViewController url: %@", url);
+    NSLog(@"RequestParentViewController url: %@", [NSURL URLWithString:url]);
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:sender];
+    [conn start];
+    _responseData = [[NSMutableData alloc] init];
+}
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    // A response has been received, this is where we initialize the instance var you created
+    // so that we can append data to it in the didReceiveData method
+    // Furthermore, this method is called each time there is a redirect so reinitializing it
+    // also serves to clear it
+}
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    // Append the new data to the instance variable you declared
+    [_responseData appendData:data];
+}
+
+- (NSCachedURLResponse *)connection:(NSURLConnection *)connection
+                  willCacheResponse:(NSCachedURLResponse*)cachedResponse {
+    // Return nil to indicate not necessary to store a cached response for this connection
+    return nil;
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    // The request has failed for some reason!
+    // Check the error var
+    NSLog(@"connection failed: %@", error);
 }
 @end

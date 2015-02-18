@@ -22,9 +22,9 @@
         <attribute name="schoolDescription" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Section" representedClassName="Section" syncable="YES">
-        <attribute name="addDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="addDate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="beginTime" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="cancelDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="cancelDate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="courseID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="day" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="endTime" optional="YES" attributeType="String" syncable="YES"/>
@@ -43,33 +43,34 @@
         <attribute name="unitCode" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
     </entity>
     <entity name="Session" representedClassName="Session" syncable="YES">
-        <attribute name="classBeginDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="classEndDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="finalExamBeginDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="finalExamEndDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="lastAddDropDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="classBeginDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="classEndDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="finalExamBeginDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="finalExamEndDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastAddDropDate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sessionCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sessionID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="stopDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="stopDate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="termCode" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="withdrawWWDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="withdrawWWDate" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Term" representedClassName="Term" syncable="YES">
-        <attribute name="commencementDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="earlyRegistrationEndDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="earlyRegistrationStartDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="normalRegistrationEndDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="preregistrationEndDate" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="preregistrationStartDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="commencementDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="earlyRegistrationEndDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="earlyRegistrationStartDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="normalRegistrationEndDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="preregistrationEndDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="preregistrationStartDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="schools" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="termCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="termDescription" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
         <element name="Course" positionX="-7434" positionY="-3283" width="128" height="178"/>
-        <element name="Section" positionX="-7137" positionY="-3285" width="128" height="328"/>
-        <element name="Term" positionX="-7263" positionY="-3123" width="128" height="163"/>
-        <element name="Session" positionX="-7254" positionY="-3114" width="128" height="193"/>
-        <element name="School" positionX="-7245" positionY="-3096" width="128" height="88"/>
         <element name="Department" positionX="-7236" positionY="-3087" width="128" height="88"/>
+        <element name="School" positionX="-7245" positionY="-3096" width="128" height="88"/>
+        <element name="Section" positionX="-7137" positionY="-3285" width="128" height="328"/>
+        <element name="Session" positionX="-7254" positionY="-3114" width="128" height="193"/>
+        <element name="Term" positionX="-7263" positionY="-3123" width="128" height="178"/>
     </elements>
 </model>
