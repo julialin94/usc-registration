@@ -40,8 +40,8 @@
                                         <color key="textColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="shF-lw-F4j">
-                                        <rect key="frame" x="150" y="275" width="300" height="50"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="shF-lw-F4j">
+                                        <rect key="frame" x="274" y="128" width="300" height="50"/>
                                         <color key="backgroundColor" red="0.27286706449999998" green="0.3783661586" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="300" id="3Hc-7l-Dl5"/>
@@ -56,19 +56,33 @@
                                             <action selector="goButtonAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="7uk-k1-z69"/>
                                         </connections>
                                     </button>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="69L-TT-St4">
+                                        <rect key="frame" x="150" y="256" width="300" height="300"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="xSq-sa-jZr"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="dataSource" destination="vXZ-lx-hvc" id="zzV-Cn-y0m"/>
+                                            <outlet property="delegate" destination="vXZ-lx-hvc" id="DCO-JQ-gim"/>
+                                        </connections>
+                                    </tableView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="320" id="6N8-dh-daI"/>
                                     <constraint firstItem="zus-Ga-Adg" firstAttribute="top" secondItem="9nm-PN-jJA" secondAttribute="top" constant="28" id="NHb-qQ-7lt"/>
                                     <constraint firstItem="shF-lw-F4j" firstAttribute="leading" secondItem="9nm-PN-jJA" secondAttribute="leading" constant="150" id="STt-2C-3Bx"/>
+                                    <constraint firstAttribute="centerX" secondItem="69L-TT-St4" secondAttribute="centerX" id="Uz0-d7-7Dj"/>
                                     <constraint firstAttribute="centerX" secondItem="shF-lw-F4j" secondAttribute="centerX" id="YUy-mu-ykz"/>
                                     <constraint firstAttribute="centerX" secondItem="zus-Ga-Adg" secondAttribute="centerX" id="YqJ-la-fvk"/>
                                     <constraint firstAttribute="bottom" secondItem="vBE-cA-9L1" secondAttribute="bottom" constant="364" id="ccG-Fn-99a"/>
+                                    <constraint firstItem="69L-TT-St4" firstAttribute="top" secondItem="vBE-cA-9L1" secondAttribute="bottom" constant="20" id="dtk-sV-1kL"/>
                                     <constraint firstItem="vBE-cA-9L1" firstAttribute="leading" secondItem="9nm-PN-jJA" secondAttribute="leading" constant="150" id="lHs-Ek-N29"/>
                                     <constraint firstItem="shF-lw-F4j" firstAttribute="top" secondItem="9nm-PN-jJA" secondAttribute="top" constant="275" id="oDi-Ie-ey3"/>
                                     <constraint firstAttribute="trailing" secondItem="vBE-cA-9L1" secondAttribute="trailing" constant="150" id="q66-TA-VOt"/>
                                     <constraint firstItem="vBE-cA-9L1" firstAttribute="top" secondItem="zus-Ga-Adg" secondAttribute="bottom" constant="8" id="t1e-W1-KYU"/>
                                     <constraint firstAttribute="centerX" secondItem="vBE-cA-9L1" secondAttribute="centerX" id="uYl-Sc-4Oe"/>
+                                    <constraint firstAttribute="bottom" secondItem="69L-TT-St4" secondAttribute="bottom" constant="44" id="xc2-ul-9JK"/>
                                     <constraint firstAttribute="trailing" secondItem="shF-lw-F4j" secondAttribute="trailing" constant="150" id="zc7-dv-VQ4"/>
                                 </constraints>
                                 <variation key="default">
@@ -96,6 +110,7 @@
                         <outlet property="animatedLogoImageView" destination="kaX-NP-J8j" id="c3Z-b3-goV"/>
                         <outlet property="loadingLabel" destination="CQg-mK-ZC5" id="Uae-6A-ERS"/>
                         <outlet property="logoViewBackground" destination="MO0-3q-cAV" id="U5x-sb-0v1"/>
+                        <outlet property="tableView" destination="69L-TT-St4" id="dJw-LZ-GON"/>
                         <segue destination="1uZ-8F-Q4c" kind="show" identifier="go" id="Dzg-7E-l4h"/>
                     </connections>
                 </viewController>
