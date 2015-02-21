@@ -15,7 +15,7 @@
     self.departments = [[NSMutableArray alloc] init];
     self.schoolCode = [dict objectForKey:@"SOC_SCHOOL_CODE"];
     self.schoolDescription = [dict objectForKey:@"SOC_SCHOOL_DESCRIPTION"];
-    NSLog(@"->%@", self.schoolDescription);
+//    NSLog(@"->%@", self.schoolDescription);
     NSString * url = [NSString stringWithFormat:@"%@/schools/%@", [self.appDelegate URL], self.schoolCode];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     NSURLResponse *response;

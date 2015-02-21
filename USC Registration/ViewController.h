@@ -26,6 +26,7 @@
 @property (nonatomic) BOOL shownBefore;
 @property (nonatomic) BOOL buttonClicked;
 @property (nonatomic) BOOL tableViewCollapsed;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end
 

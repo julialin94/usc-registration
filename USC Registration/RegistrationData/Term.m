@@ -41,9 +41,9 @@
         });
     }
     for (School * s in self.schools) {
-        NSLog(@"%@", s.schoolDescription);
+//        NSLog(@"%@", s.schoolDescription);
         for (Department * d in s.departments) {
-            NSLog(@"\t%@", d.departmentDescription);
+//            NSLog(@"\t%@", d.departmentDescription);
             [self.departments addObject:d];
         }
     }

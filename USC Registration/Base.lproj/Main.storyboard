@@ -44,6 +44,7 @@
                                         <rect key="frame" x="150" y="256" width="300" height="300"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="eGw-uE-b7B"/>
                                             <constraint firstAttribute="width" constant="300" id="xSq-sa-jZr"/>
                                         </constraints>
                                         <color key="separatorColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -126,14 +127,47 @@
                                     </mask>
                                 </variation>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MO0-3q-cAV" userLabel="logoView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="goldShield" translatesAutoresizingMaskIntoConstraints="NO" id="kaX-NP-J8j" userLabel="logoImageView">
+                                        <rect key="frame" x="150" y="150" width="300" height="300"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="A0v-EC-Wma"/>
+                                            <constraint firstAttribute="height" constant="300" id="Bda-nA-gHy"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQg-mK-ZC5">
+                                        <rect key="frame" x="250" y="538" width="100" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="G8z-Iv-a2B"/>
+                                            <constraint firstAttribute="height" constant="30" id="ezz-1H-TH4"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
+                                        <color key="textColor" red="1" green="0.80000000000000004" blue="0.0" alpha="0.65000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="kaX-NP-J8j" secondAttribute="centerX" id="IIl-tD-Cgb"/>
+                                    <constraint firstAttribute="centerX" secondItem="CQg-mK-ZC5" secondAttribute="centerX" id="J0y-9W-3n4"/>
+                                    <constraint firstAttribute="centerY" secondItem="kaX-NP-J8j" secondAttribute="centerY" id="JDK-bP-mWX"/>
+                                    <constraint firstAttribute="bottom" secondItem="CQg-mK-ZC5" secondAttribute="bottom" constant="32" id="RAa-wT-lhG"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="9nm-PN-jJA" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="6uD-g6-d36"/>
+                            <constraint firstAttribute="bottom" secondItem="MO0-3q-cAV" secondAttribute="bottom" id="EiL-ej-PzQ"/>
+                            <constraint firstAttribute="trailing" secondItem="MO0-3q-cAV" secondAttribute="trailing" id="FTJ-Cb-HMg"/>
                             <constraint firstItem="9nm-PN-jJA" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Jaw-zq-ZHm"/>
                             <constraint firstAttribute="trailing" secondItem="9nm-PN-jJA" secondAttribute="trailing" id="Oyi-mc-2nf"/>
+                            <constraint firstItem="MO0-3q-cAV" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Xw7-dv-LDq"/>
                             <constraint firstAttribute="trailing" secondItem="9nm-PN-jJA" secondAttribute="trailing" id="bCS-g6-SEF"/>
                             <constraint firstItem="9nm-PN-jJA" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="eJD-WH-lFr"/>
+                            <constraint firstItem="MO0-3q-cAV" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="mNH-2g-YQJ"/>
                             <constraint firstAttribute="bottom" secondItem="9nm-PN-jJA" secondAttribute="bottom" id="mYn-XT-9B8"/>
                         </constraints>
                     </view>
@@ -142,41 +176,12 @@
                         <outlet property="animatedLogoImageView" destination="kaX-NP-J8j" id="c3Z-b3-goV"/>
                         <outlet property="loadingLabel" destination="CQg-mK-ZC5" id="Uae-6A-ERS"/>
                         <outlet property="logoViewBackground" destination="MO0-3q-cAV" id="U5x-sb-0v1"/>
+                        <outlet property="scrollView" destination="9nm-PN-jJA" id="Qvt-B1-Jy5"/>
                         <outlet property="tableView" destination="69L-TT-St4" id="dJw-LZ-GON"/>
                         <segue destination="1uZ-8F-Q4c" kind="show" identifier="go" id="Dzg-7E-l4h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="MO0-3q-cAV" userLabel="logoView">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="goldShield" translatesAutoresizingMaskIntoConstraints="NO" id="kaX-NP-J8j" userLabel="logoImageView">
-                            <rect key="frame" x="150" y="150" width="300" height="300"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="300" id="A0v-EC-Wma"/>
-                                <constraint firstAttribute="height" constant="300" id="Bda-nA-gHy"/>
-                            </constraints>
-                        </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQg-mK-ZC5">
-                            <rect key="frame" x="250" y="538" width="100" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="100" id="G8z-Iv-a2B"/>
-                                <constraint firstAttribute="height" constant="30" id="ezz-1H-TH4"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="20"/>
-                            <color key="textColor" red="1" green="0.80000000000000004" blue="0.0" alpha="0.65000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="centerX" secondItem="kaX-NP-J8j" secondAttribute="centerX" id="IIl-tD-Cgb"/>
-                        <constraint firstAttribute="centerX" secondItem="CQg-mK-ZC5" secondAttribute="centerX" id="J0y-9W-3n4"/>
-                        <constraint firstAttribute="centerY" secondItem="kaX-NP-J8j" secondAttribute="centerY" id="JDK-bP-mWX"/>
-                        <constraint firstAttribute="bottom" secondItem="CQg-mK-ZC5" secondAttribute="bottom" constant="32" id="RAa-wT-lhG"/>
-                    </constraints>
-                </view>
             </objects>
             <point key="canvasLocation" x="236" y="247"/>
         </scene>

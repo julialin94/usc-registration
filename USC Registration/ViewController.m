@@ -19,34 +19,61 @@
 
 @implementation ViewController
 #pragma mark UITableViewDelegate & UITableViewDataSource
--(void)reloadTableView{
+-(void)reloadTableViewWithAnimation:(BOOL)animated{
     
     [self.tableView reloadData];
+    [self reloadTableViewFrameWithAnimation:animated];
+}
+-(void)reloadTableViewFrameWithAnimation:(BOOL)animated{
     CGRect frame = self.tableView.frame;
     frame.origin.x = [[UIScreen mainScreen] bounds].size.width/2 - frame.size.width/2;
     frame.size.height = (self.tableViewCollapsed) ? 80 : 80*self.terms.count;
-    dispatch_async(dispatch_get_main_queue(), ^(void) {
-        self.tableView.frame = frame;
-    });
+    if(animated)
+        [UIView animateWithDuration:0.2
+                              delay:0
+                            options:UIViewAnimationOptionCurveEaseInOut
+                         animations:^{
+                             self.tableView.frame = frame;
+                         }
+                         completion:^(BOOL finished){
+                             
+                         }];
+    else{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.tableView.frame = frame;
+        });
+    }
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (self.tableViewCollapsed) {
         return 1;
     }
-    return [self.terms count];
+    return [self.isShowingList count];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if(!self.tableViewCollapsed){
         //if it was open
-        self.selectedTerm = [self.terms objectAtIndex:indexPath.row];
+        self.tableViewCollapsed = !self.tableViewCollapsed;
+        self.selectedTerm = [self.isShowingList objectAtIndex:indexPath.row];
         self.appDelegate.term = [self.selectedTerm objectForKey:@"TERM_CODE"];
+        [self.isShowingList removeAllObjects];
+        [self.isShowingList addObject:self.terms[indexPath.row]];
+        [self reloadTableViewWithAnimation:YES];
         [self goToTermView];
     }
-    self.tableViewCollapsed = !self.tableViewCollapsed;
-    [self reloadTableView];
-//    [self.tableView reloadData];
+    else{
+        if(self.terms.count != 0){
+            self.tableViewCollapsed = !self.tableViewCollapsed;
+            self.isShowingList = [self.terms mutableCopy];
+            [self reloadTableViewWithAnimation:YES];
+        }
+        else{
+            //try to download again
+            [self getTermsWithCode:nil andSender:self];
+        }
+    }
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -55,30 +82,18 @@
     if (cell == nil) {
         cell = [[JLTermTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    if(self.tableViewCollapsed){
-        if(self.selectedTerm)
-            cell.termLabel.text = [self.selectedTerm objectForKey:@"DESCRIPTION"];
-        else
-            cell.termLabel.text = @"Select";
-        cell.arrowImage.hidden = NO;
-    }
-    else{
-        cell.termLabel.text = [self.terms[indexPath.row] objectForKey:@"DESCRIPTION"];
-        cell.arrowImage.hidden = YES;
-    }
+    cell.arrowImage.hidden = !self.tableViewCollapsed;
+    cell.termLabel.text = [[self.isShowingList objectAtIndex:indexPath.row] objectForKey:@"DESCRIPTION"];
     [cell.termLabel setTextColor:[USColor goldColor]];
     [cell setBackgroundColor:[USColor cardinalColor]];
-    
     // Remove seperator inset
     if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
         [cell setSeparatorInset:UIEdgeInsetsZero];
     }
-    
     // Prevent the cell from inheriting the Table View's margin settings
     if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
         [cell setPreservesSuperviewLayoutMargins:NO];
     }
-    
     // Explictly set your cell's layout margins
     if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
         [cell setLayoutMargins:UIEdgeInsetsZero];
@@ -104,22 +119,25 @@
     self.tableView.scrollEnabled = NO;
     self.selectedTerm = nil;
     self.tableViewCollapsed = YES;
-
-    
+    NSDictionary * dict = [[NSDictionary alloc] initWithObjects:[NSArray arrayWithObject:@"Select"] forKeys:[NSArray arrayWithObject:@"DESCRIPTION"]];
+    [self.isShowingList addObject:dict];
 }
 -(void)viewWillAppear:(BOOL)animated{
     if(self.shownBefore){
         [self.logoViewBackground removeFromSuperview];
     }
     [self.navigationController setNavigationBarHidden:YES];
-    [self reloadTableView];
+    [self reloadTableViewWithAnimation:NO];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [self.navigationController setNavigationBarHidden:NO];
+    
+    [self reloadTableViewFrameWithAnimation:NO];
 }
 -(void)viewDidAppear:(BOOL)animated{
     if(!self.terms){
         [self getTermsWithCode:nil andSender:self];
+//    }
 //    if(!self.shownBefore){
         self.shownBefore = YES;
         [UIView animateWithDuration:1.0
@@ -134,7 +152,7 @@
                             options:UIViewAnimationOptionCurveEaseInOut
                          animations:^{
                              CGFloat centerX = [UIScreen mainScreen].bounds.size.width/2;
-                             [self.animatedLogoImageView setFrame:CGRectMake(centerX-75, 28, 150, 150)];
+                             [self.animatedLogoImageView setFrame:CGRectMake(centerX-75, 28+20, 150, 150)];
                          }
                          completion:^(BOOL finished){
                              [UIView animateWithDuration:1.0
@@ -161,6 +179,7 @@
         self.term = [[Term alloc] initWithDictionary:(NSDictionary *)self.selectedTerm];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.appDelegate.progressHUD hide:YES];
+            [self reloadTableViewFrameWithAnimation:NO];
             [self performSegueWithIdentifier:@"go" sender:self];
         });
     });
@@ -169,8 +188,7 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     NSError * error;
     self.terms = [NSJSONSerialization JSONObjectWithData:self.responseData options:kNilOptions error:&error];
-    [self reloadTableView];
-//    [self.tableView reloadData];
+    [self reloadTableViewWithAnimation:NO];
 }
 
 -(void)getTermsWithCode:(NSString *)code andSender:(id)sender{
@@ -182,8 +200,6 @@
     [self performRequestWithURL:url andSender:sender];
 }
 -(void)performRequestWithURL:(NSString *)url andSender:(id)sender{
-    //    NSLog(@"RequestParentViewController url: %@", url);
-    NSLog(@"RequestParentViewController url: %@", [NSURL URLWithString:url]);
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:sender];
     [conn start];
@@ -210,6 +226,8 @@
     // The request has failed for some reason!
     // Check the error var
     NSLog(@"connection failed: %@", error);
+    UIAlertView * av = [[UIAlertView alloc] initWithTitle:@"ERROR" message:@"YO INTERNET IS BROKEN NIGGA" delegate:self cancelButtonTitle:@"OK FAG" otherButtonTitles:nil];
+    [av show];
 }
 #pragma mark Segue
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
