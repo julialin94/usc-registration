@@ -104,15 +104,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.appDelegate = [UIApplication sharedApplication].delegate;
-    self.appDelegate.progressHUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    self.appDelegate.progressHUD = [[MBProgressHUD alloc] initWithView:self.view];
     self.appDelegate.progressHUD.square = YES;
     self.isShowingList = [NSMutableArray array];
     self.openSectionIndex = NSNotFound;
-    [self.navigationController.navigationBar setBarTintColor:self.view.backgroundColor];
-    [self.navigationController.navigationBar setTitleTextAttributes:@{
-                                                                      NSForegroundColorAttributeName : [USColor goldColor]}];
-    [self.navigationController.navigationBar setTintColor:[USColor goldColor]];
-    [self.navigationController.navigationBar setTranslucent:YES];
+    
     self.tableView.layer.cornerRadius = 10.0;
     self.tableView.layer.borderColor = [[USColor goldColor] CGColor];
     self.tableView.layer.borderWidth = 2.0;
@@ -126,11 +122,11 @@
     if(self.shownBefore){
         [self.logoViewBackground removeFromSuperview];
     }
-    [self.navigationController setNavigationBarHidden:YES];
+//    [self.navigationController setNavigationBarHidden:YES];
     [self reloadTableViewWithAnimation:NO];
 }
 -(void)viewWillDisappear:(BOOL)animated{
-    [self.navigationController setNavigationBarHidden:NO];
+//    [self.navigationController setNavigationBarHidden:NO];
     
     [self reloadTableViewFrameWithAnimation:NO];
 }
@@ -152,7 +148,7 @@
                             options:UIViewAnimationOptionCurveEaseInOut
                          animations:^{
                              CGFloat centerX = [UIScreen mainScreen].bounds.size.width/2;
-                             [self.animatedLogoImageView setFrame:CGRectMake(centerX-75, 28+20, 150, 150)];
+                             [self.animatedLogoImageView setFrame:CGRectMake(centerX-75, 28, 150, 150)];
                          }
                          completion:^(BOOL finished){
                              [UIView animateWithDuration:1.0
@@ -172,7 +168,7 @@
     self.appDelegate.progressHUD.labelText = @"Please wait.";
     self.appDelegate.progressHUD.detailsLabelText = [NSString stringWithFormat:@"Loading %@.", [self.selectedTerm objectForKey:@"DESCRIPTION"]];
     self.appDelegate.progressHUD.mode = MBProgressHUDModeDeterminateHorizontalBar;
-    [self.navigationController.view addSubview:self.appDelegate.progressHUD];
+    [self.view addSubview:self.appDelegate.progressHUD];
     [self.appDelegate.progressHUD show:YES];
     dispatch_queue_t loadingQueue = dispatch_queue_create("loadingQueue",NULL);
     dispatch_async(loadingQueue, ^{
@@ -231,9 +227,8 @@
 }
 #pragma mark Segue
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    NSLog(@"destination: %@", segue.destinationViewController);
-    VHTermViewController * vc = segue.destinationViewController;
-    vc.term = self.term;
-    [self.navigationController setNavigationBarHidden:NO];
+//    NSLog(@"destination: %@", segue.destinationViewController);
+//    VHTermViewController * vc = segue.destinationViewController;
+    self.appDelegate.termObject = self.term;
 }
 @end

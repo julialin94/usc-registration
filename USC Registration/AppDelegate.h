@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import "MBProgressHUD.h"
+@class Term;
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) NSString * term;
+@property (strong, nonatomic) Term * termObject;
 @property (nonatomic, strong) MBProgressHUD * progressHUD;
 -(NSString *)URL;
 

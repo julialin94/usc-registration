@@ -154,8 +154,15 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"self.view: %@", self.view);
     self.appDelegate = [UIApplication sharedApplication].delegate;
+    self.term = self.appDelegate.termObject;
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backAction)];
+    self.navigationItem.leftBarButtonItem = backButton;
+    [self.navigationController.navigationBar setBarTintColor:self.view.backgroundColor];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{
+                                                                      NSForegroundColorAttributeName : [USColor goldColor]}];
+    [self.navigationController.navigationBar setTintColor:[USColor goldColor]];
+    [self.navigationController.navigationBar setTranslucent:YES];
     UISwipeGestureRecognizer *rightSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(rightSwipeHandle:)];
     rightSwipe.direction = UISwipeGestureRecognizerDirectionRight;
     [rightSwipe setNumberOfTouchesRequired:1];
@@ -230,5 +237,8 @@
         [self reloadView];
         [self.tableView reloadData];
     }
+}
+- (void)backAction{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end
