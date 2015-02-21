@@ -93,6 +93,7 @@
         self.term = [[Term alloc] initWithDictionary:(NSDictionary *)self.selectedTerm];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.appDelegate.progressHUD hide:YES];
+            [self.appDelegate.progressHUD removeFromSuperview];
             [self performSegueWithIdentifier:@"go" sender:self];
         });
     });

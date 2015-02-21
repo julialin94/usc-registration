@@ -8,14 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "Term.h"  
+#import "AppDelegate.h"
+#import "Department.h"
 @interface VHTermViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
+@property (nonatomic, strong) AppDelegate * appDelegate;
 @property (weak, nonatomic) IBOutlet UILabel *schoolLabel;
 @property (weak, nonatomic) IBOutlet UILabel *prefixLabel;
 @property (weak, nonatomic) IBOutlet UILabel *departmentLabel;
 @property (weak, nonatomic) IBOutlet UIView *menuView;
 @property (strong, nonatomic) UIView *lineView;
 @property (strong, nonatomic) Term * term;
+@property (strong, nonatomic) Department * selectedDepartment;
 @property (nonatomic) NSInteger index;
 @property (nonatomic, strong) NSMutableArray * arrayOfLabels;
 @property (nonatomic, strong) NSDictionary * schools;

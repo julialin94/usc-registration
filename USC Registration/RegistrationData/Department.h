@@ -13,4 +13,6 @@
 @property (nonatomic, strong) NSString * departmentCode;
 @property (nonatomic, strong) NSString * departmentDescription;
 @property (nonatomic, strong) NSString * schoolCode;
+@property (nonatomic) BOOL downloaded;
+-(void)downloadData;
 @end

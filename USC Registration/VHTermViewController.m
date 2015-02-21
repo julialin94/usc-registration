@@ -10,6 +10,7 @@
 #import "VHDepartmentTableViewCell.h"
 #import "VHPrefixTableViewCell.h"
 #import "Department.h"
+#import "CourseListViewController.h"
 @interface VHTermViewController ()
 
 @end
@@ -28,7 +29,6 @@
             rtn = self.term.prefixedDepartments.count;
             break;
     }
-    NSLog(@"return: %ld", (long)rtn);
     return rtn;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -64,6 +64,49 @@
     }
     return cell;
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    self.selectedDepartment = nil;
+    switch (self.index) {
+        case 0:{
+            
+        }
+            break;
+        case 1:{
+            self.selectedDepartment = [self.term.departments objectAtIndex:indexPath.row];
+        }
+            break;
+        case 2:{
+            self.selectedDepartment = [self.term.departments objectAtIndex:indexPath.row];
+        }
+            break;
+    }
+    if(!self.selectedDepartment.downloaded){
+        self.appDelegate.progressHUD.labelText = @"Please wait.";
+        self.appDelegate.progressHUD.detailsLabelText = [NSString stringWithFormat:@"Loading %@.", self.selectedDepartment.departmentCode];
+        self.appDelegate.progressHUD.mode = MBProgressHUDModeIndeterminate;
+        [self.navigationController.view addSubview:self.appDelegate.progressHUD];
+        [self.appDelegate.progressHUD show:YES];
+        dispatch_queue_t loadingQueue = dispatch_queue_create("loadingQueue",NULL);
+        dispatch_async(loadingQueue, ^{
+            [self.selectedDepartment downloadData];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.appDelegate.progressHUD hide:YES];
+                [self.appDelegate.progressHUD removeFromSuperview];
+                [self performSegueWithIdentifier:@"goToCourses" sender:self];
+            });
+        });
+    }
+    else{
+        [self performSegueWithIdentifier:@"goToCourses" sender:self];
+    }
+    
+}
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"goToCourses"]){
+        CourseListViewController * vc = [segue destinationViewController];
+        vc.department = self.selectedDepartment;
+    }
+}
 -(void)tapSchool{
     self.index = 0;
     [self reloadView];
@@ -81,6 +124,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.appDelegate = [UIApplication sharedApplication].delegate;
     UISwipeGestureRecognizer *rightSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(rightSwipeHandle:)];
     rightSwipe.direction = UISwipeGestureRecognizerDirectionRight;
     [rightSwipe setNumberOfTouchesRequired:1];
@@ -108,11 +152,13 @@
 -(void)viewDidAppear:(BOOL)animated{
     
     CGRect frame = self.schoolLabel.frame;
-    self.lineView = [[UIView alloc] initWithFrame:CGRectMake(frame.origin.x, frame.origin.y+frame.size.height+2, frame.size.width, 3)];
-    self.lineView.backgroundColor = [UIColor redColor];
-    [self.menuView addSubview:self.lineView];
-    [self.menuView bringSubviewToFront:self.lineView];
-    self.index = 0;
+    if(!self.lineView){
+        self.lineView = [[UIView alloc] initWithFrame:CGRectMake(frame.origin.x, frame.origin.y+frame.size.height+2, frame.size.width, 3)];
+        self.lineView.backgroundColor = [UIColor redColor];
+        [self.menuView addSubview:self.lineView];
+        [self.menuView bringSubviewToFront:self.lineView];
+        self.index = 0;
+    }
 }
 -(void)reloadView{
     [UIView animateWithDuration:0.2
