@@ -29,6 +29,7 @@
     if(!self.tableViewCollapsed){
         //if it was open
         self.selectedTerm = [self.terms objectAtIndex:indexPath.row];
+        [self goToTermView];
     }
     self.tableViewCollapsed = !self.tableViewCollapsed;
     [self.tableView reloadData];
@@ -49,7 +50,21 @@
     }
     return cell;
 }
-
+-(void)goToTermView{
+    self.appDelegate.progressHUD.labelText = @"Please wait.";
+    self.appDelegate.progressHUD.detailsLabelText = [NSString stringWithFormat:@"Loading %@.", [self.selectedTerm objectForKey:@"DESCRIPTION"]];
+    self.appDelegate.progressHUD.mode = MBProgressHUDModeDeterminateHorizontalBar;
+    [self.navigationController.view addSubview:self.appDelegate.progressHUD];
+    [self.appDelegate.progressHUD show:YES];
+    dispatch_queue_t loadingQueue = dispatch_queue_create("loadingQueue",NULL);
+    dispatch_async(loadingQueue, ^{
+        self.term = [[Term alloc] initWithDictionary:(NSDictionary *)self.selectedTerm];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.appDelegate.progressHUD hide:YES];
+            [self performSegueWithIdentifier:@"go" sender:self];
+        });
+    });
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.appDelegate = [UIApplication sharedApplication].delegate;

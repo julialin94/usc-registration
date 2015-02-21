@@ -62,6 +62,7 @@
         }
             break;
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 -(void)tapSchool{
@@ -81,6 +82,11 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    
+//    self.tableView.backgroundView.backgroundColor = [UIColor redColor];
+    
     UISwipeGestureRecognizer *rightSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(rightSwipeHandle:)];
     rightSwipe.direction = UISwipeGestureRecognizerDirectionRight;
     [rightSwipe setNumberOfTouchesRequired:1];
