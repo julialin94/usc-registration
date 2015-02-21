@@ -26,7 +26,6 @@
 @property (nonatomic) BOOL shownBefore;
 @property (nonatomic) BOOL buttonClicked;
 @property (nonatomic) BOOL tableViewCollapsed;
-- (IBAction)goButtonAction:(id)sender;
 
 @end
 

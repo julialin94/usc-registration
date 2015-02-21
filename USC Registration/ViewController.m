@@ -12,11 +12,23 @@
 #import "AppDelegate.h"
 #import "USColor.h"
 #import "MBProgressHUD.h"
+#import "JLTermTableViewCell.h"
 @interface ViewController ()
 
 @end
 
 @implementation ViewController
+#pragma mark UITableViewDelegate & UITableViewDataSource
+-(void)reloadTableView{
+    
+    [self.tableView reloadData];
+    CGRect frame = self.tableView.frame;
+    frame.origin.x = [[UIScreen mainScreen] bounds].size.width/2 - frame.size.width/2;
+    frame.size.height = (self.tableViewCollapsed) ? 80 : 80*self.terms.count;
+    dispatch_async(dispatch_get_main_queue(), ^(void) {
+        self.tableView.frame = frame;
+    });
+}
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (self.tableViewCollapsed) {
         return 1;
@@ -33,45 +45,52 @@
         [self goToTermView];
     }
     self.tableViewCollapsed = !self.tableViewCollapsed;
-    [self.tableView reloadData];
+    [self reloadTableView];
+//    [self.tableView reloadData];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *CellIdentifier = @"Cell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *CellIdentifier = @"termCell";
+    JLTermTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[JLTermTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     if(self.tableViewCollapsed){
-        cell.textLabel.text = [self.selectedTerm objectForKey:@"DESCRIPTION"];
+        if(self.selectedTerm)
+            cell.termLabel.text = [self.selectedTerm objectForKey:@"DESCRIPTION"];
+        else
+            cell.termLabel.text = @"Select";
+        cell.arrowImage.hidden = NO;
     }
     else{
-        cell.textLabel.text = [self.terms[indexPath.row] objectForKey:@"DESCRIPTION"];
+        cell.termLabel.text = [self.terms[indexPath.row] objectForKey:@"DESCRIPTION"];
+        cell.arrowImage.hidden = YES;
+    }
+    [cell.termLabel setTextColor:[USColor goldColor]];
+    [cell setBackgroundColor:[USColor cardinalColor]];
+    
+    // Remove seperator inset
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    // Prevent the cell from inheriting the Table View's margin settings
+    if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
+        [cell setPreservesSuperviewLayoutMargins:NO];
+    }
+    
+    // Explictly set your cell's layout margins
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
     }
     return cell;
 }
--(void)goToTermView{
-    self.appDelegate.progressHUD.labelText = @"Please wait.";
-    self.appDelegate.progressHUD.detailsLabelText = [NSString stringWithFormat:@"Loading %@.", [self.selectedTerm objectForKey:@"DESCRIPTION"]];
-    self.appDelegate.progressHUD.mode = MBProgressHUDModeDeterminateHorizontalBar;
-    [self.navigationController.view addSubview:self.appDelegate.progressHUD];
-    [self.appDelegate.progressHUD show:YES];
-    dispatch_queue_t loadingQueue = dispatch_queue_create("loadingQueue",NULL);
-    dispatch_async(loadingQueue, ^{
-        self.term = [[Term alloc] initWithDictionary:(NSDictionary *)self.selectedTerm];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.appDelegate.progressHUD hide:YES];
-            [self performSegueWithIdentifier:@"go" sender:self];
-        });
-    });
-}
+#pragma mark View Load/Appear methods
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.appDelegate = [UIApplication sharedApplication].delegate;
     self.appDelegate.progressHUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     self.appDelegate.progressHUD.square = YES;
-    self.terms = [[NSArray alloc] init];
     self.isShowingList = [NSMutableArray array];
     self.openSectionIndex = NSNotFound;
     [self.navigationController.navigationBar setBarTintColor:self.view.backgroundColor];
@@ -79,19 +98,29 @@
                                                                       NSForegroundColorAttributeName : [USColor goldColor]}];
     [self.navigationController.navigationBar setTintColor:[USColor goldColor]];
     [self.navigationController.navigationBar setTranslucent:YES];
+    self.tableView.layer.cornerRadius = 10.0;
+    self.tableView.layer.borderColor = [[USColor goldColor] CGColor];
+    self.tableView.layer.borderWidth = 2.0;
+    self.tableView.scrollEnabled = NO;
+    self.selectedTerm = nil;
+    self.tableViewCollapsed = YES;
+
+    
 }
 -(void)viewWillAppear:(BOOL)animated{
     if(self.shownBefore){
         [self.logoViewBackground removeFromSuperview];
     }
     [self.navigationController setNavigationBarHidden:YES];
+    [self reloadTableView];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [self.navigationController setNavigationBarHidden:NO];
 }
 -(void)viewDidAppear:(BOOL)animated{
-    [self getTermsWithCode:nil andSender:self];
-    if(!self.shownBefore){
+    if(!self.terms){
+        [self getTermsWithCode:nil andSender:self];
+//    if(!self.shownBefore){
         self.shownBefore = YES;
         [UIView animateWithDuration:1.0
                               delay:0.0
@@ -121,20 +150,7 @@
                          }];
     }
 }
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    NSError * error;
-    self.terms = [NSJSONSerialization JSONObjectWithData:self.responseData options:kNilOptions error:&error];
-    [self.tableView reloadData];
-}
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    NSLog(@"destination: %@", segue.destinationViewController);
-    VHTermViewController * vc = segue.destinationViewController;
-    vc.term = self.term;
-    [self.navigationController setNavigationBarHidden:NO];
-}
-- (IBAction)goButtonAction:(id)sender {
-    self.buttonClicked = YES;
+-(void)goToTermView{
     self.appDelegate.progressHUD.labelText = @"Please wait.";
     self.appDelegate.progressHUD.detailsLabelText = [NSString stringWithFormat:@"Loading %@.", [self.selectedTerm objectForKey:@"DESCRIPTION"]];
     self.appDelegate.progressHUD.mode = MBProgressHUDModeDeterminateHorizontalBar;
@@ -145,12 +161,18 @@
         self.term = [[Term alloc] initWithDictionary:(NSDictionary *)self.selectedTerm];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.appDelegate.progressHUD hide:YES];
-            [self.appDelegate.progressHUD removeFromSuperview];
             [self performSegueWithIdentifier:@"go" sender:self];
         });
     });
-    
 }
+#pragma mark NSURLConnection
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    NSError * error;
+    self.terms = [NSJSONSerialization JSONObjectWithData:self.responseData options:kNilOptions error:&error];
+    [self reloadTableView];
+//    [self.tableView reloadData];
+}
+
 -(void)getTermsWithCode:(NSString *)code andSender:(id)sender{
     //gets term details
     if(code == nil)
@@ -188,5 +210,12 @@
     // The request has failed for some reason!
     // Check the error var
     NSLog(@"connection failed: %@", error);
+}
+#pragma mark Segue
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    NSLog(@"destination: %@", segue.destinationViewController);
+    VHTermViewController * vc = segue.destinationViewController;
+    vc.term = self.term;
+    [self.navigationController setNavigationBarHidden:NO];
 }
 @end
