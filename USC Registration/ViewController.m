@@ -25,10 +25,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSLog(@"touch on row %ld", (long)indexPath.row);
     if(!self.tableViewCollapsed){
         //if it was open
         self.selectedTerm = [self.terms objectAtIndex:indexPath.row];
+        self.appDelegate.term = [self.selectedTerm objectForKey:@"TERM_CODE"];
         [self goToTermView];
     }
     self.tableViewCollapsed = !self.tableViewCollapsed;
@@ -117,27 +117,6 @@
     NSError * error;
     self.terms = [NSJSONSerialization JSONObjectWithData:self.responseData options:kNilOptions error:&error];
     [self.tableView reloadData];
-    
-
-//    
-//    if (self.terms && [self.terms valueForKey:@"menus"] && [[jsonArray valueForKey:@"menus"] valueForKey:@"menuName"]) {
-//        for (int i = 0; i < [[[jsonArray valueForKey:@"menus"] valueForKey:@"menuName"] count]; i++) {
-//            [self.isShowingList addObject:[NSNumber numberWithBool:NO]];
-//        }
-//    }
-
-    
-//    NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:self.responseData options:kNilOptions error:&error];
-//
-//    NSLog(@"terms: %@", dict);
-//#warning put terms in container view: bottom code hard codes first available term
-//    for(NSDictionary * term in dict){
-//        NSLog(@"term: %@", [term objectForKey:@"DESCRIPTION"]);
-//        if(!self.selectedTerm){
-//            self.selectedTerm = term;
-//            self.appDelegate.term = [term objectForKey:@"TERM_CODE"];
-//        }
-//    }
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     NSLog(@"destination: %@", segue.destinationViewController);
