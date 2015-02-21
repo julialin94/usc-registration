@@ -80,6 +80,9 @@
     }
     [self.navigationController setNavigationBarHidden:YES];
 }
+-(void)viewWillDisappear:(BOOL)animated{
+    [self.navigationController setNavigationBarHidden:NO];
+}
 -(void)viewDidAppear:(BOOL)animated{
     [self getTermsWithCode:nil andSender:self];
     if(!self.shownBefore){
