@@ -16,12 +16,63 @@
 @end
 
 @implementation ViewController
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (self.tableViewCollapsed) {
+        return 1;
+    }
+    return [self.terms count];
+}
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSLog(@"touch on row %ld", (long)indexPath.row);
+    if(!self.tableViewCollapsed){
+        //if it was open
+        self.selectedTerm = [self.terms objectAtIndex:indexPath.row];
+        [self goToTermView];
+    }
+    self.tableViewCollapsed = !self.tableViewCollapsed;
+    [self.tableView reloadData];
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    if(self.tableViewCollapsed){
+        cell.textLabel.text = [self.selectedTerm objectForKey:@"DESCRIPTION"];
+    }
+    else{
+        cell.textLabel.text = [self.terms[indexPath.row] objectForKey:@"DESCRIPTION"];
+    }
+    return cell;
+}
+-(void)goToTermView{
+    self.appDelegate.progressHUD.labelText = @"Please wait.";
+    self.appDelegate.progressHUD.detailsLabelText = [NSString stringWithFormat:@"Loading %@.", [self.selectedTerm objectForKey:@"DESCRIPTION"]];
+    self.appDelegate.progressHUD.mode = MBProgressHUDModeDeterminateHorizontalBar;
+    [self.navigationController.view addSubview:self.appDelegate.progressHUD];
+    [self.appDelegate.progressHUD show:YES];
+    dispatch_queue_t loadingQueue = dispatch_queue_create("loadingQueue",NULL);
+    dispatch_async(loadingQueue, ^{
+        self.term = [[Term alloc] initWithDictionary:(NSDictionary *)self.selectedTerm];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.appDelegate.progressHUD hide:YES];
+            [self performSegueWithIdentifier:@"go" sender:self];
+        });
+    });
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.appDelegate = [UIApplication sharedApplication].delegate;
     self.appDelegate.progressHUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
     self.appDelegate.progressHUD.square = YES;
+    self.terms = [[NSArray alloc] init];
+    self.isShowingList = [NSMutableArray array];
+    self.openSectionIndex = NSNotFound;
 }
 -(void)viewWillAppear:(BOOL)animated{
     if(self.shownBefore){
@@ -64,16 +115,29 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     NSError * error;
-    NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:self.responseData options:kNilOptions error:&error];
+    self.terms = [NSJSONSerialization JSONObjectWithData:self.responseData options:kNilOptions error:&error];
+    [self.tableView reloadData];
+    
 
-    NSLog(@"terms: %@", dict);
-#warning put terms in container view: bottom code hard codes first available term
-    for(NSDictionary * term in dict){
-        if(!self.selectedTerm){
-            self.selectedTerm = term;
-            self.appDelegate.term = [term objectForKey:@"TERM_CODE"];
-        }
-    }
+//    
+//    if (self.terms && [self.terms valueForKey:@"menus"] && [[jsonArray valueForKey:@"menus"] valueForKey:@"menuName"]) {
+//        for (int i = 0; i < [[[jsonArray valueForKey:@"menus"] valueForKey:@"menuName"] count]; i++) {
+//            [self.isShowingList addObject:[NSNumber numberWithBool:NO]];
+//        }
+//    }
+
+    
+//    NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:self.responseData options:kNilOptions error:&error];
+//
+//    NSLog(@"terms: %@", dict);
+//#warning put terms in container view: bottom code hard codes first available term
+//    for(NSDictionary * term in dict){
+//        NSLog(@"term: %@", [term objectForKey:@"DESCRIPTION"]);
+//        if(!self.selectedTerm){
+//            self.selectedTerm = term;
+//            self.appDelegate.term = [term objectForKey:@"TERM_CODE"];
+//        }
+//    }
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     NSLog(@"destination: %@", segue.destinationViewController);
