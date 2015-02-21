@@ -12,4 +12,5 @@
 @property (nonatomic, strong) AppDelegate * appDelegate;
 -(id)initWithDictionary:(NSDictionary *)dict;
 -(void)add:(id)object;
+@property (nonatomic) BOOL shown;
 @end

@@ -11,5 +11,6 @@
 @interface VHPrefixTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *departmentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *prefixLabel;
+@property (weak, nonatomic) IBOutlet UIView *opaqueView;
 
 @end

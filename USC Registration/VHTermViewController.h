@@ -21,6 +21,7 @@
 @property (strong, nonatomic) Term * term;
 @property (strong, nonatomic) Department * selectedDepartment;
 @property (nonatomic) NSInteger index;
+@property (nonatomic) NSInteger lastIndex;
 @property (nonatomic, strong) NSMutableArray * arrayOfLabels;
 @property (nonatomic, strong) NSDictionary * schools;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

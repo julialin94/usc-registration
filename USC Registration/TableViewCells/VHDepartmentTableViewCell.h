@@ -11,5 +11,6 @@
 @interface VHDepartmentTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *iconLabel;
 @property (weak, nonatomic) IBOutlet UILabel *departmentLabel;
+@property (weak, nonatomic) IBOutlet UIView *opaqueView;
 
 @end

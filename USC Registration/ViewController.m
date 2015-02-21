@@ -10,6 +10,7 @@
 #import "Term.h"
 #import "VHTermViewController.h"
 #import "AppDelegate.h"
+#import "USColor.h"
 #import "MBProgressHUD.h"
 @interface ViewController ()
 
@@ -73,6 +74,11 @@
     self.terms = [[NSArray alloc] init];
     self.isShowingList = [NSMutableArray array];
     self.openSectionIndex = NSNotFound;
+    [self.navigationController.navigationBar setBarTintColor:self.view.backgroundColor];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{
+                                                                      NSForegroundColorAttributeName : [USColor goldColor]}];
+    [self.navigationController.navigationBar setTintColor:[USColor goldColor]];
+    [self.navigationController.navigationBar setTranslucent:YES];
 }
 -(void)viewWillAppear:(BOOL)animated{
     if(self.shownBefore){

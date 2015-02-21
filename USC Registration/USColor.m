@@ -11,6 +11,7 @@
 @implementation USColor
 +(id)cardinalColor{
     return [super colorWithRed:153.0/255.0  green:0.0/255.0 blue:0.0/255.0 alpha:1.0];
+//    return [super colorWithRed:0/255.0  green:0.0/255.0 blue:0.0/255.0 alpha:1.0];
 }
 +(id)goldColor{
     return [super colorWithRed:255.0/255.0  green:204.0/255.0 blue:0.0/255.0 alpha:1.0];

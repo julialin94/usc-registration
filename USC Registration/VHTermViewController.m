@@ -11,6 +11,8 @@
 #import "VHPrefixTableViewCell.h"
 #import "Department.h"
 #import "CourseListViewController.h"
+#import "Data.h"
+#import "USColor.h"
 @interface VHTermViewController ()
 
 @end
@@ -46,6 +48,7 @@
             NSString * departmentCode = ((Department*)self.term.departments[indexPath.row]).departmentCode;
             [tempCell.iconLabel setText:departmentCode];
             [tempCell.departmentLabel setText:department];
+            [tempCell.opaqueView.layer setCornerRadius:10.0];
             cell = tempCell;
         }
             break;
@@ -58,12 +61,35 @@
             NSString * departmentCode = ((Department*)self.term.prefixedDepartments[indexPath.row]).departmentCode;
             [tempCell.prefixLabel setText:departmentCode];
             [tempCell.departmentLabel setText:department];
+            [tempCell.opaqueView.layer setCornerRadius:10.0];
             cell = tempCell;
         }
             break;
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
+}
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    Data * d = nil;
+    switch (self.index) {
+        case 0:
+        case 1:{
+            d = [self.term.departments objectAtIndex:indexPath.row];
+        }
+            break;
+        case 2:{
+            d = [self.term.prefixedDepartments objectAtIndex:indexPath.row];
+        }
+            break;
+    }
+    if(!d.shown){
+        d.shown = YES;
+        CGFloat multiplier = (self.lastIndex < self.index) ? 1.0 : -1.0;
+        cell.transform = CGAffineTransformMakeTranslation(cell.frame.size.width*0.5*multiplier, 0);
+        [UIView animateWithDuration:0.15 animations:^{
+            cell.transform = CGAffineTransformIdentity;
+        }];
+    }
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     self.selectedDepartment = nil;
@@ -109,22 +135,26 @@
     }
 }
 -(void)tapSchool{
+    self.lastIndex = self.index;
     self.index = 0;
     [self reloadView];
     [self.tableView reloadData];
 }
 -(void)tapDepartment{
+    self.lastIndex = self.index;
     self.index = 1;
     [self reloadView];
     [self.tableView reloadData];
 }
 -(void)tapPrefixes{
+    self.lastIndex = self.index;
     self.index = 2;
     [self reloadView];
     [self.tableView reloadData];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NSLog(@"self.view: %@", self.view);
     self.appDelegate = [UIApplication sharedApplication].delegate;
     UISwipeGestureRecognizer *rightSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(rightSwipeHandle:)];
     rightSwipe.direction = UISwipeGestureRecognizerDirectionRight;
@@ -146,22 +176,31 @@
     [self.departmentLabel addGestureRecognizer:tap2];
     UITapGestureRecognizer * tap3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPrefixes)];
     [self.prefixLabel addGestureRecognizer:tap3];
-//    [self.menuView addGestureRecognizer:leftSwipe];
-//    [self.menuView addGestureRecognizer:rightSwipe];
     self.arrayOfLabels = [[NSMutableArray alloc] initWithObjects:self.schoolLabel, self.departmentLabel, self.prefixLabel, nil];
 }
+-(void)viewWillAppear:(BOOL)animated{
+    [self.tableView setBackgroundColor:self.navigationController.navigationBar.barTintColor];
+    [self.view setBackgroundColor:self.navigationController.navigationBar.barTintColor];
+    [self.menuView setBackgroundColor:self.navigationController.navigationBar.barTintColor];
+}
 -(void)viewDidAppear:(BOOL)animated{
-    
+    [self.navigationController setNavigationBarHidden:NO];
     CGRect frame = self.schoolLabel.frame;
     if(!self.lineView){
         self.lineView = [[UIView alloc] initWithFrame:CGRectMake(frame.origin.x, frame.origin.y+frame.size.height+2, frame.size.width, 3)];
-        self.lineView.backgroundColor = [UIColor redColor];
+        self.lineView.backgroundColor = [USColor goldColor];
         [self.menuView addSubview:self.lineView];
         [self.menuView bringSubviewToFront:self.lineView];
         self.index = 0;
     }
 }
 -(void)reloadView{
+    for (Data * d in self.term.departments) {
+        d.shown = NO;
+    }
+    for (Data * d in self.term.prefixedDepartments) {
+        d.shown = NO;
+    }
     [UIView animateWithDuration:0.2
                           delay:0
                         options:UIViewAnimationOptionCurveEaseInOut
@@ -176,6 +215,7 @@
 - (void)rightSwipeHandle:(UISwipeGestureRecognizer*)gestureRecognizer
 {
     if(self.index>0){
+        self.lastIndex = self.index;
         self.index--;
         [self reloadView];
         [self.tableView reloadData];
@@ -185,6 +225,7 @@
 - (void)leftSwipeHandle:(UISwipeGestureRecognizer*)gestureRecognizer
 {
     if(self.index<2){
+        self.lastIndex = self.index;
         self.index++;
         [self reloadView];
         [self.tableView reloadData];
