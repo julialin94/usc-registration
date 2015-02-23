@@ -10,7 +10,7 @@
 #import "Term.h"  
 #import "AppDelegate.h"
 #import "Department.h"
-@interface VHTermViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface VHTermViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, strong) AppDelegate * appDelegate;
 @property (weak, nonatomic) IBOutlet UILabel *schoolLabel;
@@ -25,6 +25,7 @@
 @property (nonatomic, strong) NSMutableArray * arrayOfLabels;
 @property (nonatomic, strong) NSDictionary * schools;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UICollectionView *schoolCollectionView;
 
 
 @end
