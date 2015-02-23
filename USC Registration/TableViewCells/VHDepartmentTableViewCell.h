@@ -7,10 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface VHDepartmentTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *iconLabel;
-@property (weak, nonatomic) IBOutlet UILabel *departmentLabel;
+#import "VHDepartmentParentTableViewCell.h"
+@interface VHDepartmentTableViewCell : VHDepartmentParentTableViewCell
 @property (weak, nonatomic) IBOutlet UIView *opaqueView;
 
 @end

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface USColor : UIColor
-+(id)cardinalColor;
-+(id)goldColor;
++(id)JLCardinalColor;
++(id)JLGoldColor;
++(id)JLLightGrayColor;
 @end

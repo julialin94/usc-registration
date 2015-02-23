@@ -84,8 +84,8 @@
     }
     cell.arrowImage.hidden = !self.tableViewCollapsed;
     cell.termLabel.text = [[self.isShowingList objectAtIndex:indexPath.row] objectForKey:@"DESCRIPTION"];
-    [cell.termLabel setTextColor:[USColor goldColor]];
-    [cell setBackgroundColor:[USColor cardinalColor]];
+    [cell.termLabel setTextColor:[USColor JLGoldColor]];
+    [cell setBackgroundColor:[USColor JLCardinalColor]];
     // Remove seperator inset
     if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
         [cell setSeparatorInset:UIEdgeInsetsZero];
@@ -110,7 +110,7 @@
     self.openSectionIndex = NSNotFound;
     
     self.tableView.layer.cornerRadius = 10.0;
-    self.tableView.layer.borderColor = [[USColor goldColor] CGColor];
+    self.tableView.layer.borderColor = [[USColor JLGoldColor] CGColor];
     self.tableView.layer.borderWidth = 2.0;
     self.tableView.scrollEnabled = NO;
     self.selectedTerm = nil;

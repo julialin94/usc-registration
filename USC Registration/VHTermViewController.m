@@ -13,11 +13,13 @@
 #import "CourseListViewController.h"
 #import "Data.h"
 #import "USColor.h"
+#import "VHDepartmentParentTableViewCell.h"
 @interface VHTermViewController ()
 
 @end
 
 @implementation VHTermViewController
+#pragma mark UITableViewDelegate/DataSource
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     NSInteger rtn = 0;
     switch (self.index) {
@@ -34,42 +36,40 @@
     return rtn;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell * cell;
+    VHDepartmentParentTableViewCell * cell;
     switch (self.index) {
         case 0:
-//            cell = nil;
-//            break;
         case 1:{
-            VHDepartmentTableViewCell * tempCell = [tableView dequeueReusableCellWithIdentifier:@"department"];
-            if (tempCell == nil) {
-                tempCell = [[VHDepartmentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"department"];
+            cell = [tableView dequeueReusableCellWithIdentifier:@"department"];
+            if (cell == nil) {
+                cell = [[VHDepartmentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"department"];
             }
             NSString * department = ((Department*)self.term.departments[indexPath.row]).departmentDescription;
             NSString * departmentCode = ((Department*)self.term.departments[indexPath.row]).departmentCode;
-            [tempCell.iconLabel setText:departmentCode];
-            [tempCell.departmentLabel setText:department];
-            [tempCell.opaqueView.layer setCornerRadius:10.0];
-            cell = tempCell;
+            [cell.iconLabel setText:departmentCode];
+            [cell.departmentLabel setText:department];
+            [cell.iconLabel setTextColor:[UIColor blackColor]];
+            [cell.departmentLabel setTextColor:[USColor JLCardinalColor]];
         }
             break;
         case 2:{
-            VHPrefixTableViewCell * tempCell = [tableView dequeueReusableCellWithIdentifier:@"prefix"];
-            if (tempCell == nil) {
-                tempCell = [[VHPrefixTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"prefix"];
+            cell = [tableView dequeueReusableCellWithIdentifier:@"department"];
+            if (cell == nil) {
+                cell = [[VHPrefixTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"department"];
             }
             NSString * department = ((Department*)self.term.prefixedDepartments[indexPath.row]).departmentDescription;
             NSString * departmentCode = ((Department*)self.term.prefixedDepartments[indexPath.row]).departmentCode;
-            [tempCell.prefixLabel setText:departmentCode];
-            [tempCell.departmentLabel setText:department];
-            [tempCell.opaqueView.layer setCornerRadius:10.0];
-            cell = tempCell;
+            [cell.iconLabel setText:departmentCode];
+            [cell.departmentLabel setText:department];
+            [cell.iconLabel setTextColor:[USColor JLCardinalColor]];
+            [cell.departmentLabel setTextColor:[UIColor blackColor]];
         }
             break;
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
--(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+-(void)tableView:(UITableView *)tableView willDisplayCell:(VHDepartmentParentTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
     Data * d = nil;
     switch (self.index) {
         case 0:
@@ -82,6 +82,16 @@
         }
             break;
     }
+    cell.iconLabel.alpha = 0.0;
+    cell.departmentLabel.alpha = 0.0;
+    [UIView animateWithDuration:0.2
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         cell.iconLabel.alpha = 1.0;
+                         cell.departmentLabel.alpha = 1.0;
+                     }
+                     completion:nil];
     if(!d.shown){
         d.shown = YES;
         CGFloat multiplier = (self.lastIndex < self.index) ? 1.0 : -1.0;
@@ -89,6 +99,11 @@
         [UIView animateWithDuration:0.15 animations:^{
             cell.transform = CGAffineTransformIdentity;
         }];
+        
+        
+        
+        
+        
     }
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -160,8 +175,8 @@
     self.navigationItem.leftBarButtonItem = backButton;
     [self.navigationController.navigationBar setBarTintColor:self.view.backgroundColor];
     [self.navigationController.navigationBar setTitleTextAttributes:@{
-                                                                      NSForegroundColorAttributeName : [USColor goldColor]}];
-    [self.navigationController.navigationBar setTintColor:[USColor goldColor]];
+                                                                      NSForegroundColorAttributeName : [USColor JLGoldColor]}];
+    [self.navigationController.navigationBar setTintColor:[USColor JLGoldColor]];
     [self.navigationController.navigationBar setTranslucent:YES];
     UISwipeGestureRecognizer *rightSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(rightSwipeHandle:)];
     rightSwipe.direction = UISwipeGestureRecognizerDirectionRight;
@@ -186,16 +201,16 @@
     self.arrayOfLabels = [[NSMutableArray alloc] initWithObjects:self.schoolLabel, self.departmentLabel, self.prefixLabel, nil];
 }
 -(void)viewWillAppear:(BOOL)animated{
-    [self.tableView setBackgroundColor:self.navigationController.navigationBar.barTintColor];
-    [self.view setBackgroundColor:self.navigationController.navigationBar.barTintColor];
-    [self.menuView setBackgroundColor:self.navigationController.navigationBar.barTintColor];
+    [self.tableView setBackgroundColor:[USColor clearColor]];
+    [self.view setBackgroundColor:[USColor JLLightGrayColor]];
+    [self.menuView setBackgroundColor:[UIColor clearColor]];
 }
 -(void)viewDidAppear:(BOOL)animated{
     [self.navigationController setNavigationBarHidden:NO];
     CGRect frame = self.schoolLabel.frame;
     if(!self.lineView){
         self.lineView = [[UIView alloc] initWithFrame:CGRectMake(frame.origin.x, frame.origin.y+frame.size.height+2, frame.size.width, 3)];
-        self.lineView.backgroundColor = [USColor goldColor];
+        self.lineView.backgroundColor = [USColor JLCardinalColor];
         [self.menuView addSubview:self.lineView];
         [self.menuView bringSubviewToFront:self.lineView];
         self.index = 0;
