@@ -12,7 +12,7 @@
 
 - (void)awakeFromNib {
     self.layer.shadowOffset = CGSizeMake(0, 0);
-    self.layer.shadowOpacity = 0.3;
+    self.layer.shadowOpacity = 0.2;
     self.layer.masksToBounds = NO;
 }
 

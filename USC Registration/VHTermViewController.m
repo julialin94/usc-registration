@@ -358,7 +358,6 @@
     [self.menuView setBackgroundColor:[UIColor clearColor]];
 }
 -(void)viewDidAppear:(BOOL)animated{
-    [self.navigationController setNavigationBarHidden:NO];
     CGRect frame = self.schoolLabel.frame;
     if(!self.lineView){
         self.lineView = [[UIView alloc] initWithFrame:CGRectMake(frame.origin.x, frame.origin.y+frame.size.height+2, frame.size.width, 3)];

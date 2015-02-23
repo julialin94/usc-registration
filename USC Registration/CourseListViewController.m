@@ -67,7 +67,4 @@
     self.appDelegate = [UIApplication sharedApplication].delegate;
     self.title = self.department.departmentCode;
 }
--(void)viewWillAppear:(BOOL)animated{
-    [self.navigationController setNavigationBarHidden:NO];
-}
 @end

@@ -398,7 +398,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="U1b-ac-mfw">
-                                <rect key="frame" x="0.0" y="160" width="600" height="440"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="440" id="8ad-ne-5vw"/>
@@ -441,6 +441,11 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="8ad-ne-5vw"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <outlet property="dataSource" destination="HPU-dY-fwO" id="LXI-fm-DPH"/>
                                     <outlet property="delegate" destination="HPU-dY-fwO" id="6A1-g4-wfG"/>
@@ -449,6 +454,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="U1b-ac-mfw" firstAttribute="top" secondItem="pwd-IQ-kyl" secondAttribute="top" id="ETk-wd-iNP"/>
                             <constraint firstAttribute="trailing" secondItem="U1b-ac-mfw" secondAttribute="trailing" id="OoA-wW-hjc"/>
                             <constraint firstItem="U1b-ac-mfw" firstAttribute="leading" secondItem="pwd-IQ-kyl" secondAttribute="leading" id="PJK-rA-FL2"/>
                             <constraint firstAttribute="bottom" secondItem="U1b-ac-mfw" secondAttribute="bottom" id="kYd-Hw-PDI"/>
