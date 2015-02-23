@@ -323,6 +323,11 @@
                             <constraint firstAttribute="bottom" secondItem="FUe-uo-GNm" secondAttribute="bottom" id="iAN-sC-s5C"/>
                             <constraint firstItem="FUe-uo-GNm" firstAttribute="leading" secondItem="5Bg-VU-o25" secondAttribute="leading" id="oBE-wS-cKh"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="FUe-uo-GNm"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="l1s-8b-H7T"/>
                     <connections>
@@ -414,6 +419,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mc9-DH-Qno" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1570" y="247"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="lqo-Z8-7vl">
+            <objects>
+                <viewController id="Lee-hL-OLD" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ye2-Qx-XGy"/>
+                        <viewControllerLayoutGuide type="bottom" id="Rv4-L3-xZL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BA3-mm-lyc">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Bi-5h-OPv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2261" y="247"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="FuV-px-RHz">
