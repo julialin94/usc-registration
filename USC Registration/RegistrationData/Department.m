@@ -19,15 +19,13 @@
     
     self.courses = [[NSMutableArray alloc] init];
     /*
-     Don't download courses and their information
+     Don't download courses and their information until later.
      */
-    
-
     return self;
 }
 -(void) downloadData{
     NSString * url = [NSString stringWithFormat:@"%@/courses/%@/%@", [self.appDelegate URL], self.appDelegate.term, self.departmentCode];
-//    NSLog(@"url: %@", url);
+    NSLog(@"url: %@", url);
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     NSURLResponse *response;
     NSData * data = [NSURLConnection sendSynchronousRequest:request
