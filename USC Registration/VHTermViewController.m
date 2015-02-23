@@ -14,18 +14,115 @@
 #import "Data.h"
 #import "USColor.h"
 #import "VHDepartmentParentTableViewCell.h"
+#import "JLSchoolCollectionViewCell.h"
+#import "School.h"
+
 @interface VHTermViewController ()
 
 @end
 
 @implementation VHTermViewController
+#pragma mark UICollectionViewDelegate/DataSource
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    //double rtn = ceil((self.term.schools.count)/2);
+    //return rtn;
+    return self.term.schools.count;
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
+    JLSchoolCollectionViewCell * cell;
+    cell = [collectionView dequeueReusableCellWithReuseIdentifier: @"school" forIndexPath:indexPath];
+
+    NSString * school = ((School*)self.term.schools[indexPath.row]).schoolDescription;
+    if([school hasPrefix: @"Leventhal"]){
+        cell.schoolIconView.image = [UIImage imageNamed:@"accounting.png"];
+    }
+    else if([school hasPrefix:@"Annenberg"]){
+        cell.schoolIconView.image = [UIImage imageNamed:@"annenburg.png"];
+    }
+    else if([school hasPrefix:@"Architecture"]){
+        cell.schoolIconView.image = [UIImage imageNamed:@"architecture.png"];
+    }
+    else if([school hasPrefix:@"Marshall"]){
+        cell.schoolIconView.image = [UIImage imageNamed:@"business.png"];
+    }
+    else if([school hasPrefix:@"Cinematic"]){
+        cell.schoolIconView.image = [UIImage imageNamed:@"cinema.png"];
+    }
+    else if([school hasPrefix:@"Kaufman"]){
+        cell.schoolIconView.image = [UIImage imageNamed:@"dance.png"];
+    }
+    else if([school hasPrefix:@"Ostrow"]){
+        cell.schoolIconView.image = [UIImage imageNamed:@"dentistry.png"];
+    }
+    else if([school hasPrefix:@"Physical"]){
+        cell.schoolIconView.image = [UIImage imageNamed:@"physicaltherapy.png"];
+    }
+    else if([school hasPrefix:@"Rossier"]){
+        cell.schoolIconView.image = [UIImage imageNamed:@"rossieredu.png"];
+    }
+    else if([school hasPrefix:@"Viterbi"]){
+        cell.schoolIconView.image = [UIImage imageNamed:@"engineering.png"];
+    }
+    else if([school hasPrefix:@"Roski"]){
+        cell.schoolIconView.image = [UIImage imageNamed:@"art.png"];
+    }
+    else if([school hasPrefix:@"General"]){
+        cell.schoolIconView.image = [UIImage imageNamed:@"generaled.png"];
+    }
+    else if([school hasPrefix:@"Gerontology"]){
+        cell.schoolIconView.image = [UIImage imageNamed:@"gerontology.png"];
+    }
+    else if([school hasPrefix:@"Graduate"]){
+        cell.schoolIconView.image = [UIImage imageNamed:@"graduate.png"];
+    }
+    else if([school hasPrefix:@"Dornsife"]){
+        cell.schoolIconView.image = [UIImage imageNamed:@"dornsife.png"];
+    }
+    else if([school hasPrefix:@"Law"]){
+        cell.schoolIconView.image = [UIImage imageNamed:@"law.png"];
+    }
+    else if([school hasPrefix:@"Keck"]){
+        cell.schoolIconView.image = [UIImage imageNamed:@"medicine.png"];
+    }
+    else if([school hasPrefix:@"Thornton"]){
+        cell.schoolIconView.image = [UIImage imageNamed:@"music.png"];
+    }
+    else if([school hasPrefix:@"Occupational"]){
+        cell.schoolIconView.image = [UIImage imageNamed:@"occupationaltherapy.png"];
+    }
+    else if([school hasPrefix:@"Pharmacy"]){
+        cell.schoolIconView.image = [UIImage imageNamed:@"pharmacy.png"];
+    }
+    else if([school hasPrefix:@"Price"]){
+        cell.schoolIconView.image = [UIImage imageNamed:@"policy.png"];
+    }
+    else if([school hasPrefix:@"Social"]){
+        cell.schoolIconView.image = [UIImage imageNamed:@"socialwork.png"];
+    }
+    else if([school hasPrefix:@"Dramatic"]){
+        cell.schoolIconView.image = [UIImage imageNamed:@"drama.png"];
+    }
+    else if([school hasPrefix:@"Iovine"]){
+        cell.schoolIconView.image = [UIImage imageNamed:@"innovation.png"];
+    }
+    else{
+        cell.schoolIconView.image = [UIImage imageNamed:@"general.png"];
+    }
+    cell.schoolIconView.contentMode = UIViewContentModeScaleToFill;
+    
+    [cell.schoolLabel setText:school];
+    cell.layer.cornerRadius = 75.0;
+    return cell;
+}
+
+
 #pragma mark UITableViewDelegate/DataSource
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     NSInteger rtn = 0;
     switch (self.index) {
         case 0:
-//            rtn = 0;
-//            break;
         case 1:
             rtn = self.term.departments.count;
             break;

@@ -33,6 +33,32 @@
 		89F203D71A9AB6680099DAA0 /* VHDepartmentParentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F203D61A9AB6680099DAA0 /* VHDepartmentParentTableViewCell.m */; };
 		89F203DA1A9AF64A0099DAA0 /* CourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F203D91A9AF64A0099DAA0 /* CourseViewController.m */; };
 		89F203DD1A9AFE6E0099DAA0 /* SectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F203DC1A9AFE6E0099DAA0 /* SectionTableViewCell.m */; };
+		89F203F71A9B32990099DAA0 /* accounting.png in Resources */ = {isa = PBXBuildFile; fileRef = 89F203DE1A9B32990099DAA0 /* accounting.png */; };
+		89F203F81A9B32990099DAA0 /* annenburg.png in Resources */ = {isa = PBXBuildFile; fileRef = 89F203DF1A9B32990099DAA0 /* annenburg.png */; };
+		89F203F91A9B32990099DAA0 /* architecture.png in Resources */ = {isa = PBXBuildFile; fileRef = 89F203E01A9B32990099DAA0 /* architecture.png */; };
+		89F203FA1A9B32990099DAA0 /* art.png in Resources */ = {isa = PBXBuildFile; fileRef = 89F203E11A9B32990099DAA0 /* art.png */; };
+		89F203FB1A9B32990099DAA0 /* business.png in Resources */ = {isa = PBXBuildFile; fileRef = 89F203E21A9B32990099DAA0 /* business.png */; };
+		89F203FC1A9B32990099DAA0 /* cinema.png in Resources */ = {isa = PBXBuildFile; fileRef = 89F203E31A9B32990099DAA0 /* cinema.png */; };
+		89F203FD1A9B32990099DAA0 /* dance.png in Resources */ = {isa = PBXBuildFile; fileRef = 89F203E41A9B32990099DAA0 /* dance.png */; };
+		89F203FE1A9B32990099DAA0 /* dentistry.png in Resources */ = {isa = PBXBuildFile; fileRef = 89F203E51A9B32990099DAA0 /* dentistry.png */; };
+		89F203FF1A9B32990099DAA0 /* dornsife.png in Resources */ = {isa = PBXBuildFile; fileRef = 89F203E61A9B32990099DAA0 /* dornsife.png */; };
+		89F204001A9B32990099DAA0 /* drama.png in Resources */ = {isa = PBXBuildFile; fileRef = 89F203E71A9B32990099DAA0 /* drama.png */; };
+		89F204011A9B32990099DAA0 /* engineering.png in Resources */ = {isa = PBXBuildFile; fileRef = 89F203E81A9B32990099DAA0 /* engineering.png */; };
+		89F204021A9B32990099DAA0 /* general.png in Resources */ = {isa = PBXBuildFile; fileRef = 89F203E91A9B32990099DAA0 /* general.png */; };
+		89F204031A9B32990099DAA0 /* generaled.png in Resources */ = {isa = PBXBuildFile; fileRef = 89F203EA1A9B32990099DAA0 /* generaled.png */; };
+		89F204041A9B32990099DAA0 /* gerontology.png in Resources */ = {isa = PBXBuildFile; fileRef = 89F203EB1A9B32990099DAA0 /* gerontology.png */; };
+		89F204051A9B32990099DAA0 /* graduate.png in Resources */ = {isa = PBXBuildFile; fileRef = 89F203EC1A9B32990099DAA0 /* graduate.png */; };
+		89F204061A9B32990099DAA0 /* innovation.png in Resources */ = {isa = PBXBuildFile; fileRef = 89F203ED1A9B32990099DAA0 /* innovation.png */; };
+		89F204071A9B32990099DAA0 /* law.png in Resources */ = {isa = PBXBuildFile; fileRef = 89F203EE1A9B32990099DAA0 /* law.png */; };
+		89F204081A9B32990099DAA0 /* medicine.png in Resources */ = {isa = PBXBuildFile; fileRef = 89F203EF1A9B32990099DAA0 /* medicine.png */; };
+		89F204091A9B32990099DAA0 /* music.png in Resources */ = {isa = PBXBuildFile; fileRef = 89F203F01A9B32990099DAA0 /* music.png */; };
+		89F2040A1A9B32990099DAA0 /* occupationaltherapy.png in Resources */ = {isa = PBXBuildFile; fileRef = 89F203F11A9B32990099DAA0 /* occupationaltherapy.png */; };
+		89F2040B1A9B32990099DAA0 /* pharmacy.png in Resources */ = {isa = PBXBuildFile; fileRef = 89F203F21A9B32990099DAA0 /* pharmacy.png */; };
+		89F2040C1A9B32990099DAA0 /* physicaltherapy.png in Resources */ = {isa = PBXBuildFile; fileRef = 89F203F31A9B32990099DAA0 /* physicaltherapy.png */; };
+		89F2040D1A9B32990099DAA0 /* policy.png in Resources */ = {isa = PBXBuildFile; fileRef = 89F203F41A9B32990099DAA0 /* policy.png */; };
+		89F2040E1A9B32990099DAA0 /* rossieredu.png in Resources */ = {isa = PBXBuildFile; fileRef = 89F203F51A9B32990099DAA0 /* rossieredu.png */; };
+		89F2040F1A9B32990099DAA0 /* socialwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 89F203F61A9B32990099DAA0 /* socialwork.png */; };
+		89F204121A9B32AD0099DAA0 /* JLSchoolCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F204111A9B32AD0099DAA0 /* JLSchoolCollectionViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +122,33 @@
 		89F203D91A9AF64A0099DAA0 /* CourseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseViewController.m; sourceTree = "<group>"; };
 		89F203DB1A9AFE6E0099DAA0 /* SectionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SectionTableViewCell.h; path = TableViewCells/SectionTableViewCell.h; sourceTree = "<group>"; };
 		89F203DC1A9AFE6E0099DAA0 /* SectionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SectionTableViewCell.m; path = TableViewCells/SectionTableViewCell.m; sourceTree = "<group>"; };
+		89F203DE1A9B32990099DAA0 /* accounting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = accounting.png; sourceTree = "<group>"; };
+		89F203DF1A9B32990099DAA0 /* annenburg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = annenburg.png; sourceTree = "<group>"; };
+		89F203E01A9B32990099DAA0 /* architecture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = architecture.png; sourceTree = "<group>"; };
+		89F203E11A9B32990099DAA0 /* art.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = art.png; sourceTree = "<group>"; };
+		89F203E21A9B32990099DAA0 /* business.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = business.png; sourceTree = "<group>"; };
+		89F203E31A9B32990099DAA0 /* cinema.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cinema.png; sourceTree = "<group>"; };
+		89F203E41A9B32990099DAA0 /* dance.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dance.png; sourceTree = "<group>"; };
+		89F203E51A9B32990099DAA0 /* dentistry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dentistry.png; sourceTree = "<group>"; };
+		89F203E61A9B32990099DAA0 /* dornsife.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dornsife.png; sourceTree = "<group>"; };
+		89F203E71A9B32990099DAA0 /* drama.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drama.png; sourceTree = "<group>"; };
+		89F203E81A9B32990099DAA0 /* engineering.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = engineering.png; sourceTree = "<group>"; };
+		89F203E91A9B32990099DAA0 /* general.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = general.png; sourceTree = "<group>"; };
+		89F203EA1A9B32990099DAA0 /* generaled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = generaled.png; sourceTree = "<group>"; };
+		89F203EB1A9B32990099DAA0 /* gerontology.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gerontology.png; sourceTree = "<group>"; };
+		89F203EC1A9B32990099DAA0 /* graduate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = graduate.png; sourceTree = "<group>"; };
+		89F203ED1A9B32990099DAA0 /* innovation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = innovation.png; sourceTree = "<group>"; };
+		89F203EE1A9B32990099DAA0 /* law.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = law.png; sourceTree = "<group>"; };
+		89F203EF1A9B32990099DAA0 /* medicine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = medicine.png; sourceTree = "<group>"; };
+		89F203F01A9B32990099DAA0 /* music.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = music.png; sourceTree = "<group>"; };
+		89F203F11A9B32990099DAA0 /* occupationaltherapy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = occupationaltherapy.png; sourceTree = "<group>"; };
+		89F203F21A9B32990099DAA0 /* pharmacy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pharmacy.png; sourceTree = "<group>"; };
+		89F203F31A9B32990099DAA0 /* physicaltherapy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = physicaltherapy.png; sourceTree = "<group>"; };
+		89F203F41A9B32990099DAA0 /* policy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = policy.png; sourceTree = "<group>"; };
+		89F203F51A9B32990099DAA0 /* rossieredu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rossieredu.png; sourceTree = "<group>"; };
+		89F203F61A9B32990099DAA0 /* socialwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = socialwork.png; sourceTree = "<group>"; };
+		89F204101A9B32AD0099DAA0 /* JLSchoolCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLSchoolCollectionViewCell.h; sourceTree = "<group>"; };
+		89F204111A9B32AD0099DAA0 /* JLSchoolCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLSchoolCollectionViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +194,7 @@
 				2B4205FE1A876718002ABE64 /* USC Registration */,
 				2B42061B1A876718002ABE64 /* USC RegistrationTests */,
 				2B4205FD1A876718002ABE64 /* Products */,
+				DF744C481A9B205A00460D28 /* School Icons */,
 			);
 			sourceTree = "<group>";
 		};
@@ -172,6 +226,7 @@
 				2B42062E1A8768A4002ABE64 /* USColor.h */,
 				2B42062F1A8768A4002ABE64 /* USColor.m */,
 				2B4206061A876718002ABE64 /* USC_Registration.xcdatamodeld */,
+				DF744C441A9B181500460D28 /* CollectionViewCell */,
 				2B0C51391A94989400FA9FBB /* TableViewCell */,
 				2B8B7F4C1A9471D100DCD321 /* Data */,
 				89ED113F1A93A6F2000565B9 /* External Libraries */,
@@ -242,6 +297,47 @@
 				89ED113D1A93A6EB000565B9 /* MBProgressHUD.m */,
 			);
 			name = MBProgress;
+			sourceTree = "<group>";
+		};
+		DF744C441A9B181500460D28 /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				89F204101A9B32AD0099DAA0 /* JLSchoolCollectionViewCell.h */,
+				89F204111A9B32AD0099DAA0 /* JLSchoolCollectionViewCell.m */,
+			);
+			name = CollectionViewCell;
+			sourceTree = "<group>";
+		};
+		DF744C481A9B205A00460D28 /* School Icons */ = {
+			isa = PBXGroup;
+			children = (
+				89F203DE1A9B32990099DAA0 /* accounting.png */,
+				89F203DF1A9B32990099DAA0 /* annenburg.png */,
+				89F203E01A9B32990099DAA0 /* architecture.png */,
+				89F203E11A9B32990099DAA0 /* art.png */,
+				89F203E21A9B32990099DAA0 /* business.png */,
+				89F203E31A9B32990099DAA0 /* cinema.png */,
+				89F203E41A9B32990099DAA0 /* dance.png */,
+				89F203E51A9B32990099DAA0 /* dentistry.png */,
+				89F203E61A9B32990099DAA0 /* dornsife.png */,
+				89F203E71A9B32990099DAA0 /* drama.png */,
+				89F203E81A9B32990099DAA0 /* engineering.png */,
+				89F203E91A9B32990099DAA0 /* general.png */,
+				89F203EA1A9B32990099DAA0 /* generaled.png */,
+				89F203EB1A9B32990099DAA0 /* gerontology.png */,
+				89F203EC1A9B32990099DAA0 /* graduate.png */,
+				89F203ED1A9B32990099DAA0 /* innovation.png */,
+				89F203EE1A9B32990099DAA0 /* law.png */,
+				89F203EF1A9B32990099DAA0 /* medicine.png */,
+				89F203F01A9B32990099DAA0 /* music.png */,
+				89F203F11A9B32990099DAA0 /* occupationaltherapy.png */,
+				89F203F21A9B32990099DAA0 /* pharmacy.png */,
+				89F203F31A9B32990099DAA0 /* physicaltherapy.png */,
+				89F203F41A9B32990099DAA0 /* policy.png */,
+				89F203F51A9B32990099DAA0 /* rossieredu.png */,
+				89F203F61A9B32990099DAA0 /* socialwork.png */,
+			);
+			path = "School Icons";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -325,8 +421,33 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89F203F91A9B32990099DAA0 /* architecture.png in Resources */,
+				89F203FF1A9B32990099DAA0 /* dornsife.png in Resources */,
+				89F204041A9B32990099DAA0 /* gerontology.png in Resources */,
+				89F204081A9B32990099DAA0 /* medicine.png in Resources */,
+				89F2040B1A9B32990099DAA0 /* pharmacy.png in Resources */,
+				89F2040E1A9B32990099DAA0 /* rossieredu.png in Resources */,
+				89F203F71A9B32990099DAA0 /* accounting.png in Resources */,
+				89F2040F1A9B32990099DAA0 /* socialwork.png in Resources */,
+				89F204091A9B32990099DAA0 /* music.png in Resources */,
+				89F204011A9B32990099DAA0 /* engineering.png in Resources */,
+				89F203FE1A9B32990099DAA0 /* dentistry.png in Resources */,
+				89F204071A9B32990099DAA0 /* law.png in Resources */,
 				2B42060E1A876718002ABE64 /* Main.storyboard in Resources */,
+				89F2040C1A9B32990099DAA0 /* physicaltherapy.png in Resources */,
+				89F2040A1A9B32990099DAA0 /* occupationaltherapy.png in Resources */,
+				89F203FB1A9B32990099DAA0 /* business.png in Resources */,
+				89F204031A9B32990099DAA0 /* generaled.png in Resources */,
+				89F203F81A9B32990099DAA0 /* annenburg.png in Resources */,
+				89F204001A9B32990099DAA0 /* drama.png in Resources */,
+				89F203FD1A9B32990099DAA0 /* dance.png in Resources */,
 				2B4206131A876718002ABE64 /* LaunchScreen.xib in Resources */,
+				89F204021A9B32990099DAA0 /* general.png in Resources */,
+				89F204061A9B32990099DAA0 /* innovation.png in Resources */,
+				89F203FC1A9B32990099DAA0 /* cinema.png in Resources */,
+				89F203FA1A9B32990099DAA0 /* art.png in Resources */,
+				89F2040D1A9B32990099DAA0 /* policy.png in Resources */,
+				89F204051A9B32990099DAA0 /* graduate.png in Resources */,
 				2B4206101A876718002ABE64 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -354,6 +475,7 @@
 				2B0C51351A94988600FA9FBB /* VHDepartmentTableViewCell.m in Sources */,
 				89F203DD1A9AFE6E0099DAA0 /* SectionTableViewCell.m in Sources */,
 				8926E77F1A983BFB003AF21B /* VHCourseTableViewCell.m in Sources */,
+				89F204121A9B32AD0099DAA0 /* JLSchoolCollectionViewCell.m in Sources */,
 				2B4206021A876718002ABE64 /* main.m in Sources */,
 				2B42060B1A876718002ABE64 /* ViewController.m in Sources */,
 				89ED113E1A93A6EB000565B9 /* MBProgressHUD.m in Sources */,
