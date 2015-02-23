@@ -287,7 +287,7 @@
                                     <outlet property="delegate" destination="1uZ-8F-Q4c" id="wHU-Qh-jx4"/>
                                 </connections>
                             </collectionView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FUe-uo-GNm">
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FUe-uo-GNm">
                                 <rect key="frame" x="0.0" y="108" width="600" height="492"/>
                                 <color key="backgroundColor" red="0.58823529411764708" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="separatorColor" red="0.58823529411764708" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -369,11 +369,6 @@
                             <constraint firstItem="FUe-uo-GNm" firstAttribute="leading" secondItem="5Bg-VU-o25" secondAttribute="leading" id="oBE-wS-cKh"/>
                             <constraint firstAttribute="trailing" secondItem="l8U-Yh-JJC" secondAttribute="trailing" id="sOZ-Ge-OD9"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="FUe-uo-GNm"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="l1s-8b-H7T"/>
                     <connections>

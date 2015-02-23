@@ -224,7 +224,6 @@
 }
 #pragma mark Segue
 -(void)loadForSegue{
-    
     if(!self.selectedDepartment.downloaded){
         self.appDelegate.progressHUD.labelText = @"Please wait.";
         self.appDelegate.progressHUD.detailsLabelText = [NSString stringWithFormat:@"Loading %@.", self.selectedDepartment.departmentCode];
@@ -256,18 +255,24 @@
 -(void)tapSchool{
     self.lastIndex = self.index;
     self.index = 0;
+    
+    [self.tableView setHidden:YES];
+    [self.schoolCollectionView setHidden:NO];
     [self reloadView];
-    [self.tableView reloadData];
 }
 -(void)tapDepartment{
     self.lastIndex = self.index;
     self.index = 1;
+    [self.tableView setHidden:NO];
+    [self.schoolCollectionView setHidden:YES];
     [self reloadView];
     [self.tableView reloadData];
 }
 -(void)tapPrefixes{
     self.lastIndex = self.index;
     self.index = 2;
+    [self.tableView setHidden:NO];
+    [self.schoolCollectionView setHidden:YES];
     [self reloadView];
     [self.tableView reloadData];
 }
@@ -278,7 +283,15 @@
         self.lastIndex = self.index;
         self.index--;
         [self reloadView];
-        [self.tableView reloadData];
+        if(self.index!=0){
+            [self.tableView setHidden:NO];
+            [self.schoolCollectionView setHidden:YES];
+            [self.tableView reloadData];
+        }
+        else{
+            [self.tableView setHidden:YES];
+            [self.schoolCollectionView setHidden:NO];
+        }
     }
 }
 
@@ -288,7 +301,15 @@
         self.lastIndex = self.index;
         self.index++;
         [self reloadView];
-        [self.tableView reloadData];
+        if(self.index!=0){
+            [self.tableView setHidden:NO];
+            [self.schoolCollectionView setHidden:YES];
+            [self.tableView reloadData];
+        }
+        else{
+            [self.tableView setHidden:YES];
+            [self.schoolCollectionView setHidden:NO];
+        }
     }
 }
 #pragma mark IBAction
@@ -331,6 +352,7 @@
     self.arrayOfLabels = [[NSMutableArray alloc] initWithObjects:self.schoolLabel, self.departmentLabel, self.prefixLabel, nil];
 }
 -(void)viewWillAppear:(BOOL)animated{
+    [self.schoolCollectionView setBackgroundColor:[USColor clearColor]];
     [self.tableView setBackgroundColor:[USColor clearColor]];
     [self.view setBackgroundColor:[USColor JLLightGrayColor]];
     [self.menuView setBackgroundColor:[UIColor clearColor]];
@@ -345,9 +367,6 @@
         [self.menuView bringSubviewToFront:self.lineView];
         self.index = 0;
     }
-#warning remove following
-    self.selectedDepartment = [self.term.prefixedDepartments objectAtIndex:23];
-    [self loadForSegue];
 }
 -(void)reloadView{
     for (Data * d in self.term.departments) {
