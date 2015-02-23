@@ -21,12 +21,30 @@
     self.sisCourseID = [dict objectForKey:@"SIS_COURSE_ID"];
     self.courseDescription = [dict objectForKey:@"DESCRIPTION"];
     self.title = [dict objectForKey:@"TITLE"];
+
+    
+    return self;
+}
+
+
+-(void) downloadData{
+    NSString * url = [NSString stringWithFormat:@"%@/Courses/%@/%ld", [self.appDelegate URL], self.appDelegate.term, (long)self.courseID];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    NSURLResponse *response;
+    NSData * data = [NSURLConnection sendSynchronousRequest:request
+                                          returningResponse:&response
+                                                      error:nil];
+    NSError * error;
+    NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    self.downloaded = YES;
+    
     for (NSDictionary * section in [dict objectForKey:@"V_SOC_SECTION"]) {
         Section * s = [[Section alloc] initWithDictionary:section];
         [self add:s];
     }
-    return self;
 }
+
+
 -(void)add:(id)object{
     [self.sections addObject:object];
 }

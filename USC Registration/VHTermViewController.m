@@ -118,10 +118,16 @@
         }
             break;
         case 2:{
-            self.selectedDepartment = [self.term.departments objectAtIndex:indexPath.row];
+            self.selectedDepartment = [self.term.prefixedDepartments objectAtIndex:indexPath.row];
         }
             break;
     }
+    [self loadForSegue];
+    
+}
+#pragma mark Segue
+-(void)loadForSegue{
+    
     if(!self.selectedDepartment.downloaded){
         self.appDelegate.progressHUD.labelText = @"Please wait.";
         self.appDelegate.progressHUD.detailsLabelText = [NSString stringWithFormat:@"Loading %@.", self.selectedDepartment.departmentCode];
@@ -141,7 +147,6 @@
     else{
         [self performSegueWithIdentifier:@"goToCourses" sender:self];
     }
-    
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"goToCourses"]){
@@ -149,6 +154,8 @@
         vc.department = self.selectedDepartment;
     }
 }
+
+#pragma mark Taps
 -(void)tapSchool{
     self.lastIndex = self.index;
     self.index = 0;
@@ -167,6 +174,32 @@
     [self reloadView];
     [self.tableView reloadData];
 }
+#pragma mark Swipes
+- (void)rightSwipeHandle:(UISwipeGestureRecognizer*)gestureRecognizer
+{
+    if(self.index>0){
+        self.lastIndex = self.index;
+        self.index--;
+        [self reloadView];
+        [self.tableView reloadData];
+    }
+}
+
+- (void)leftSwipeHandle:(UISwipeGestureRecognizer*)gestureRecognizer
+{
+    if(self.index<2){
+        self.lastIndex = self.index;
+        self.index++;
+        [self reloadView];
+        [self.tableView reloadData];
+    }
+}
+#pragma mark IBAction
+- (void)backAction{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark Views
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.appDelegate = [UIApplication sharedApplication].delegate;
@@ -215,6 +248,9 @@
         [self.menuView bringSubviewToFront:self.lineView];
         self.index = 0;
     }
+#warning remove following
+    self.selectedDepartment = [self.term.prefixedDepartments objectAtIndex:23];
+    [self loadForSegue];
 }
 -(void)reloadView{
     for (Data * d in self.term.departments) {
@@ -233,27 +269,5 @@
                      completion:^(BOOL finished){
                          
                      }];
-}
-- (void)rightSwipeHandle:(UISwipeGestureRecognizer*)gestureRecognizer
-{
-    if(self.index>0){
-        self.lastIndex = self.index;
-        self.index--;
-        [self reloadView];
-        [self.tableView reloadData];
-    }
-}
-
-- (void)leftSwipeHandle:(UISwipeGestureRecognizer*)gestureRecognizer
-{
-    if(self.index<2){
-        self.lastIndex = self.index;
-        self.index++;
-        [self reloadView];
-        [self.tableView reloadData];
-    }
-}
-- (void)backAction{
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 @end

@@ -7,9 +7,7 @@
 //
 
 #import "Data.h"
-
 @interface Course : Data
-
 @property (nonatomic, strong) NSString * courseDescription;
 @property (nonatomic) NSInteger courseID;
 @property (nonatomic) BOOL diversity;
@@ -19,4 +17,6 @@
 @property (nonatomic, strong) NSMutableArray * sections;
 @property (nonatomic, strong) NSString * sisCourseID;
 @property (nonatomic, strong) NSString * title;
+@property (nonatomic) BOOL downloaded;
+-(void)downloadData;
 @end

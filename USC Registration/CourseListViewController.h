@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "Department.h"
+#import "AppDelegate.h"
+#import "Course.h"
 @interface CourseListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) Department * department;
+@property (nonatomic, strong) Course * course;
+@property (nonatomic, strong) AppDelegate * appDelegate;
 @end

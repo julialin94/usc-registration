@@ -167,7 +167,7 @@
 -(void)goToTermView{
     self.appDelegate.progressHUD.labelText = @"Please wait.";
     self.appDelegate.progressHUD.detailsLabelText = [NSString stringWithFormat:@"Loading %@.", [self.selectedTerm objectForKey:@"DESCRIPTION"]];
-    self.appDelegate.progressHUD.mode = MBProgressHUDModeDeterminateHorizontalBar;
+    self.appDelegate.progressHUD.mode = MBProgressHUDModeDeterminate;
     [self.view addSubview:self.appDelegate.progressHUD];
     [self.appDelegate.progressHUD show:YES];
     dispatch_queue_t loadingQueue = dispatch_queue_create("loadingQueue",NULL);

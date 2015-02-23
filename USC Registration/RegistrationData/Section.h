@@ -29,4 +29,6 @@
 @property (nonatomic, strong) NSString * termCode;
 @property (nonatomic, strong) NSString * type;
 @property (nonatomic) NSInteger unitCode;
+@property (nonatomic, strong) NSMutableArray * arrayOfDays;
+@property (nonatomic, strong) NSString * sessionCode;
 @end

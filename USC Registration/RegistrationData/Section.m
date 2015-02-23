@@ -16,31 +16,42 @@
     self.beginTime = [dict objectForKey:@"BEGIN_TIME"];
     self.cancelDate = [dict objectForKey:@"CANCEL_DATE"];
     self.courseID = [dict objectForKey:@"COURSE_ID"];
-    self.day = [dict objectForKey:@"DAY"];
+    NSString * str =[dict objectForKey:@"DAY"];
+    if([str isKindOfClass:[NSNull class]])
+        self.day = @"tba";
+    else
+        self.day = [dict objectForKey:@"DAY"];
     self.endTime = [dict objectForKey:@"END_TIME"];
-    self.instructor = [dict objectForKey:@"INSTRUCTOR"];
-    self.location = [dict objectForKey:@"LOCATION"];
+    str =[dict objectForKey:@"INSTRUCTOR"];
+    if([str isKindOfClass:[NSNull class]])
+        self.instructor = @"TBA";
+    else
+        self.instructor = [dict objectForKey:@"INSTRUCTOR"];
+    str =[dict objectForKey:@"LOCATION"];
+    if([str isKindOfClass:[NSNull class]])
+        self.location = @"TBA";
+    else
+        self.location = [dict objectForKey:@"LOCATION"];
     self.name = [dict objectForKey:@"NAME"];
     self.publishFlag = [dict objectForKey:@"PUBLISH_FLAG"];
     self.publishSectionFlag = [dict objectForKey:@"PUBLISH_SECTION_FLAG"];
-    self.registered = [[dict objectForKey:@"REGISTERED"] integerValue];
+    str =[dict objectForKey:@"REGISTERED"];
+    if([str isKindOfClass:[NSNull class]])
+        self.registered = 0;
+    else
+        self.registered = [[dict objectForKey:@"REGISTERED"] integerValue];
+#pragma mark session class should be instantiated?
+    str =[dict objectForKey:@"SESSION"];
+    if([str isKindOfClass:[NSNull class]])
+        self.sessionCode = @"0";
+    else
+        self.sessionCode = [dict objectForKey:@"SESSION"];
     self.seats = [[dict objectForKey:@"SEATS"] integerValue];
     self.section = [dict objectForKey:@"SECTION"];
     self.sisCourseID = [dict objectForKey:@"SIS_COURSE_ID"];
     self.termCode = [dict objectForKey:@"TERM_CODE"];
     self.type = [dict objectForKey:@"TYPE"];
-    self.unitCode = [[dict objectForKey:@""] integerValue];
-    
-//    NSString * url = [NSString stringWithFormat:@"%@/sessions/%@", [self.appDelegate URL], [dict objectForKey:@"SESSION"]];
-//    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-//    NSURLResponse *response;
-//    NSData * data = [NSURLConnection sendSynchronousRequest:request
-//                                          returningResponse:&response
-//                                                      error:nil];
-//    NSError * error;
-//    dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-//    
-//    self.session = [[Section alloc] initWithDictionary:section];
+    self.unitCode = [[dict objectForKey:@"UNIT_CODE"] integerValue];
     return self;
 }
 @end
