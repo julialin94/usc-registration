@@ -366,7 +366,7 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <color key="backgroundColor" red="0.90553759895874641" green="0.9169242058011049" blue="0.87854806805396202" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="1" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="oPd-yT-03F" secondAttribute="trailing" constant="8" id="D8W-am-exm"/>
                                             <constraint firstItem="oPd-yT-03F" firstAttribute="top" secondItem="r7n-4g-2fI" secondAttribute="bottom" constant="8" id="Yz7-Kz-C7J"/>
@@ -960,8 +960,7 @@
         <image name="smallGoldShield" width="300" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Nsp-lA-rdz"/>
         <segue reference="bzd-Aa-4bI"/>
-        <segue reference="d3J-1c-PVW"/>
-        <segue reference="6vr-gr-QYh"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -33,7 +33,46 @@
     //return rtn;
     return self.term.schools.count;
 }
-
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(JLSchoolCollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath NS_AVAILABLE_IOS(8_0){
+    School * s = self.term.schools[indexPath.row];
+    cell.schoolIconView.alpha = 0.0;
+    cell.schoolLabel.alpha = 0.0;
+    cell.circleView.alpha = 0.0;
+    [UIView animateWithDuration:0.2
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         cell.schoolIconView.alpha = 1.0;
+                         cell.schoolLabel.alpha = 1.0;
+                         cell.circleView.alpha = 1.0;
+                     }
+                     completion:nil];
+    if(!s.shown){
+        cell.circleView.transform = CGAffineTransformMakeScale(0.1, 0.1);
+        cell.schoolIconView.transform = CGAffineTransformMakeScale(0.1, 0.1);
+        cell.schoolLabel.transform = CGAffineTransformMakeScale(0.1, 0.1);
+        s.shown = YES;
+        [UIView animateWithDuration:0.15
+                              delay:0
+                            options:UIViewAnimationOptionCurveEaseInOut
+                         animations:^{
+                             cell.circleView.transform = CGAffineTransformMakeScale(1.1, 1.1);
+                             cell.schoolIconView.transform = CGAffineTransformMakeScale(1.1, 1.1);
+                             cell.schoolLabel.transform = CGAffineTransformMakeScale(1.1, 1.1);
+                         }
+                         completion:^(BOOL completed){
+                             [UIView animateWithDuration:0.15
+                                                   delay:0
+                                                 options:UIViewAnimationOptionCurveEaseInOut
+                                              animations:^{
+                                                  cell.circleView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+                                                  cell.schoolIconView.transform = CGAffineTransformMakeScale(1.0, 1.0);
+                                                  cell.schoolLabel.transform = CGAffineTransformMakeScale(1.0, 1.0);
+                                              }
+                                              completion:nil];
+                         }];
+    }
+}
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     JLSchoolCollectionViewCell * cell;
@@ -181,6 +220,7 @@
         }
             break;
     }
+//    cell.backView.backgroundColor = [UIColor colorWithRed:231.0/225.0 green:234.0/255.0 blue:224.0/255.0 alpha:1.0];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
@@ -214,11 +254,6 @@
         [UIView animateWithDuration:0.15 animations:^{
             cell.transform = CGAffineTransformIdentity;
         }];
-        
-        
-        
-        
-        
     }
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -406,6 +441,9 @@
         d.shown = NO;
     }
     for (Data * d in self.term.prefixedDepartments) {
+        d.shown = NO;
+    }
+    for (Data * d in self.term.schools) {
         d.shown = NO;
     }
     [UIView animateWithDuration:0.2
