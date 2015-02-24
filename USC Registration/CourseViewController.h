@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Course.h"
+#import "Section.h"
 @interface CourseViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) Course * course;
 @property (weak, nonatomic) IBOutlet UIView *detailsView;
@@ -15,5 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *courseDescriptionLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) UIRefreshControl * refreshControl;
+@property (nonatomic, strong) NSArray * arrayOfNavigationBarButtons;
+@property (nonatomic, strong) Section * selectedSection;
 
 @end

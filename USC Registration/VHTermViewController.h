@@ -24,6 +24,7 @@
 @property (nonatomic) NSInteger index;
 @property (nonatomic) NSInteger lastIndex;
 @property (nonatomic, strong) NSMutableArray * arrayOfLabels;
+@property (nonatomic, strong) NSArray * arrayOfNavigationBarButtons;
 @property (nonatomic, strong) NSDictionary * schools;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UICollectionView *schoolCollectionView;

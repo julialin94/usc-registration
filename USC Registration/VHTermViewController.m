@@ -274,6 +274,12 @@
 }
 
 #pragma mark Taps
+-(void)searchPushed{
+    NSLog(@"SEARCH!");
+}
+-(void)calendarPushed{
+    [self performSegueWithIdentifier:@"showCalendar" sender:self];
+}
 -(void)tapSchool{
     self.lastIndex = self.index;
     self.index = 0;
@@ -374,6 +380,10 @@
     self.schoolCollectionView.hidden = NO;
     self.tableView.hidden = YES;
     self.index = 0;
+    UIBarButtonItem *calendarButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"calendar"] style:UIBarButtonItemStylePlain target:self action:@selector(calendarPushed)];
+    UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"search"] style:UIBarButtonItemStylePlain target:self action:@selector(searchPushed)];
+    self.arrayOfNavigationBarButtons = [NSArray arrayWithObjects:searchButton, calendarButton, nil];
+    [self.navigationItem setRightBarButtonItems:self.arrayOfNavigationBarButtons];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [self.schoolCollectionView setBackgroundColor:[USColor clearColor]];

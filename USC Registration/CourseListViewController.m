@@ -37,8 +37,13 @@
     }
 }
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    CourseViewController * cvc = [segue destinationViewController];
-    cvc.course = self.course;
+    if([segue.identifier isEqualToString:@"showSections"]){
+        CourseViewController * cvc = [segue destinationViewController];
+        cvc.course = self.course;
+    }
+    else if([segue.identifier isEqualToString:@""]){
+        
+    }
 }
 
 #pragma mark UITableViewDelegate/DataSource
@@ -61,6 +66,15 @@
     [cell.courseCodeLabel setText:courseCodeLabel];
     return cell;
 }
+
+#pragma mark Taps
+-(void)filterPushed{
+    [self performSegueWithIdentifier:@"filter" sender:self];
+}
+-(void)calendarPushed{
+    [self performSegueWithIdentifier:@"showCalendar" sender:self];
+}
+
 #pragma mark View
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -73,6 +87,10 @@
     [self.refreshControl addTarget:self
                             action:@selector(reloadCourses)
                   forControlEvents:UIControlEventValueChanged];
+    UIBarButtonItem *calendarButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"calendar"] style:UIBarButtonItemStylePlain target:self action:@selector(calendarPushed)];
+    UIBarButtonItem *filterButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"filter"] style:UIBarButtonItemStylePlain target:self action:@selector(filterPushed)];
+    self.arrayOfNavigationBarButtons = [NSArray arrayWithObjects:filterButton, calendarButton, nil];
+    [self.navigationItem setRightBarButtonItems:self.arrayOfNavigationBarButtons];
 }
 -(void)reloadCourses{
     dispatch_queue_t loadingQueue = dispatch_queue_create("loadingQueue",NULL);

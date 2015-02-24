@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import "MBProgressHUD.h"
+#import "TermSchedule.h"
 @class Term;
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
+@property (strong, nonatomic) TermSchedule * termSchedule;
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) NSString * term;
 @property (strong, nonatomic) Term * termObject;

@@ -16,4 +16,5 @@
 @property (nonatomic, strong) Course * course;
 @property (nonatomic, strong) AppDelegate * appDelegate;
 @property (nonatomic, strong) UIRefreshControl * refreshControl;
+@property (nonatomic, strong) NSArray * arrayOfNavigationBarButtons;
 @end

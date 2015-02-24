@@ -168,6 +168,7 @@
     self.appDelegate.progressHUD.labelText = @"Please wait.";
     self.appDelegate.progressHUD.detailsLabelText = [NSString stringWithFormat:@"Loading %@.", [self.selectedTerm objectForKey:@"DESCRIPTION"]];
     self.appDelegate.progressHUD.mode = MBProgressHUDModeDeterminate;
+    self.appDelegate.progressHUD.progress = 0.0;
     [self.view addSubview:self.appDelegate.progressHUD];
     [self.appDelegate.progressHUD show:YES];
     dispatch_queue_t loadingQueue = dispatch_queue_create("loadingQueue",NULL);
@@ -229,6 +230,8 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
 //    NSLog(@"destination: %@", segue.destinationViewController);
 //    VHTermViewController * vc = segue.destinationViewController;
+    self.appDelegate.termSchedule = [[TermSchedule alloc] init];
+    self.appDelegate.termSchedule.termCode = self.term.termCode;
     self.appDelegate.termObject = self.term;
 }
 @end

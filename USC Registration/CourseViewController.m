@@ -9,6 +9,7 @@
 #import "CourseViewController.h"
 #import "SectionTableViewCell.h"
 #import "Section.h"
+#import "VHSectionViewController.h"
 @interface CourseViewController ()
 
 @end
@@ -49,8 +50,18 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    self.selectedSection = self.course.sections[indexPath.row];
+    [self performSegueWithIdentifier:@"goToSection" sender:self];
 }
 
+
+#pragma mark Taps
+-(void)filterPushed{
+    [self performSegueWithIdentifier:@"filter" sender:self];
+}
+-(void)calendarPushed{
+    [self performSegueWithIdentifier:@"showCalendar" sender:self];
+}
 
 #pragma mark View
 - (void)viewDidLoad {
@@ -69,6 +80,10 @@
     [self.refreshControl addTarget:self
                             action:@selector(reloadSections)
                   forControlEvents:UIControlEventValueChanged];
+    UIBarButtonItem *calendarButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"calendar"] style:UIBarButtonItemStylePlain target:self action:@selector(calendarPushed)];
+    UIBarButtonItem *filterButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"filter"] style:UIBarButtonItemStylePlain target:self action:@selector(filterPushed)];
+    self.arrayOfNavigationBarButtons = [NSArray arrayWithObjects:filterButton, calendarButton, nil];
+    [self.navigationItem setRightBarButtonItems:self.arrayOfNavigationBarButtons];
 
 }
 -(void)reloadSections{
@@ -82,4 +97,14 @@
     });
 }
 
+#pragma mark Segue
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"goToSection"]){
+        VHSectionViewController * vc = segue.destinationViewController;
+        vc.section = self.selectedSection;
+    }
+    else{// if([segue.identifier isEqualToString:@"filter"]){
+        
+    }
+}
 @end
