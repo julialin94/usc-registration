@@ -74,6 +74,7 @@
 		89F2040E1A9B32990099DAA0 /* rossieredu.png in Resources */ = {isa = PBXBuildFile; fileRef = 89F203F51A9B32990099DAA0 /* rossieredu.png */; };
 		89F2040F1A9B32990099DAA0 /* socialwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 89F203F61A9B32990099DAA0 /* socialwork.png */; };
 		89F204121A9B32AD0099DAA0 /* JLSchoolCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F204111A9B32AD0099DAA0 /* JLSchoolCollectionViewCell.m */; };
+		DF4A42761A9C730900D2DD06 /* JLSchoolDepartmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4A42751A9C730900D2DD06 /* JLSchoolDepartmentTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -185,6 +186,8 @@
 		89F203F61A9B32990099DAA0 /* socialwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = socialwork.png; sourceTree = "<group>"; };
 		89F204101A9B32AD0099DAA0 /* JLSchoolCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLSchoolCollectionViewCell.h; sourceTree = "<group>"; };
 		89F204111A9B32AD0099DAA0 /* JLSchoolCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLSchoolCollectionViewCell.m; sourceTree = "<group>"; };
+		DF4A42741A9C730900D2DD06 /* JLSchoolDepartmentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JLSchoolDepartmentTableViewCell.h; path = TableViewCells/JLSchoolDepartmentTableViewCell.h; sourceTree = "<group>"; };
+		DF4A42751A9C730900D2DD06 /* JLSchoolDepartmentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JLSchoolDepartmentTableViewCell.m; path = TableViewCells/JLSchoolDepartmentTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +211,8 @@
 		2B0C51391A94989400FA9FBB /* TableViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				DF4A42741A9C730900D2DD06 /* JLSchoolDepartmentTableViewCell.h */,
+				DF4A42751A9C730900D2DD06 /* JLSchoolDepartmentTableViewCell.m */,
 				8965BE151A987B5600A973F4 /* JLTermTableViewCell.h */,
 				8965BE161A987B5600A973F4 /* JLTermTableViewCell.m */,
 				89F203D51A9AB6680099DAA0 /* VHDepartmentParentTableViewCell.h */,
@@ -550,6 +555,7 @@
 				89F203D71A9AB6680099DAA0 /* VHDepartmentParentTableViewCell.m in Sources */,
 				89863BC51A9C6338000C60AD /* JLSchoolDepartmentViewController.m in Sources */,
 				2B0C51351A94988600FA9FBB /* VHDepartmentTableViewCell.m in Sources */,
+				DF4A42761A9C730900D2DD06 /* JLSchoolDepartmentTableViewCell.m in Sources */,
 				89F203DD1A9AFE6E0099DAA0 /* SectionTableViewCell.m in Sources */,
 				8926E77F1A983BFB003AF21B /* VHCourseTableViewCell.m in Sources */,
 				89F204121A9B32AD0099DAA0 /* JLSchoolCollectionViewCell.m in Sources */,

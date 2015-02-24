@@ -28,6 +28,11 @@
         Department * d = [[Department alloc] initWithDictionary:department];
         [self add:d];
     }
+    NSSortDescriptor *sortDescriptor;
+    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"departmentDescription"
+                                                 ascending:YES];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    self.departments = [[self.departments sortedArrayUsingDescriptors:sortDescriptors] mutableCopy];
     return self;
 }
 -(void)add:(id)object{
