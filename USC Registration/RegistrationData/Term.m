@@ -40,6 +40,12 @@
             self.appDelegate.progressHUD.progress = count/max;
         });
     }
+    
+    NSSortDescriptor *sortDescriptor;
+    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"schoolDescription"
+                                                 ascending:YES];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    self.schools = [[self.schools sortedArrayUsingDescriptors:sortDescriptors] mutableCopy];
     for (School * s in self.schools) {
 //        NSLog(@"%@", s.schoolDescription);
         for (Department * d in s.departments) {
@@ -47,10 +53,9 @@
             [self.departments addObject:d];
         }
     }
-    NSSortDescriptor *sortDescriptor;
     sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"departmentDescription"
                                                  ascending:YES];
-    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
     self.departments = [[self.departments sortedArrayUsingDescriptors:sortDescriptors] mutableCopy];
     
     sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"departmentCode"
