@@ -44,6 +44,7 @@
 		89863BEA1A9C7531000C60AD /* FilterSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89863BE91A9C7531000C60AD /* FilterSectionViewController.m */; };
 		89863BED1A9C75F4000C60AD /* VHSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89863BEC1A9C75F4000C60AD /* VHSectionViewController.m */; };
 		89863BF01A9C7CC7000C60AD /* TermSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 89863BEF1A9C7CC7000C60AD /* TermSchedule.m */; };
+		89863BF41A9C9764000C60AD /* ILTranslucentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89863BF31A9C9764000C60AD /* ILTranslucentView.m */; };
 		89ED113E1A93A6EB000565B9 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 89ED113D1A93A6EB000565B9 /* MBProgressHUD.m */; };
 		89F203D71A9AB6680099DAA0 /* VHDepartmentParentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F203D61A9AB6680099DAA0 /* VHDepartmentParentTableViewCell.m */; };
 		89F203DA1A9AF64A0099DAA0 /* CourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F203D91A9AF64A0099DAA0 /* CourseViewController.m */; };
@@ -151,6 +152,8 @@
 		89863BEC1A9C75F4000C60AD /* VHSectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHSectionViewController.m; sourceTree = "<group>"; };
 		89863BEE1A9C7CC7000C60AD /* TermSchedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TermSchedule.h; path = RegistrationData/TermSchedule.h; sourceTree = "<group>"; };
 		89863BEF1A9C7CC7000C60AD /* TermSchedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TermSchedule.m; path = RegistrationData/TermSchedule.m; sourceTree = "<group>"; };
+		89863BF21A9C9764000C60AD /* ILTranslucentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILTranslucentView.h; sourceTree = "<group>"; };
+		89863BF31A9C9764000C60AD /* ILTranslucentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILTranslucentView.m; sourceTree = "<group>"; };
 		89ED113C1A93A6EB000565B9 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		89ED113D1A93A6EB000565B9 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		89F203D51A9AB6680099DAA0 /* VHDepartmentParentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VHDepartmentParentTableViewCell.h; path = TableViewCells/VHDepartmentParentTableViewCell.h; sourceTree = "<group>"; };
@@ -353,9 +356,19 @@
 			path = "School Icons";
 			sourceTree = "<group>";
 		};
+		89863BF11A9C975A000C60AD /* ILTranslucentView */ = {
+			isa = PBXGroup;
+			children = (
+				89863BF21A9C9764000C60AD /* ILTranslucentView.h */,
+				89863BF31A9C9764000C60AD /* ILTranslucentView.m */,
+			);
+			name = ILTranslucentView;
+			sourceTree = "<group>";
+		};
 		89ED113F1A93A6F2000565B9 /* External Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				89863BF11A9C975A000C60AD /* ILTranslucentView */,
 				89ED11401A93A6FD000565B9 /* MBProgress */,
 			);
 			name = "External Libraries";
@@ -566,6 +579,7 @@
 				2B4206301A8768A4002ABE64 /* USColor.m in Sources */,
 				8965BE171A987B5600A973F4 /* JLTermTableViewCell.m in Sources */,
 				89863BE71A9C752A000C60AD /* FilterCourseViewController.m in Sources */,
+				89863BF41A9C9764000C60AD /* ILTranslucentView.m in Sources */,
 				89863BED1A9C75F4000C60AD /* VHSectionViewController.m in Sources */,
 				2B8B7F581A94761E00DCD321 /* Course.m in Sources */,
 				89863BEA1A9C7531000C60AD /* FilterSectionViewController.m in Sources */,

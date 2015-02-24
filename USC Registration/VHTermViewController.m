@@ -17,7 +17,7 @@
 #import "JLSchoolCollectionViewCell.h"
 #import "School.h"
 #import "JLSchoolDepartmentViewController.h"
-
+#import "ILTranslucentView.h"
 @interface VHTermViewController ()
 
 @end
@@ -384,7 +384,7 @@
     [super viewDidLoad];
     self.appDelegate = [UIApplication sharedApplication].delegate;
     self.term = self.appDelegate.termObject;
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(backAction)];
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"<" style:UIBarButtonItemStylePlain target:self action:@selector(backAction)];
     self.navigationItem.leftBarButtonItem = backButton;
     [self.navigationController.navigationBar setBarTintColor:self.view.backgroundColor];
     [self.navigationController.navigationBar setTitleTextAttributes:@{
@@ -419,6 +419,7 @@
     UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"search"] style:UIBarButtonItemStylePlain target:self action:@selector(searchPushed)];
     self.arrayOfNavigationBarButtons = [NSArray arrayWithObjects:searchButton, calendarButton, nil];
     [self.navigationItem setRightBarButtonItems:self.arrayOfNavigationBarButtons];
+    self.automaticallyAdjustsScrollViewInsets = NO;
 }
 -(void)viewWillAppear:(BOOL)animated{
     [self.schoolCollectionView setBackgroundColor:[USColor clearColor]];
@@ -429,11 +430,19 @@
 -(void)viewDidAppear:(BOOL)animated{
     CGRect frame = self.schoolLabel.frame;
     if(!self.lineView){
-        self.lineView = [[UIView alloc] initWithFrame:CGRectMake(frame.origin.x, frame.origin.y+frame.size.height+2, frame.size.width, 3)];
+        self.lineView = [[UIView alloc] initWithFrame:CGRectMake(frame.origin.x, frame.origin.y+frame.size.height+1, frame.size.width, 6)];
+        self.lineView.layer.cornerRadius = 2.0;
         self.lineView.backgroundColor = [USColor JLCardinalColor];
         [self.menuView addSubview:self.lineView];
         [self.menuView bringSubviewToFront:self.lineView];
+//        self.menuView.alpha = 0.1;
         self.index = 0;
+    }
+    if(!self.trackView){
+        self.trackView = [[UIView alloc] initWithFrame:CGRectMake(10.0, frame.origin.y+frame.size.height+3, self.menuView.frame.size.width-20.0, 2)];
+        self.trackView.backgroundColor = [USColor lightGrayColor];
+        [self.menuView addSubview:self.trackView];
+        [self.menuView bringSubviewToFront:self.lineView];
     }
 }
 -(void)reloadView{
@@ -451,10 +460,11 @@
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          CGRect frame = ((UILabel *)self.arrayOfLabels[self.index]).frame;
-                         [self.lineView setFrame:CGRectMake(frame.origin.x, frame.origin.y+frame.size.height+2, frame.size.width, 3)];
+                         [self.lineView setFrame:CGRectMake(frame.origin.x, frame.origin.y+frame.size.height+1, frame.size.width, 6)];
                      }
                      completion:^(BOOL finished){
                          
                      }];
 }
+
 @end
