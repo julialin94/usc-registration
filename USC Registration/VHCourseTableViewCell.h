@@ -11,5 +11,6 @@
 @interface VHCourseTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *courseLabel;
 @property (weak, nonatomic) IBOutlet UILabel *courseCodeLabel;
+@property (weak, nonatomic) IBOutlet UIView *backView;
 
 @end

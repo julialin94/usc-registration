@@ -31,7 +31,7 @@
     [cell.instructorLabel setText:[NSString stringWithFormat:@"Instructor: %@", section.instructor]];
     [cell.sessionLabel setText:[NSString stringWithFormat:@"Session: %@", section.sessionCode]];
     [cell.locationLabel setText:[NSString stringWithFormat:@"Location: %@", section.location]];
-    [cell.dayLabel setText:[NSString stringWithFormat:@"Location: %@", section.day]];
+    [cell.dayLabel setText:[NSString stringWithFormat:@"Days: %@", section.day]];
     [cell.timeLabel setText:[NSString stringWithFormat:@"Time: %@ - %@", section.beginTime, section.endTime]];
     [cell.unitsLabel setText:[NSString stringWithFormat:@"%ld units", (long)section.unitCode]];
     cell.mapButton.layer.cornerRadius = 15.0;
@@ -74,7 +74,7 @@
     self.tableView.estimatedRowHeight = 44.0;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.refreshControl = [[UIRefreshControl alloc] init];
-    self.refreshControl.backgroundColor = [UIColor purpleColor];
+    self.refreshControl.backgroundColor = [UIColor clearColor];
     self.refreshControl.tintColor = [UIColor orangeColor];
     [self.tableView addSubview:self.refreshControl];
     [self.refreshControl addTarget:self

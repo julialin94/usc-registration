@@ -11,7 +11,10 @@
 @implementation SectionTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    self.layer.shadowOffset = CGSizeMake(0, 0);
+    self.layer.shadowOpacity = 0.2;
+    self.layer.masksToBounds = NO;
+    self.backView.backgroundColor = [UIColor colorWithRed:231.0/255.0 green:234.0/255.0 blue:224.0/225.0 alpha:1.0];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

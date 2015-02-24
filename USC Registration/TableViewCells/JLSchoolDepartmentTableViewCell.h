@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface JLSchoolDepartmentTableViewCell : UITableViewCell
+@interface JLSchoolDepartmentTableViewCell :UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *iconLabel;
 
+@property (weak, nonatomic) IBOutlet UIView *backView;
 @property (weak, nonatomic) IBOutlet UILabel *departmentLabel;
 
 @end

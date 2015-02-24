@@ -257,6 +257,7 @@
     }
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     self.selectedDepartment = nil;
     switch (self.index) {
         case 0:{
@@ -420,13 +421,13 @@
     self.arrayOfNavigationBarButtons = [NSArray arrayWithObjects:searchButton, calendarButton, nil];
     [self.navigationItem setRightBarButtonItems:self.arrayOfNavigationBarButtons];
     self.automaticallyAdjustsScrollViewInsets = NO;
-}
--(void)viewWillAppear:(BOOL)animated{
     [self.schoolCollectionView setBackgroundColor:[USColor clearColor]];
     [self.tableView setBackgroundColor:[USColor clearColor]];
     [self.view setBackgroundColor:[USColor JLLightGrayColor]];
     [self.menuView setBackgroundColor:[UIColor clearColor]];
+
 }
+-(void)viewWillAppear:(BOOL)animated{}
 -(void)viewDidAppear:(BOOL)animated{
     CGRect frame = self.schoolLabel.frame;
     if(!self.lineView){
@@ -443,6 +444,11 @@
         self.trackView.backgroundColor = [USColor lightGrayColor];
         [self.menuView addSubview:self.trackView];
         [self.menuView bringSubviewToFront:self.lineView];
+    }
+    if(!self.blurView){
+        self.blurView = [[ILTranslucentView alloc] initWithFrame:CGRectMake(0, 0, self.menuView.frame.size.width, self.menuView.frame.size.height)];
+        [self.menuView addSubview:self.blurView];
+        [self.menuView sendSubviewToBack:self.blurView];
     }
 }
 -(void)reloadView{

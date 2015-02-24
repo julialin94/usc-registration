@@ -9,6 +9,7 @@
 #import "CourseListViewController.h"
 #import "CourseViewController.h"
 #import "VHCourseTableViewCell.h"
+#import "USColor.h"
 @interface CourseListViewController ()
 
 @end
@@ -51,6 +52,7 @@
     return self.department.courses.count;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     self.course = (Course*)[self.department.courses objectAtIndex:indexPath.row];
     [self loadForSegue];
 }
@@ -81,7 +83,7 @@
     self.appDelegate = [UIApplication sharedApplication].delegate;
     self.title = self.department.departmentCode;
     self.refreshControl = [[UIRefreshControl alloc] init];
-    self.refreshControl.backgroundColor = [UIColor purpleColor];
+    self.refreshControl.backgroundColor = [UIColor clearColor];
     self.refreshControl.tintColor = [UIColor orangeColor];
     [self.tableView addSubview:self.refreshControl];
     [self.refreshControl addTarget:self
@@ -91,6 +93,9 @@
     UIBarButtonItem *filterButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"filter"] style:UIBarButtonItemStylePlain target:self action:@selector(filterPushed)];
     self.arrayOfNavigationBarButtons = [NSArray arrayWithObjects:filterButton, calendarButton, nil];
     [self.navigationItem setRightBarButtonItems:self.arrayOfNavigationBarButtons];
+    
+    [self.tableView setBackgroundColor:[USColor clearColor]];
+    [self.view setBackgroundColor:[USColor JLLightGrayColor]];
 }
 -(void)reloadCourses{
     dispatch_queue_t loadingQueue = dispatch_queue_create("loadingQueue",NULL);

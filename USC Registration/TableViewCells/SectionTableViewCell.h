@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *dayLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *unitsLabel;
+@property (weak, nonatomic) IBOutlet UIView *backView;
 
 - (IBAction)mapButtonAction:(id)sender;
 @end

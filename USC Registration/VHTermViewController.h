@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIView *menuView;
 @property (strong, nonatomic) UIView *lineView;
 @property (strong, nonatomic) UIView *trackView;
+@property (strong, nonatomic) UIView *blurView;
 @property (strong, nonatomic) Term * term;
 @property (strong, nonatomic) Department * selectedDepartment;
 @property (strong, nonatomic) School * selectedSchool;
