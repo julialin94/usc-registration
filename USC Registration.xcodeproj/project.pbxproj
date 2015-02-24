@@ -29,6 +29,7 @@
 		8926E77F1A983BFB003AF21B /* VHCourseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8926E77E1A983BFB003AF21B /* VHCourseTableViewCell.m */; };
 		89315FCF1A8C619F0069E10F /* VHTermViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89315FCE1A8C619F0069E10F /* VHTermViewController.m */; };
 		8965BE171A987B5600A973F4 /* JLTermTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8965BE161A987B5600A973F4 /* JLTermTableViewCell.m */; };
+		89863BC51A9C6338000C60AD /* JLSchoolDepartmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89863BC41A9C6338000C60AD /* JLSchoolDepartmentViewController.m */; };
 		89ED113E1A93A6EB000565B9 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 89ED113D1A93A6EB000565B9 /* MBProgressHUD.m */; };
 		89F203D71A9AB6680099DAA0 /* VHDepartmentParentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F203D61A9AB6680099DAA0 /* VHDepartmentParentTableViewCell.m */; };
 		89F203DA1A9AF64A0099DAA0 /* CourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F203D91A9AF64A0099DAA0 /* CourseViewController.m */; };
@@ -114,6 +115,8 @@
 		89315FCE1A8C619F0069E10F /* VHTermViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHTermViewController.m; sourceTree = "<group>"; };
 		8965BE151A987B5600A973F4 /* JLTermTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JLTermTableViewCell.h; path = TableViewCells/JLTermTableViewCell.h; sourceTree = "<group>"; };
 		8965BE161A987B5600A973F4 /* JLTermTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JLTermTableViewCell.m; path = TableViewCells/JLTermTableViewCell.m; sourceTree = "<group>"; };
+		89863BC31A9C6338000C60AD /* JLSchoolDepartmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLSchoolDepartmentViewController.h; sourceTree = "<group>"; };
+		89863BC41A9C6338000C60AD /* JLSchoolDepartmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLSchoolDepartmentViewController.m; sourceTree = "<group>"; };
 		89ED113C1A93A6EB000565B9 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		89ED113D1A93A6EB000565B9 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		89F203D51A9AB6680099DAA0 /* VHDepartmentParentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VHDepartmentParentTableViewCell.h; path = TableViewCells/VHDepartmentParentTableViewCell.h; sourceTree = "<group>"; };
@@ -216,6 +219,8 @@
 				2B42060A1A876718002ABE64 /* ViewController.m */,
 				89315FCD1A8C619F0069E10F /* VHTermViewController.h */,
 				89315FCE1A8C619F0069E10F /* VHTermViewController.m */,
+				89863BC31A9C6338000C60AD /* JLSchoolDepartmentViewController.h */,
+				89863BC41A9C6338000C60AD /* JLSchoolDepartmentViewController.m */,
 				8926E77A1A98252B003AF21B /* CourseListViewController.h */,
 				8926E77B1A98252B003AF21B /* CourseListViewController.m */,
 				89F203D81A9AF64A0099DAA0 /* CourseViewController.h */,
@@ -472,6 +477,7 @@
 				2B8B7F521A94744F00DCD321 /* School.m in Sources */,
 				2B4206051A876718002ABE64 /* AppDelegate.m in Sources */,
 				89F203D71A9AB6680099DAA0 /* VHDepartmentParentTableViewCell.m in Sources */,
+				89863BC51A9C6338000C60AD /* JLSchoolDepartmentViewController.m in Sources */,
 				2B0C51351A94988600FA9FBB /* VHDepartmentTableViewCell.m in Sources */,
 				89F203DD1A9AFE6E0099DAA0 /* SectionTableViewCell.m in Sources */,
 				8926E77F1A983BFB003AF21B /* VHCourseTableViewCell.m in Sources */,

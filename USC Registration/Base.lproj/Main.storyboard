@@ -415,11 +415,41 @@
                         <outlet property="schoolLabel" destination="VZh-0D-8lq" id="zBP-gL-UZT"/>
                         <outlet property="tableView" destination="FUe-uo-GNm" id="3Ya-bw-EsI"/>
                         <segue destination="HPU-dY-fwO" kind="show" identifier="goToCourses" id="bzd-Aa-4bI"/>
+                        <segue destination="dx6-VF-bqW" kind="show" identifier="goToSchoolDepartment" id="yee-Sn-oSQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kid-KZ-chv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="879" y="247"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="N9s-eN-4xW">
+            <objects>
+                <tableViewController id="dx6-VF-bqW" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="AaY-0i-t1M">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="3XI-Hv-Vw7">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3XI-Hv-Vw7" id="ha3-fh-bQA">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="dx6-VF-bqW" id="5gZ-fJ-tJq"/>
+                            <outlet property="delegate" destination="dx6-VF-bqW" id="Ikz-kp-MJ9"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <segue destination="HPU-dY-fwO" kind="show" identifier="goToCourses" id="6vr-gr-QYh"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lFb-hj-jGs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="900" y="1027"/>
         </scene>
         <!--Course List View Controller-->
         <scene sceneID="wRf-AN-5cp">
@@ -773,4 +803,7 @@
         <image name="goldShield" width="400" height="400"/>
         <image name="smallGoldShield" width="300" height="300"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="bzd-Aa-4bI"/>
+    </inferredMetricsTieBreakers>
 </document>

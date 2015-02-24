@@ -16,6 +16,7 @@
 #import "VHDepartmentParentTableViewCell.h"
 #import "JLSchoolCollectionViewCell.h"
 #import "School.h"
+#import "JLSchoolDepartmentViewController.h"
 
 @interface VHTermViewController ()
 
@@ -23,6 +24,10 @@
 
 @implementation VHTermViewController
 #pragma mark UICollectionViewDelegate/DataSource
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    self.selectedSchool = self.term.schools[indexPath.row];
+    [self performSegueWithIdentifier:@"goToSchoolDepartment" sender:self];
+}
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     //double rtn = ceil((self.term.schools.count)/2);
     //return rtn;
@@ -262,13 +267,16 @@
         CourseListViewController * vc = [segue destinationViewController];
         vc.department = self.selectedDepartment;
     }
+    else if([segue.identifier isEqualToString:@"goToSchoolDepartment"]){
+        JLSchoolDepartmentViewController * vc = [segue destinationViewController];
+        vc.school = self.selectedSchool;
+    }
 }
 
 #pragma mark Taps
 -(void)tapSchool{
     self.lastIndex = self.index;
     self.index = 0;
-    
     [self.tableView setHidden:YES];
     [self.schoolCollectionView setHidden:NO];
     [self reloadView];
