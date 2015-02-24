@@ -9,5 +9,14 @@
 #import "JLSchoolCollectionViewCell.h"
 
 @implementation JLSchoolCollectionViewCell
-
+-(void)awakeFromNib{
+    self.circleView.backgroundColor = [UIColor orangeColor];
+    self.layer.shadowOffset = CGSizeMake(0, 0);
+    self.layer.shadowOpacity = 0.2;
+    self.layer.masksToBounds = NO;
+    
+    self.circleView.layer.cornerRadius = 50;
+    [self.circleView.layer setBorderColor: [[UIColor blackColor] CGColor]];
+    [self.circleView.layer setBorderWidth: 2.0];
+}
 @end

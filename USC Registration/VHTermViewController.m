@@ -33,90 +33,103 @@
     
     JLSchoolCollectionViewCell * cell;
     cell = [collectionView dequeueReusableCellWithReuseIdentifier: @"school" forIndexPath:indexPath];
-
+    cell.layer.shouldRasterize = YES;
+    cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
     NSString * school = ((School*)self.term.schools[indexPath.row]).schoolDescription;
+    
+    UIImage * image;
     if([school hasPrefix: @"Leventhal"]){
-        cell.schoolIconView.image = [UIImage imageNamed:@"accounting.png"];
+        image = [UIImage imageNamed:@"accounting.png"];
     }
     else if([school hasPrefix:@"Annenberg"]){
-        cell.schoolIconView.image = [UIImage imageNamed:@"annenburg.png"];
+        image = [UIImage imageNamed:@"annenburg.png"];
     }
     else if([school hasPrefix:@"Architecture"]){
-        cell.schoolIconView.image = [UIImage imageNamed:@"architecture.png"];
+        image = [UIImage imageNamed:@"architecture.png"];
     }
     else if([school hasPrefix:@"Marshall"]){
-        cell.schoolIconView.image = [UIImage imageNamed:@"business.png"];
+        image = [UIImage imageNamed:@"business.png"];
     }
     else if([school hasPrefix:@"Cinematic"]){
-        cell.schoolIconView.image = [UIImage imageNamed:@"cinema.png"];
+        image = [UIImage imageNamed:@"cinema.png"];
     }
     else if([school hasPrefix:@"Kaufman"]){
-        cell.schoolIconView.image = [UIImage imageNamed:@"dance.png"];
+        image = [UIImage imageNamed:@"dance.png"];
     }
     else if([school hasPrefix:@"Ostrow"]){
-        cell.schoolIconView.image = [UIImage imageNamed:@"dentistry.png"];
+        image = [UIImage imageNamed:@"dentistry.png"];
     }
     else if([school hasPrefix:@"Physical"]){
-        cell.schoolIconView.image = [UIImage imageNamed:@"physicaltherapy.png"];
+        image = [UIImage imageNamed:@"physicaltherapy.png"];
     }
     else if([school hasPrefix:@"Rossier"]){
-        cell.schoolIconView.image = [UIImage imageNamed:@"rossieredu.png"];
+        image = [UIImage imageNamed:@"rossieredu.png"];
     }
     else if([school hasPrefix:@"Viterbi"]){
-        cell.schoolIconView.image = [UIImage imageNamed:@"engineering.png"];
+        image = [UIImage imageNamed:@"engineering.png"];
     }
     else if([school hasPrefix:@"Roski"]){
-        cell.schoolIconView.image = [UIImage imageNamed:@"art.png"];
+        image = [UIImage imageNamed:@"art.png"];
     }
     else if([school hasPrefix:@"General"]){
-        cell.schoolIconView.image = [UIImage imageNamed:@"generaled.png"];
+        image = [UIImage imageNamed:@"generaled.png"];
     }
     else if([school hasPrefix:@"Gerontology"]){
-        cell.schoolIconView.image = [UIImage imageNamed:@"gerontology.png"];
+        image = [UIImage imageNamed:@"gerontology.png"];
     }
     else if([school hasPrefix:@"Graduate"]){
-        cell.schoolIconView.image = [UIImage imageNamed:@"graduate.png"];
+        image = [UIImage imageNamed:@"graduate.png"];
     }
     else if([school hasPrefix:@"Dornsife"]){
-        cell.schoolIconView.image = [UIImage imageNamed:@"dornsife.png"];
+        image = [UIImage imageNamed:@"dornsife.png"];
     }
     else if([school hasPrefix:@"Law"]){
-        cell.schoolIconView.image = [UIImage imageNamed:@"law.png"];
+        image = [UIImage imageNamed:@"law.png"];
     }
     else if([school hasPrefix:@"Keck"]){
-        cell.schoolIconView.image = [UIImage imageNamed:@"medicine.png"];
+        image = [UIImage imageNamed:@"medicine.png"];
     }
     else if([school hasPrefix:@"Thornton"]){
-        cell.schoolIconView.image = [UIImage imageNamed:@"music.png"];
+        image = [UIImage imageNamed:@"music.png"];
     }
     else if([school hasPrefix:@"Occupational"]){
-        cell.schoolIconView.image = [UIImage imageNamed:@"occupationaltherapy.png"];
+        image = [UIImage imageNamed:@"occupationaltherapy.png"];
     }
     else if([school hasPrefix:@"Pharmacy"]){
-        cell.schoolIconView.image = [UIImage imageNamed:@"pharmacy.png"];
+        image = [UIImage imageNamed:@"pharmacy.png"];
     }
     else if([school hasPrefix:@"Price"]){
-        cell.schoolIconView.image = [UIImage imageNamed:@"policy.png"];
+        image = [UIImage imageNamed:@"policy.png"];
     }
     else if([school hasPrefix:@"Social"]){
-        cell.schoolIconView.image = [UIImage imageNamed:@"socialwork.png"];
+        image = [UIImage imageNamed:@"socialwork.png"];
     }
     else if([school hasPrefix:@"Dramatic"]){
-        cell.schoolIconView.image = [UIImage imageNamed:@"drama.png"];
+        image = [UIImage imageNamed:@"drama.png"];
     }
     else if([school hasPrefix:@"Iovine"]){
-        cell.schoolIconView.image = [UIImage imageNamed:@"innovation.png"];
+        image = [UIImage imageNamed:@"innovation.png"];
     }
     else{
-        cell.schoolIconView.image = [UIImage imageNamed:@"general.png"];
+        image = [UIImage imageNamed:@"general.png"];
     }
-    cell.schoolIconView.contentMode = UIViewContentModeScaleToFill;
-    
+    cell.schoolIconView.image = image;
+    cell.schoolIconView.contentMode = UIViewContentModeScaleAspectFit;
     [cell.schoolLabel setText:school];
-    cell.layer.cornerRadius = 75.0;
+    cell.schoolLabel.textAlignment = NSTextAlignmentCenter;
+//    [cell.schoolLabel sizeToFit];
+//    CGRect frame = CGRectMake(8, 116, cell.frame.size.width - 16.0, cell.schoolLabel.frame.size.height);
+//    cell.schoolLabel.frame = frame;
     return cell;
 }
-
+-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    CGRect bounds = [UIScreen mainScreen].bounds;
+    return CGSizeMake((bounds.size.width - 60.0)/2.0, 175);
+}
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    return UIEdgeInsetsMake(20, 20, 20, 20);
+}
 
 #pragma mark UITableViewDelegate/DataSource
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -350,6 +363,9 @@
     UITapGestureRecognizer * tap3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapPrefixes)];
     [self.prefixLabel addGestureRecognizer:tap3];
     self.arrayOfLabels = [[NSMutableArray alloc] initWithObjects:self.schoolLabel, self.departmentLabel, self.prefixLabel, nil];
+    self.schoolCollectionView.hidden = NO;
+    self.tableView.hidden = YES;
+    self.index = 0;
 }
 -(void)viewWillAppear:(BOOL)animated{
     [self.schoolCollectionView setBackgroundColor:[USColor clearColor]];
