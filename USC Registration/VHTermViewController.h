@@ -10,7 +10,7 @@
 #import "Term.h"  
 #import "AppDelegate.h"
 #import "Department.h"
-@interface VHTermViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
+@interface VHTermViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, strong) AppDelegate * appDelegate;
 @property (weak, nonatomic) IBOutlet UILabel *schoolLabel;

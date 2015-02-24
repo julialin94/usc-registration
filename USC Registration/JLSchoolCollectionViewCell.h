@@ -11,5 +11,6 @@
 @interface JLSchoolCollectionViewCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *schoolIconView;
 @property (weak, nonatomic) IBOutlet UILabel *schoolLabel;
+@property (weak, nonatomic) IBOutlet UIView *circleView;
 
 @end

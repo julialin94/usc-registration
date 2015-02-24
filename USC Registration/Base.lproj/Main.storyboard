@@ -246,11 +246,11 @@
                                     <constraint firstAttribute="centerY" secondItem="VZh-0D-8lq" secondAttribute="centerY" id="jIC-gy-mkQ"/>
                                 </constraints>
                             </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="l8U-Yh-JJC">
+                            <collectionView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="l8U-Yh-JJC">
                                 <rect key="frame" x="0.0" y="108" width="600" height="492"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="oWT-xn-dR1">
-                                    <size key="itemSize" width="150" height="150"/>
+                                    <size key="itemSize" width="130" height="175"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -260,23 +260,59 @@
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="130" height="175"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r2t-6u-b5k">
-                                                    <rect key="frame" x="50" y="25" width="50" height="50"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="School" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oPd-yT-03F">
-                                                    <rect key="frame" x="35" y="80" width="80" height="50"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r7n-4g-2fI" userLabel="circleView">
+                                                    <rect key="frame" x="15" y="8" width="100" height="100"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r2t-6u-b5k">
+                                                            <rect key="frame" x="20" y="20" width="60" height="60"/>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="Olr-nO-Ehx"/>
+                                                        <constraint firstAttribute="height" constant="100" id="W9L-v3-xPg"/>
+                                                    </constraints>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="School" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oPd-yT-03F">
+                                                    <rect key="frame" x="8" y="116" width="114" height="51"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="114" id="dlY-VK-CGr"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="vjp-f1-u1h"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="dlY-VK-CGr"/>
+                                                        </mask>
+                                                    </variation>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <color key="backgroundColor" red="0.59999999999999998" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.90553759895874641" green="0.9169242058011049" blue="0.87854806805396202" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="oPd-yT-03F" secondAttribute="trailing" constant="8" id="D8W-am-exm"/>
+                                            <constraint firstItem="oPd-yT-03F" firstAttribute="top" secondItem="r7n-4g-2fI" secondAttribute="bottom" constant="8" id="Yz7-Kz-C7J"/>
+                                            <constraint firstAttribute="trailing" secondItem="oPd-yT-03F" secondAttribute="trailing" constant="18.5" id="cg3-QS-LiC"/>
+                                            <constraint firstAttribute="centerX" secondItem="r7n-4g-2fI" secondAttribute="centerX" id="eFs-ZZ-oZL"/>
+                                            <constraint firstItem="oPd-yT-03F" firstAttribute="leading" secondItem="suN-MI-kLI" secondAttribute="leading" constant="19" id="iOk-QI-NxC"/>
+                                            <constraint firstAttribute="bottom" secondItem="oPd-yT-03F" secondAttribute="bottom" constant="8" id="lrA-y0-dJ3"/>
+                                            <constraint firstAttribute="centerX" secondItem="oPd-yT-03F" secondAttribute="centerX" id="pex-yg-nV2"/>
+                                            <constraint firstItem="oPd-yT-03F" firstAttribute="leading" secondItem="suN-MI-kLI" secondAttribute="leading" constant="8" id="sSP-UG-fG8"/>
+                                            <constraint firstItem="r7n-4g-2fI" firstAttribute="top" secondItem="suN-MI-kLI" secondAttribute="top" constant="8" id="x5n-Bi-Eed"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="cg3-QS-LiC"/>
+                                                <exclude reference="iOk-QI-NxC"/>
+                                            </mask>
+                                        </variation>
                                         <connections>
+                                            <outlet property="circleView" destination="r7n-4g-2fI" id="mks-to-cD7"/>
                                             <outlet property="schoolIconView" destination="r2t-6u-b5k" id="0hG-47-FPQ"/>
                                             <outlet property="schoolLabel" destination="oPd-yT-03F" id="7o6-xM-NQi"/>
                                         </connections>
@@ -287,7 +323,7 @@
                                     <outlet property="delegate" destination="1uZ-8F-Q4c" id="wHU-Qh-jx4"/>
                                 </connections>
                             </collectionView>
-                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FUe-uo-GNm">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FUe-uo-GNm">
                                 <rect key="frame" x="0.0" y="108" width="600" height="492"/>
                                 <color key="backgroundColor" red="0.58823529411764708" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="separatorColor" red="0.58823529411764708" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
