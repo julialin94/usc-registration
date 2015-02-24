@@ -17,6 +17,7 @@
 @property (nonatomic, strong) NSArray * terms;
 @property (nonatomic, strong) NSMutableArray * isShowingList;
 @property (nonatomic, assign) NSInteger openSectionIndex;
+@property (nonatomic) BOOL doneConnecting;
 
 @property (weak, nonatomic) IBOutlet UIImageView *animatedLogoImageView;
 @property (weak, nonatomic) IBOutlet UIView *logoViewBackground;

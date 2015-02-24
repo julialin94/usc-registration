@@ -104,6 +104,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.appDelegate = [UIApplication sharedApplication].delegate;
+    if(!self.terms){
+        [self getTermsWithCode:nil andSender:self];
+    }
     self.appDelegate.progressHUD = [[MBProgressHUD alloc] initWithView:self.view];
     self.appDelegate.progressHUD.square = YES;
     self.isShowingList = [NSMutableArray array];
@@ -122,47 +125,56 @@
     if(self.shownBefore){
         [self.logoViewBackground removeFromSuperview];
     }
-//    [self.navigationController setNavigationBarHidden:YES];
     [self reloadTableViewWithAnimation:NO];
 }
 -(void)viewWillDisappear:(BOOL)animated{
-//    [self.navigationController setNavigationBarHidden:NO];
-    
     [self reloadTableViewFrameWithAnimation:NO];
 }
 -(void)viewDidAppear:(BOOL)animated{
-    if(!self.terms){
-        [self getTermsWithCode:nil andSender:self];
-//    }
-//    if(!self.shownBefore){
+    if(!self.shownBefore){
         self.shownBefore = YES;
-        [UIView animateWithDuration:1.0
-                              delay:0.0
-                            options:UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat | UIViewAnimationOptionCurveEaseInOut
-                         animations:^{
-                             self.loadingLabel.alpha = 0.0;
-                         }
-                         completion:NULL];
-        [UIView animateWithDuration:1.0
-                              delay:2.0
-                            options:UIViewAnimationOptionCurveEaseInOut
-                         animations:^{
-                             CGFloat centerX = [UIScreen mainScreen].bounds.size.width/2;
-                             [self.animatedLogoImageView setFrame:CGRectMake(centerX-75, 28, 150, 150)];
-                         }
-                         completion:^(BOOL finished){
-                             [UIView animateWithDuration:1.0
-                                                   delay:0
-                                                 options:UIViewAnimationOptionCurveEaseInOut
-                                              animations:^{
-                                                  self.logoViewBackground.alpha = 0.0;
-                                              }
-                                              completion:^(BOOL finished){
-                                                  [self.animatedLogoImageView removeFromSuperview];
-                                                  [self.logoViewBackground removeFromSuperview];
-                                              }];
-                         }];
+        [self animatePulse];
     }
+}
+#pragma mark Animate
+-(void)animateFade{
+    
+    [UIView animateWithDuration:1.0
+                          delay:2.0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         CGFloat centerX = [UIScreen mainScreen].bounds.size.width/2;
+                         [self.animatedLogoImageView setFrame:CGRectMake(centerX-75, 28, 150, 150)];
+                     }
+                     completion:^(BOOL finished){
+                         [UIView animateWithDuration:1.0
+                                               delay:0
+                                             options:UIViewAnimationOptionCurveEaseInOut
+                                          animations:^{
+                                              self.logoViewBackground.alpha = 0.0;
+                                          }
+                                          completion:^(BOOL finished){
+                                              [self.animatedLogoImageView removeFromSuperview];
+                                              [self.logoViewBackground removeFromSuperview];
+                                          }];
+                     }];
+}
+-(void)animatePulse{
+    [UIView animateWithDuration:1.0
+                          delay:0.0
+                        options:UIViewAnimationOptionAutoreverse | UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         self.loadingLabel.alpha = 0.0;
+                     }
+                     completion:^(BOOL finished){
+                         NSLog(@"doneConnecting: %d", self.doneConnecting);
+                         if(self.doneConnecting){
+                             [self animateFade];
+                         }
+                         else{
+                             [self animatePulse];
+                         }
+                     }];
 }
 -(void)goToTermView{
     self.appDelegate.progressHUD.labelText = @"Please wait.";
@@ -186,6 +198,7 @@
     NSError * error;
     self.terms = [NSJSONSerialization JSONObjectWithData:self.responseData options:kNilOptions error:&error];
     [self reloadTableViewWithAnimation:NO];
+    self.doneConnecting = YES;
 }
 
 -(void)getTermsWithCode:(NSString *)code andSender:(id)sender{
@@ -223,7 +236,8 @@
     // The request has failed for some reason!
     // Check the error var
     NSLog(@"connection failed: %@", error);
-    UIAlertView * av = [[UIAlertView alloc] initWithTitle:@"ERROR" message:@"YO INTERNET IS BROKEN NIGGA" delegate:self cancelButtonTitle:@"OK FAG" otherButtonTitles:nil];
+    self.doneConnecting = YES;
+    UIAlertView * av = [[UIAlertView alloc] initWithTitle:@"Connection error!" message:@"Please check your internet connection." delegate:self cancelButtonTitle:@"OK!" otherButtonTitles:nil];
     [av show];
 }
 #pragma mark Segue
