@@ -25,7 +25,6 @@
 }
 -(void) downloadData{
     NSString * url = [NSString stringWithFormat:@"%@/courses/%@/%@", [self.appDelegate URL], self.appDelegate.term, self.departmentCode];
-    NSLog(@"url: %@", url);
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     NSURLResponse *response;
     NSData * data = [NSURLConnection sendSynchronousRequest:request
@@ -34,9 +33,15 @@
     NSError * error;
     NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
     self.downloaded = YES;
-    for (NSDictionary * course in dict) {
-        Course * c = [[Course alloc] initWithDictionary:course];
-        [self add:c];
+    if(error){
+        NSLog(@"Department error: %@", error);
+    }
+    else{
+        self.courses = [[NSMutableArray alloc] init];
+        for (NSDictionary * course in dict) {
+            Course * c = [[Course alloc] initWithDictionary:course];
+            [self add:c];
+        }
     }
 }
 -(void)add:(id)object{

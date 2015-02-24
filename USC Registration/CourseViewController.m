@@ -62,7 +62,24 @@
     [self.courseDescriptionLabel sizeToFit];
     self.tableView.estimatedRowHeight = 44.0;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor purpleColor];
+    self.refreshControl.tintColor = [UIColor orangeColor];
+    [self.tableView addSubview:self.refreshControl];
+    [self.refreshControl addTarget:self
+                            action:@selector(reloadSections)
+                  forControlEvents:UIControlEventValueChanged];
 
+}
+-(void)reloadSections{
+    dispatch_queue_t loadingQueue = dispatch_queue_create("loadingQueue",NULL);
+    dispatch_async(loadingQueue, ^{
+        [self.course downloadData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+            [self.refreshControl endRefreshing];
+        });
+    });
 }
 
 @end

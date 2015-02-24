@@ -15,4 +15,5 @@
 @property (nonatomic, strong) Department * department;
 @property (nonatomic, strong) Course * course;
 @property (nonatomic, strong) AppDelegate * appDelegate;
+@property (nonatomic, strong) UIRefreshControl * refreshControl;
 @end

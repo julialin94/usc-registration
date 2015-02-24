@@ -66,5 +66,22 @@
     [super viewDidLoad];
     self.appDelegate = [UIApplication sharedApplication].delegate;
     self.title = self.department.departmentCode;
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor purpleColor];
+    self.refreshControl.tintColor = [UIColor orangeColor];
+    [self.tableView addSubview:self.refreshControl];
+    [self.refreshControl addTarget:self
+                            action:@selector(reloadCourses)
+                  forControlEvents:UIControlEventValueChanged];
+}
+-(void)reloadCourses{
+    dispatch_queue_t loadingQueue = dispatch_queue_create("loadingQueue",NULL);
+    dispatch_async(loadingQueue, ^{
+        [self.department downloadData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+            [self.refreshControl endRefreshing];
+        });
+    });
 }
 @end

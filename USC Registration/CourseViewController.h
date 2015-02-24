@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *courseNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *courseDescriptionLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) UIRefreshControl * refreshControl;
 
 @end

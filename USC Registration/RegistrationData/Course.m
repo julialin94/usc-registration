@@ -37,10 +37,15 @@
     NSError * error;
     NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
     self.downloaded = YES;
-    
-    for (NSDictionary * section in [dict objectForKey:@"V_SOC_SECTION"]) {
-        Section * s = [[Section alloc] initWithDictionary:section];
-        [self add:s];
+    if(error ) {
+        NSLog(@"Course error: %@", error);
+    }
+    else{
+        self.sections = [[NSMutableArray alloc] init];
+        for (NSDictionary * section in [dict objectForKey:@"V_SOC_SECTION"]) {
+            Section * s = [[Section alloc] initWithDictionary:section];
+            [self add:s];
+        }
     }
 }
 
