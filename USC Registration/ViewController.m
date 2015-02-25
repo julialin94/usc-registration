@@ -28,6 +28,8 @@
     CGRect frame = self.tableView.frame;
     frame.origin.x = [[UIScreen mainScreen] bounds].size.width/2 - frame.size.width/2;
     frame.size.height = (self.tableViewCollapsed) ? 80 : 80*self.terms.count;
+    CGFloat scrollViewHeight = frame.size.height + 20.0 + frame.origin.y;
+    self.scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, scrollViewHeight);
     if(animated)
         [UIView animateWithDuration:0.2
                               delay:0
@@ -120,17 +122,27 @@
     self.tableViewCollapsed = YES;
     NSDictionary * dict = [[NSDictionary alloc] initWithObjects:[NSArray arrayWithObject:@"Select"] forKeys:[NSArray arrayWithObject:@"DESCRIPTION"]];
     [self.isShowingList addObject:dict];
+    [self.logoViewBackground addSubview:self.chooseLabel];
+    [self.scrollView addSubview:self.tableView];
+//    [self.scrollView addSubview:self.uscIcon];
+    CGRect screenBounds = [UIScreen mainScreen].bounds;
+    CGRect frame = self.tableView.frame;
+    frame.size.width = screenBounds.size.width-100;
+    self.tableView.frame = CGRectMake(50, 224, frame.size.width, 80);
 }
 -(void)viewWillAppear:(BOOL)animated{
-    if(self.shownBefore){
-        [self.logoViewBackground removeFromSuperview];
-    }
+    
+//    if(self.shownBefore){
+//        [self.logoViewBackground removeFromSuperview];
+//    }
     [self reloadTableViewWithAnimation:NO];
 }
 -(void)viewWillDisappear:(BOOL)animated{
     [self reloadTableViewFrameWithAnimation:NO];
 }
 -(void)viewDidAppear:(BOOL)animated{
+    
+    
     if(!self.shownBefore){
         self.shownBefore = YES;
         [self animatePulse];
@@ -138,6 +150,7 @@
 }
 #pragma mark Animate
 -(void)animateFade{
+    self.tableView.alpha = 0.0;
     
     [UIView animateWithDuration:1.0
                           delay:2.0
@@ -147,15 +160,20 @@
                          [self.animatedLogoImageView setFrame:CGRectMake(centerX-75, 28, 150, 150)];
                      }
                      completion:^(BOOL finished){
+                         self.chooseLabel.frame = self.animatedLogoImageView.frame;
+                         self.chooseLabel.frame = CGRectMake(self.chooseLabel.frame.origin.x-75, 186, 300, 30);
+                         NSLog(@"(%f, %f, %f, %f)", self.chooseLabel.frame.origin.x, self.chooseLabel.frame.origin.y,self.chooseLabel.frame.size.width,self.chooseLabel.frame.size.height);
                          [UIView animateWithDuration:1.0
                                                delay:0
                                              options:UIViewAnimationOptionCurveEaseInOut
                                           animations:^{
-                                              self.logoViewBackground.alpha = 0.0;
+                                              //                                              self.logoViewBackground.alpha = 0.0;
+                                              self.tableView.alpha = 1.0;
+                                              
                                           }
                                           completion:^(BOOL finished){
-                                              [self.animatedLogoImageView removeFromSuperview];
-                                              [self.logoViewBackground removeFromSuperview];
+                                              [self.view sendSubviewToBack:self.logoViewBackground];
+//                                              [self.logoViewBackground removeFromSuperview];
                                           }];
                      }];
 }
@@ -205,7 +223,8 @@
     //gets term details
     if(code == nil)
         code = @"";
-    NSString * url = [NSString stringWithFormat:@"%@/terms/%@", [self.appDelegate URL], code];
+//    NSString * url = [NSString stringWithFormat:@"%@/terms/%@", [self.appDelegate URL], code];
+    NSString * url = @"http://vincentho.me/477/image.php";
     NSLog(@"request URL: %@", url);
     [self performRequestWithURL:url andSender:sender];
 }

@@ -28,6 +28,8 @@
 @property (nonatomic) BOOL buttonClicked;
 @property (nonatomic) BOOL tableViewCollapsed;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) IBOutlet UIImageView *uscIcon;
+@property (strong, nonatomic) IBOutlet UILabel *chooseLabel;
 
 @end
 
