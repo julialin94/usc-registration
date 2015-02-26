@@ -124,7 +124,9 @@
     [self.isShowingList addObject:dict];
     [self.logoViewBackground addSubview:self.chooseLabel];
     [self.scrollView addSubview:self.tableView];
-//    [self.scrollView addSubview:self.uscIcon];
+    [self.scrollView addSubview:self.uscIcon];
+    self.chooseLabel.hidden = YES;
+    self.uscIcon.hidden = YES;
     CGRect screenBounds = [UIScreen mainScreen].bounds;
     CGRect frame = self.tableView.frame;
     frame.size.width = screenBounds.size.width-100;
@@ -151,7 +153,6 @@
 #pragma mark Animate
 -(void)animateFade{
     self.tableView.alpha = 0.0;
-    
     [UIView animateWithDuration:1.0
                           delay:2.0
                         options:UIViewAnimationOptionCurveEaseInOut
@@ -163,6 +164,7 @@
                          self.chooseLabel.frame = self.animatedLogoImageView.frame;
                          self.chooseLabel.frame = CGRectMake(self.chooseLabel.frame.origin.x-75, 186, 300, 30);
                          NSLog(@"(%f, %f, %f, %f)", self.chooseLabel.frame.origin.x, self.chooseLabel.frame.origin.y,self.chooseLabel.frame.size.width,self.chooseLabel.frame.size.height);
+                         self.chooseLabel.hidden = NO;
                          [UIView animateWithDuration:1.0
                                                delay:0
                                              options:UIViewAnimationOptionCurveEaseInOut
@@ -223,8 +225,7 @@
     //gets term details
     if(code == nil)
         code = @"";
-//    NSString * url = [NSString stringWithFormat:@"%@/terms/%@", [self.appDelegate URL], code];
-    NSString * url = @"http://vincentho.me/477/image.php";
+    NSString * url = [NSString stringWithFormat:@"%@/terms/%@", [self.appDelegate URL], code];
     NSLog(@"request URL: %@", url);
     [self performRequestWithURL:url andSender:sender];
 }
