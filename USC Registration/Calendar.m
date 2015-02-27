@@ -24,7 +24,6 @@
     CGRect frame = [UIApplication sharedApplication].keyWindow.frame;
     CGFloat width = frame.size.width - 30.0;
     [self.backgroundButton addTarget:self action:@selector(hideCalendar) forControlEvents:UIControlEventTouchUpInside];
-    [self.closeButton addTarget:self action:@selector(hideCalendar) forControlEvents:UIControlEventTouchUpInside];
     self.arrayOfDayPanels = [[NSMutableArray alloc] init];
     self.scrollView.clipsToBounds = YES;
     UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, 30)];
@@ -111,6 +110,14 @@
         self.termSchedule = appDelegate.termSchedule;
     }
     self.scrollView.contentSize = CGSizeMake(width, endY);
+    self.closeButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    self.closeButton.backgroundColor = [UIColor clearColor];
+    [self.closeButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    self.closeButton.layer.cornerRadius = self.closeButton.frame.size.width/2;
+    [self.closeButton setTitle:@"X" forState:UIControlStateNormal];
+    self.closeButton.showsTouchWhenHighlighted = YES;
+    [self.scrollView addSubview:self.closeButton];
+    [self.closeButton addTarget:self action:@selector(hideCalendar) forControlEvents:UIControlEventTouchUpInside];
     [self show];
 }
 -(void)hideCalendar{

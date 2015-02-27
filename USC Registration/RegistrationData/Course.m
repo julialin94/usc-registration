@@ -9,7 +9,9 @@
 #import "Course.h"
 #import "Section.h"
 @implementation Course
-
+-(NSString *)description{
+    return [NSString stringWithFormat:@"%@ with Units %ld-%ld", self.sisCourseID, (long)self.minUnits, (long)self.maxUnits];
+}
 -(id)initWithDictionary:(NSDictionary *)dict{
     self = [super init];
     self.sections = [[NSMutableArray alloc] init];

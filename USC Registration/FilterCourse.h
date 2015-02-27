@@ -7,10 +7,14 @@
 //
 
 #import "Popup.h"
-
+@protocol FilterCourseDelegate <NSObject>
+@required
+- (void) filtered: (NSArray*)selections;
+@end
 @interface FilterCourse : Popup <UITableViewDelegate, UITableViewDataSource>
 -(void)showFilter;
 -(void)hideFilter;
+@property (nonatomic, strong) id <FilterCourseDelegate> delegate;
 @property (nonatomic, strong) UITableView * courseFilterTableView;
 @property (nonatomic, strong) NSMutableArray * optionsArray;
 @property (nonatomic, strong) NSMutableArray * unitsArray;

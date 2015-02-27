@@ -11,12 +11,14 @@
 #import "AppDelegate.h"
 #import "Course.h"
 #import "FilterCourse.h"
-@interface CourseListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface CourseListViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, FilterCourseDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) FilterCourse * filter;
 @property (nonatomic, strong) Department * department;
 @property (nonatomic, strong) Course * course;
 @property (nonatomic, strong) AppDelegate * appDelegate;
 @property (nonatomic, strong) UIRefreshControl * refreshControl;
+@property (nonatomic, strong) NSMutableArray * arrayOfCourses;
 @property (nonatomic, strong) NSArray * arrayOfNavigationBarButtons;
+@property (nonatomic, strong) UILabel * noResultsLabel;
 @end
