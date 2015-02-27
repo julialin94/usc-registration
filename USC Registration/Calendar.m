@@ -8,7 +8,9 @@
 
 #import "Calendar.h"
 #import "AppDelegate.h"
+#import "Section.h"
 @implementation Calendar
+
 -(instancetype)init{
     self = [super init];
     CGRect frame = [UIApplication sharedApplication].keyWindow.frame;
@@ -35,13 +37,15 @@
     AppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
     if(![self.termSchedule contentEquals:appDelegate.termSchedule]){
         //has been updated, regenerate views
-        
+        for(Section * s in appDelegate.termSchedule.dictionaryOfSections.allValues){
+            NSLog(@"%@", s.sisCourseID);
+            NSLog(@"\t%@-%@", s.beginTime, s.endTime);
+        }
         
         
         
         self.termSchedule = appDelegate.termSchedule;
     }
-    
 }
 -(void)hideCalendar{
     [self hide];

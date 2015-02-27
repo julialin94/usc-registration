@@ -23,8 +23,6 @@
     [self.navigationItem setRightBarButtonItem:calendarButton];
 }
 - (IBAction)addSectionAction:(id)sender {
-    if([self.appDelegate.termSchedule.dictionaryOfSections objectForKey:self.section.section] == nil){
-        [self.appDelegate.termSchedule.dictionaryOfSections setObject:self.section forKey:self.section.section];
-    }
+    [self.appDelegate addSection:self.section];
 }
 @end

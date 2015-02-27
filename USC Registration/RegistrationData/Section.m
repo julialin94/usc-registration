@@ -10,6 +10,54 @@
 
 @implementation Section
 
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    //Encode properties, other class variables, etc
+    [encoder encodeObject:self.addDate forKey:@"addDate"];
+    [encoder encodeObject:self.beginTime forKey:@"beginTime"];
+    [encoder encodeObject:self.cancelDate forKey:@"cancelDate"];
+    [encoder encodeObject:self.courseID forKey:@"courseID"];
+    [encoder encodeObject:self.day forKey:@"day"];
+    [encoder encodeObject:self.endTime forKey:@"endTime"];
+    [encoder encodeObject:self.instructor forKey:@"instructor"];
+    [encoder encodeObject:self.location forKey:@"location"];
+    [encoder encodeObject:self.name forKey:@"name"];
+    [encoder encodeObject:self.publishFlag forKey:@"publishFlag"];
+    [encoder encodeObject:self.publishSectionFlag forKey:@"publishSectionFlag"];
+    [encoder encodeObject:@(self.registered) forKey:@"registered"];
+    [encoder encodeObject:@(self.seats) forKey:@"seats"];
+    [encoder encodeObject:self.section forKey:@"section"];
+    [encoder encodeObject:self.sisCourseID forKey:@"sisCourseID"];
+    [encoder encodeObject:self.termCode forKey:@"termCode"];
+    [encoder encodeObject:self.type forKey:@"type"];
+    [encoder encodeObject:self.sessionCode forKey:@"sessionCode"];
+    [encoder encodeObject:@(self.unitCode) forKey:@"unitCode"];
+}
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    if((self = [super init])) {
+        //decode properties, other class vars
+        self.addDate = [decoder decodeObjectForKey:@"addDate"];
+        self.beginTime = [decoder decodeObjectForKey:@"beginTime"];
+        self.cancelDate = [decoder decodeObjectForKey:@"cancelDate"];
+        self.courseID = [decoder decodeObjectForKey:@"courseID"];
+        self.day = [decoder decodeObjectForKey:@"day"];
+        self.endTime = [decoder decodeObjectForKey:@"endTime"];
+        self.instructor = [decoder decodeObjectForKey:@"instructor"];
+        self.location = [decoder decodeObjectForKey:@"location"];
+        self.name = [decoder decodeObjectForKey:@"name"];
+        self.publishFlag = [decoder decodeObjectForKey:@"publishFlag"];
+        self.publishSectionFlag = [decoder decodeObjectForKey:@"publishSectionFlag"];
+        self.section = [decoder decodeObjectForKey:@"section"];
+        self.sisCourseID = [decoder decodeObjectForKey:@"sisCourseID"];
+        self.termCode = [decoder decodeObjectForKey:@"termCode"];
+        self.type = [decoder decodeObjectForKey:@"type"];
+        self.unitCode = [(NSString *)[decoder decodeObjectForKey:@"unitCode"] integerValue];
+        self.registered = [(NSString *)[decoder decodeObjectForKey:@"registered"]integerValue];
+        self.seats = [(NSString *)[decoder decodeObjectForKey:@"seats"] integerValue];
+        self.sessionCode = [decoder decodeObjectForKey:@"sessionCode"];
+    }
+    return self;
+}
 -(id)initWithDictionary:(NSDictionary *)dict{
     self = [super init];
     self.addDate = [dict objectForKey:@"ADD_DATE"];
