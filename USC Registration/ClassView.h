@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Section.h"
 @interface ClassView : UIView
-- (instancetype)initWithStart:(NSString *)start andEnd:(NSString *)end andWidth:(CGFloat) width;
+@property (nonatomic, strong) Section * s;
+@property (nonatomic) CGFloat width;
+- (instancetype)initWithSection:(Section *)section andWidth:(CGFloat) width;
 @end

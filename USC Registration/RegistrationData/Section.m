@@ -9,7 +9,9 @@
 #import "Section.h"
 
 @implementation Section
-
+-(NSString *)description{
+    return [NSString stringWithFormat:@"%@(%@) from %@ to %@ on %@", self.sisCourseID, self.section, self.beginTime, self.endTime, self.day];
+}
 - (void)encodeWithCoder:(NSCoder *)encoder {
     //Encode properties, other class variables, etc
     [encoder encodeObject:self.addDate forKey:@"addDate"];

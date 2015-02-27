@@ -73,10 +73,10 @@
         else{
             [self.appDelegate.termSchedule.dictionaryOfSections removeAllObjects];
         }
-        NSLog(@"array: %@", array);
         for (NSData *encodedObject in array) {
             Section * s = [NSKeyedUnarchiver unarchiveObjectWithData:encodedObject];
-            [self.appDelegate.termSchedule.dictionaryOfSections setObject:s forKey:s.sisCourseID];
+            [self.appDelegate.termSchedule.dictionaryOfSections setObject:s forKey:s.section];
+            NSLog(@"Ss: %@", s);
         }
         [self.isShowingList removeAllObjects];
         [self.isShowingList addObject:self.terms[indexPath.row]];
