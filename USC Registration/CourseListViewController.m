@@ -15,6 +15,10 @@
 @end
 
 @implementation CourseListViewController
+#pragma mark Delegate
+-(void)filteredWithCriteria:(NSMutableArray *)criteria{
+    
+}
 #pragma mark Segue
 -(void)loadForSegue{
     if(!self.course.downloaded){
@@ -43,7 +47,8 @@
         cvc.course = self.course;
     }
     else if([segue.identifier isEqualToString:@""]){
-        
+        FilterCourseViewController * vc = [segue destinationViewController];
+        vc.filter = self.filter;
     }
 }
 

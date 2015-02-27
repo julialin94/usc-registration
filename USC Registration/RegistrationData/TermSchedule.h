@@ -11,4 +11,5 @@
 @interface TermSchedule : NSObject
 @property (nonatomic, strong) NSMutableDictionary * dictionaryOfSections;
 @property (nonatomic, strong) NSString * termCode;
+-(BOOL)contentEquals:(TermSchedule *)object;
 @end

@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+@protocol FilterCourseViewControllerDelegate <NSObject>
+@required
+- (void) filteredWithCriteria:(NSMutableArray *)criteria;
+@end
 
 @interface FilterCourseViewController : UIViewController
 
+@property (nonatomic, strong) id delegate;
+@property (nonatomic, strong) NSMutableArray * filter;
 @end

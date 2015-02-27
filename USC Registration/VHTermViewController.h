@@ -30,6 +30,7 @@
 @property (nonatomic, strong) NSDictionary * schools;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UICollectionView *schoolCollectionView;
+- (IBAction)backAction:(id)sender;
 
 
 @end

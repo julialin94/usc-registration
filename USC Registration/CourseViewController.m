@@ -15,7 +15,10 @@
 @end
 
 @implementation CourseViewController
-
+#pragma mark Delegate
+-(void)filteredWithCriteria:(NSMutableArray *)criteria{
+    
+}
 #pragma mark View
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.course.sections.count;

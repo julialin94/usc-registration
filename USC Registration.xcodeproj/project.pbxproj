@@ -39,12 +39,12 @@
 		89863BDC1A9C7174000C60AD /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 89863BD31A9C7174000C60AD /* search.png */; };
 		89863BDD1A9C7174000C60AD /* search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89863BD41A9C7174000C60AD /* search@2x.png */; };
 		89863BDE1A9C7174000C60AD /* search@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89863BD51A9C7174000C60AD /* search@3x.png */; };
-		89863BE11A9C743D000C60AD /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89863BE01A9C743D000C60AD /* CalendarViewController.m */; };
 		89863BE71A9C752A000C60AD /* FilterCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89863BE61A9C752A000C60AD /* FilterCourseViewController.m */; };
 		89863BEA1A9C7531000C60AD /* FilterSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89863BE91A9C7531000C60AD /* FilterSectionViewController.m */; };
 		89863BED1A9C75F4000C60AD /* VHSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89863BEC1A9C75F4000C60AD /* VHSectionViewController.m */; };
 		89863BF01A9C7CC7000C60AD /* TermSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 89863BEF1A9C7CC7000C60AD /* TermSchedule.m */; };
 		89863BF41A9C9764000C60AD /* ILTranslucentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89863BF31A9C9764000C60AD /* ILTranslucentView.m */; };
+		89D395911A9FC9FA00562C4D /* Calendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D395901A9FC9FA00562C4D /* Calendar.m */; };
 		89ED113E1A93A6EB000565B9 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 89ED113D1A93A6EB000565B9 /* MBProgressHUD.m */; };
 		89F203D71A9AB6680099DAA0 /* VHDepartmentParentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F203D61A9AB6680099DAA0 /* VHDepartmentParentTableViewCell.m */; };
 		89F203DA1A9AF64A0099DAA0 /* CourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F203D91A9AF64A0099DAA0 /* CourseViewController.m */; };
@@ -142,8 +142,6 @@
 		89863BD31A9C7174000C60AD /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 		89863BD41A9C7174000C60AD /* search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search@2x.png"; sourceTree = "<group>"; };
 		89863BD51A9C7174000C60AD /* search@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search@3x.png"; sourceTree = "<group>"; };
-		89863BDF1A9C743D000C60AD /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
-		89863BE01A9C743D000C60AD /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
 		89863BE51A9C752A000C60AD /* FilterCourseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterCourseViewController.h; path = ../FilterCourseViewController.h; sourceTree = "<group>"; };
 		89863BE61A9C752A000C60AD /* FilterCourseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterCourseViewController.m; path = ../FilterCourseViewController.m; sourceTree = "<group>"; };
 		89863BE81A9C7531000C60AD /* FilterSectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterSectionViewController.h; path = ../FilterSectionViewController.h; sourceTree = "<group>"; };
@@ -154,6 +152,8 @@
 		89863BEF1A9C7CC7000C60AD /* TermSchedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TermSchedule.m; path = RegistrationData/TermSchedule.m; sourceTree = "<group>"; };
 		89863BF21A9C9764000C60AD /* ILTranslucentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILTranslucentView.h; sourceTree = "<group>"; };
 		89863BF31A9C9764000C60AD /* ILTranslucentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILTranslucentView.m; sourceTree = "<group>"; };
+		89D3958F1A9FC9FA00562C4D /* Calendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Calendar.h; sourceTree = "<group>"; };
+		89D395901A9FC9FA00562C4D /* Calendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Calendar.m; sourceTree = "<group>"; };
 		89ED113C1A93A6EB000565B9 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		89ED113D1A93A6EB000565B9 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		89F203D51A9AB6680099DAA0 /* VHDepartmentParentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VHDepartmentParentTableViewCell.h; path = TableViewCells/VHDepartmentParentTableViewCell.h; sourceTree = "<group>"; };
@@ -255,6 +255,8 @@
 		2B4205FE1A876718002ABE64 /* USC Registration */ = {
 			isa = PBXGroup;
 			children = (
+				89D3958F1A9FC9FA00562C4D /* Calendar.h */,
+				89D395901A9FC9FA00562C4D /* Calendar.m */,
 				2B4206031A876718002ABE64 /* AppDelegate.h */,
 				2B4206041A876718002ABE64 /* AppDelegate.m */,
 				2B4206091A876718002ABE64 /* ViewController.h */,
@@ -270,8 +272,6 @@
 				89863BEB1A9C75F4000C60AD /* VHSectionViewController.h */,
 				89863BEC1A9C75F4000C60AD /* VHSectionViewController.m */,
 				2B42060C1A876718002ABE64 /* Main.storyboard */,
-				89863BDF1A9C743D000C60AD /* CalendarViewController.h */,
-				89863BE01A9C743D000C60AD /* CalendarViewController.m */,
 				89863BE51A9C752A000C60AD /* FilterCourseViewController.h */,
 				89863BE61A9C752A000C60AD /* FilterCourseViewController.m */,
 				89863BE81A9C7531000C60AD /* FilterSectionViewController.h */,
@@ -559,6 +559,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89D395911A9FC9FA00562C4D /* Calendar.m in Sources */,
 				89315FCF1A8C619F0069E10F /* VHTermViewController.m in Sources */,
 				89863BF01A9C7CC7000C60AD /* TermSchedule.m in Sources */,
 				2B0C51381A94989100FA9FBB /* VHPrefixTableViewCell.m in Sources */,
@@ -583,7 +584,6 @@
 				89863BED1A9C75F4000C60AD /* VHSectionViewController.m in Sources */,
 				2B8B7F581A94761E00DCD321 /* Course.m in Sources */,
 				89863BEA1A9C7531000C60AD /* FilterSectionViewController.m in Sources */,
-				89863BE11A9C743D000C60AD /* CalendarViewController.m in Sources */,
 				2B4206081A876718002ABE64 /* USC_Registration.xcdatamodeld in Sources */,
 				2B8B7F4B1A9471CC00DCD321 /* Data.m in Sources */,
 				2B8B7F551A94761500DCD321 /* Department.m in Sources */,

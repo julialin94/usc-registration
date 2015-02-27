@@ -17,12 +17,20 @@
 #import "JLSchoolCollectionViewCell.h"
 #import "School.h"
 #import "JLSchoolDepartmentViewController.h"
-#import "ILTranslucentView.h"
+#import "Calendar.h"
 @interface VHTermViewController ()
 
 @end
 
 @implementation VHTermViewController
+#pragma mark Calendar
+-(void)showCalendar{
+    if(!self.appDelegate.calendar){
+        self.appDelegate.calendar = [[Calendar alloc] init];
+    }
+    [self.appDelegate.calendar showCalendar];
+}
+
 #pragma mark UICollectionViewDelegate/DataSource
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     self.selectedSchool = self.term.schools[indexPath.row];
@@ -34,7 +42,6 @@
     return self.term.schools.count;
 }
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(JLSchoolCollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath NS_AVAILABLE_IOS(8_0){
-    School * s = self.term.schools[indexPath.row];
     cell.schoolIconView.alpha = 0.0;
     cell.schoolLabel.alpha = 0.0;
     cell.circleView.alpha = 0.0;
@@ -47,6 +54,7 @@
                          cell.circleView.alpha = 1.0;
                      }
                      completion:nil];
+    School * s = self.term.schools[indexPath.row];
     if(!s.shown){
         cell.circleView.transform = CGAffineTransformMakeScale(0.1, 0.1);
         cell.schoolIconView.transform = CGAffineTransformMakeScale(0.1, 0.1);
@@ -69,9 +77,11 @@
                                                   cell.schoolIconView.transform = CGAffineTransformMakeScale(1.0, 1.0);
                                                   cell.schoolLabel.transform = CGAffineTransformMakeScale(1.0, 1.0);
                                               }
-                                              completion:nil];
+                                              completion:^(BOOL completed){
+                                              }];
                          }];
     }
+
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -314,7 +324,7 @@
     NSLog(@"SEARCH!");
 }
 -(void)calendarPushed{
-    [self performSegueWithIdentifier:@"showCalendar" sender:self];
+    [self showCalendar];
 }
 -(void)tapSchool{
     self.lastIndex = self.index;
@@ -375,18 +385,13 @@
         }
     }
 }
-#pragma mark IBAction
-- (void)backAction{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
 
 #pragma mark Views
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.modalPresentationStyle = UIModalPresentationCurrentContext;
     self.appDelegate = [UIApplication sharedApplication].delegate;
     self.term = self.appDelegate.termObject;
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"<" style:UIBarButtonItemStylePlain target:self action:@selector(backAction)];
-    self.navigationItem.leftBarButtonItem = backButton;
     [self.navigationController.navigationBar setBarTintColor:self.view.backgroundColor];
     [self.navigationController.navigationBar setTitleTextAttributes:@{
                                                                       NSForegroundColorAttributeName : [USColor JLGoldColor]}];
@@ -445,11 +450,6 @@
         [self.menuView addSubview:self.trackView];
         [self.menuView bringSubviewToFront:self.lineView];
     }
-    if(!self.blurView){
-        self.blurView = [[ILTranslucentView alloc] initWithFrame:CGRectMake(0, 0, self.menuView.frame.size.width, self.menuView.frame.size.height)];
-        [self.menuView addSubview:self.blurView];
-        [self.menuView sendSubviewToBack:self.blurView];
-    }
 }
 -(void)reloadView{
     for (Data * d in self.term.departments) {
@@ -473,4 +473,8 @@
                      }];
 }
 
+#pragma mark IBAction
+- (IBAction)backAction:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end
