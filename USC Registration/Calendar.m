@@ -14,6 +14,13 @@
 
 -(instancetype)init{
     self = [super init];
+    
+    return self;
+}
+-(void)showCalendar{
+    for (UIView * subview in self.scrollView.subviews) {
+        [subview removeFromSuperview];
+    }
     CGRect frame = [UIApplication sharedApplication].keyWindow.frame;
     CGFloat width = frame.size.width - 30.0;
     [self.backgroundButton addTarget:self action:@selector(hideCalendar) forControlEvents:UIControlEventTouchUpInside];
@@ -28,8 +35,8 @@
     CGFloat newWidth = width/7.0;
     CGFloat inset = 5.0;
     for(CGFloat a = 0; a<6; a++){
-        UIView * dayPanel = [[UIView alloc] initWithFrame:CGRectMake(a*newWidth+newWidth, newWidth+label.frame.size.height, newWidth, 450.0)];
-        UILabel * dayLabel = [[UILabel alloc] initWithFrame:CGRectMake(newWidth*a+newWidth + inset, inset+label.frame.size.height, newWidth-2*inset, newWidth-2*inset)];
+        UIView * dayPanel = [[UIView alloc] initWithFrame:CGRectMake(a*newWidth+newWidth - 5, newWidth+label.frame.size.height, newWidth, 450.0)];
+        UILabel * dayLabel = [[UILabel alloc] initWithFrame:CGRectMake(newWidth*a+newWidth + inset - 5, inset+label.frame.size.height, newWidth-2*inset, newWidth-2*inset)];
         dayLabel.font = [UIFont systemFontOfSize:10.0];
         dayLabel.textAlignment = NSTextAlignmentCenter;
         dayLabel.backgroundColor = [UIColor blueColor];
@@ -43,11 +50,11 @@
         [self.arrayOfDayPanels addObject:dayPanel];
     }
     for (int a = 0; a<16; a++) {
-        UIView * lineView = [[UIView alloc] initWithFrame:CGRectMake(newWidth, 30*a+newWidth+label.frame.size.height, width, 1)];
+        UIView * lineView = [[UIView alloc] initWithFrame:CGRectMake(newWidth-5, 30*a+newWidth+label.frame.size.height, 6*newWidth, 1)];
         lineView.backgroundColor = [UIColor grayColor];
         lineView.alpha = 0.7;
         [self.scrollView addSubview:lineView];
-        UILabel * timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 30.0*a+newWidth+label.frame.size.height-10, newWidth-10, 20)];
+        UILabel * timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 30.0*a+newWidth+label.frame.size.height-10, newWidth-15, 20)];
         NSInteger hour = 7+a;
         NSMutableString * str = [NSMutableString stringWithFormat:@""];
         if(hour > 12)
@@ -65,21 +72,19 @@
         [self.scrollView addSubview:timeLabel];
     }
     for (int a = 0; a<7; a++) {
-        UIView * lineView = [[UIView alloc] initWithFrame:CGRectMake(newWidth*(a+1), newWidth+label.frame.size.height, 1, 450.0)];
+        UIView * lineView = [[UIView alloc] initWithFrame:CGRectMake(newWidth*(a+1)-5, newWidth+label.frame.size.height, 1, 450.0)];
         lineView.backgroundColor = [UIColor grayColor];
         lineView.alpha = 0.7;
-//        timeLabel.text =
+        //        timeLabel.text =
         [self.scrollView addSubview:lineView];
-        
     }
-    self.scrollView.contentSize = CGSizeMake(width, 1000);
-    return self;
-}
--(void)showCalendar{
     AppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
+    CGFloat startY = newWidth+30+450;
+    CGFloat endY = newWidth+30+450;
     if(![self.termSchedule contentEquals:appDelegate.termSchedule]){
         //has been updated, regenerate views
-        for(Section * s in appDelegate.termSchedule.dictionaryOfSections.allValues){
+        for(int a = 0; a<appDelegate.termSchedule.dictionaryOfSections.allValues.count; a++){
+            Section * s = appDelegate.termSchedule.dictionaryOfSections.allValues[a];
             NSLog(@"Calendar s: %@", s);
             ClassView * c = [[ClassView alloc] initWithSection:s andWidth:((UIView *)self.arrayOfDayPanels[0]).frame.size.width];
             if ([s.day containsString:@"M"]) {
@@ -97,12 +102,15 @@
             if ([s.day containsString:@"F"]) {
                 [self.arrayOfDayPanels[4] addSubview:[c copy]];
             }
+            endY = startY + 30*a+30+30+30;
+            UILabel * classLabel = [[UILabel alloc ] initWithFrame:CGRectMake(10, startY + 30*a+30, 6*newWidth, 30)];
+            classLabel.text = [s description];
+            classLabel.font = [UIFont systemFontOfSize:14.0];
+            [self.scrollView addSubview:classLabel];
         }
-        
-        
-        
         self.termSchedule = appDelegate.termSchedule;
     }
+    self.scrollView.contentSize = CGSizeMake(width, endY);
     [self show];
 }
 -(void)hideCalendar{
