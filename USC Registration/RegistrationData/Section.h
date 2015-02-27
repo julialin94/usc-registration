@@ -31,4 +31,6 @@
 @property (nonatomic) NSInteger seats;
 //@property (nonatomic, strong) NSMutableArray * arrayOfDays;
 @property (nonatomic, strong) NSString * sessionCode;
+@property (nonatomic, strong) NSDate * startTime;
+@property (nonatomic, strong) NSDate * finishTime;
 @end

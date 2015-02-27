@@ -18,65 +18,50 @@
 @implementation CourseViewController
 #pragma mark Delegate
 -(void)filtered:(NSArray *)selections{
-    NSMutableArray * days = [selections[0] mutableCopy];
-    NSMutableArray * seats = [selections[3] mutableCopy];
-    BOOL all0 = YES;
-    for (int a = 0; a<days.count; a++) {
-        if([days[a] boolValue])
-            all0 = NO;
-    }
-    if (all0) {
-        for (int a = 0; a<days.count; a++) {
-            [days replaceObjectAtIndex:a withObject:@1];
+    self.arrayOfSections = [self.course.sections mutableCopy];
+    NSArray * arrayOfDays = [NSArray arrayWithObjects:@"M", @"T", @"W", @"H", @"F", nil];
+    for (int a = 0; a<5; a++) {
+        if ([selections[0][a]  isEqual: @(1)]) {
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"NOT (%K CONTAINS %@)", @"day", arrayOfDays[a]];
+            self.arrayOfSections = [[self.arrayOfSections filteredArrayUsingPredicate:predicate] mutableCopy];
         }
     }
-    all0 = YES;
-    for (int a = 0; a<seats.count; a++) {
-        if([seats[a] boolValue])
-            all0 = NO;
-    }
-    if (all0) {
-        for (int a = 0; a<seats.count; a++) {
-            [seats replaceObjectAtIndex:a withObject:@1];
+    int startTime = -1;
+    int endTime = -1;
+    for (int a = 0; a<((NSArray *)selections[1]).count; a++) {
+        NSInteger i = [selections[1][a] integerValue];
+        if (i == 1) {
+            startTime = a;
         }
     }
-//    self.arrayOfSections = [self.course.sections mutableCopy];
-//    for (int a = self.arrayOfSections.count-1; a>=0; a--) {
-//        Course * c = self.arrayOfSections[a];
-//        BOOL matchesUnits = NO;
-//        for (int b = 0; b<units.count; b++) {
-//            NSNumber * sel = units[b];
-//            BOOL selectedUnits = [sel boolValue];
-//            int unit = b+1;
-//            if((c.minUnits <= unit) && (c.minUnits >= unit) && selectedUnits){
-//                matchesUnits = YES;
-//            }
-//        }
-//        if(matchesUnits){
-//            BOOL matchesLevelFlag = NO;
-//            for (int b = 0; b<level.count; b++) {
-//                BOOL matchesLevel = [level[b] boolValue];
-//                if (matchesLevel) {
-//                    //level = b
-//                    if ([c.sisCourseID rangeOfString:@"-"].location != NSNotFound) {
-//                        int index = [c.sisCourseID rangeOfString:@"-"].location;
-//                        char ch = [c.sisCourseID characterAtIndex:index+1];
-//                        NSLog(@"%d vs %d", ch, (b+48));
-//                        if (ch == (b+48)) {
-//                            matchesLevelFlag = YES;
-//                        }
-//                    }
-//                }
-//            }
-//            if(!matchesLevelFlag){
-//                [self.arrayOfCourses removeObjectAtIndex:a];
-//            }
-//        }
-//        else{
-//            [self.arrayOfCourses removeObjectAtIndex:a];
-//        }
-//        
-//    }
+    for (int a = 0; a<((NSArray *)selections[2]).count; a++) {
+        NSInteger i = [selections[2][a] integerValue];
+        if (i == 1) {
+            endTime = a;
+        }
+    }
+    if ([selections[3][0] integerValue] == 1) {
+        //you only want open sections
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"NOT (seats == registered)"];
+        self.arrayOfSections = [[self.arrayOfSections filteredArrayUsingPredicate:predicate] mutableCopy];
+    }
+    if (startTime != -1) {
+        //filter by startTime day
+        NSDateFormatter* df = [[NSDateFormatter alloc] init];
+        [df setDateFormat:@"HH:mm"];
+        NSString * dateString = [NSString stringWithFormat:@"%d:00", (startTime + 10)];
+        NSDate* theDate = [df dateFromString:dateString];
+        NSPredicate* predicate = [NSPredicate predicateWithFormat:@"startTime >= %@", theDate];
+        self.arrayOfSections = [[self.arrayOfSections filteredArrayUsingPredicate:predicate] mutableCopy];
+    }
+    if (endTime != -1) {
+        //filter by endTime day
+        NSDateFormatter* df = [[NSDateFormatter alloc] init];
+        [df setDateFormat:@"HH:mm"];
+        NSDate* theDate = [df dateFromString:[NSString stringWithFormat:@"%d:00", (endTime + 12)]];
+        NSPredicate* predicate = [NSPredicate predicateWithFormat:@"finishTime <= %@", theDate];
+        self.arrayOfSections = [[self.arrayOfSections filteredArrayUsingPredicate:predicate] mutableCopy];
+    }
     [self reloadTableView];
 }
 -(void)reloadTableView{
@@ -101,7 +86,7 @@
     [cell.instructorLabel setText:[NSString stringWithFormat:@"Instructor: %@", section.instructor]];
     [cell.sessionLabel setText:[NSString stringWithFormat:@"Session: %@", section.sessionCode]];
     [cell.locationLabel setText:[NSString stringWithFormat:@"Location: %@", section.location]];
-    [cell.dayLabel setText:[NSString stringWithFormat:@"Days: %@", section.day]];
+    [cell.dayLabel setText:[NSString stringWithFormat:@"%@", section.day]];
     
     NSDateFormatter * df = [[NSDateFormatter alloc] init];
     df.dateFormat = @"HH:mm";
@@ -112,7 +97,7 @@
     NSString * endDate = [df stringFromDate:end];
     
     
-    [cell.timeLabel setText:[NSString stringWithFormat:@"Time: %@ - %@", startDate, endDate]];
+    [cell.timeLabel setText:[NSString stringWithFormat:@"%@ - %@", startDate, endDate]];
     [cell.unitsLabel setText:[NSString stringWithFormat:@"%ld units", (long)section.unitCode]];
     cell.mapButton.layer.cornerRadius = 15.0;
     return cell;

@@ -77,11 +77,17 @@
     FilterTableViewCell * cell = (FilterTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
     
     if (indexPath.section != 0) {
-        NSInteger count = ((NSArray *)self.optionsArray[indexPath.section]).count;
-        for (int a = 0; a<count; a++) {
-            [self.optionsArray[indexPath.section] replaceObjectAtIndex:a withObject:@0];
+        if (selected) {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            [(NSMutableArray *)self.optionsArray[indexPath.section] replaceObjectAtIndex:indexPath.row withObject:@(0)];
         }
-        [self.optionsArray[indexPath.section] replaceObjectAtIndex:indexPath.row withObject:@1];
+        else{
+            NSInteger count = ((NSArray *)self.optionsArray[indexPath.section]).count;
+            for (int a = 0; a<count; a++) {
+                [self.optionsArray[indexPath.section] replaceObjectAtIndex:a withObject:@0];
+            }
+            [self.optionsArray[indexPath.section] replaceObjectAtIndex:indexPath.row withObject:@1];
+        }
     }
     else{
         if (selected) {

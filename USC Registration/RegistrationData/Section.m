@@ -106,6 +106,13 @@
     else
         self.type = [dict objectForKey:@"TYPE"];
     self.unitCode = [[dict objectForKey:@"UNIT_CODE"] integerValue];
+    
+    if (![self.beginTime isEqualToString:@"TBA"]) {
+        NSDateFormatter * df = [[NSDateFormatter alloc] init];
+        df.dateFormat = @"HH:mm";
+        self.startTime = [df dateFromString:self.beginTime];
+        self.finishTime = [df dateFromString:self.endTime];
+    }
     return self;
 }
 @end
