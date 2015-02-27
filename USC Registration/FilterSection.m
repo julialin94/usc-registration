@@ -36,7 +36,6 @@
         case 0:
             cell.filterLabel.text = [self.daysArray objectAtIndex:[indexPath row]];
             break;
-            
         case 1:
             cell.filterLabel.text = [self.timesAfterArray objectAtIndex:[indexPath row]];
             break;
@@ -71,29 +70,30 @@
     }
     else return 30;
 }
-
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSNumber * num = ((NSArray *)self.optionsArray[indexPath.section])[indexPath.row];
     BOOL selected = [num integerValue];
     FilterTableViewCell * cell = (FilterTableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
-    if (selected) {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        [(NSMutableArray *)self.optionsArray[indexPath.section] replaceObjectAtIndex:indexPath.row withObject:@(0)];
-    }
-    else if (selected) {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        [(NSMutableArray *)self.optionsArray[indexPath.section] replaceObjectAtIndex:indexPath.row withObject:@(1)];
-    }
-    else if (selected) {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        [(NSMutableArray *)self.optionsArray[indexPath.section] replaceObjectAtIndex:indexPath.row withObject:@(2)];
+    
+    if (indexPath.section != 0) {
+        NSInteger count = ((NSArray *)self.optionsArray[indexPath.section]).count;
+        for (int a = 0; a<count; a++) {
+            [self.optionsArray[indexPath.section] replaceObjectAtIndex:a withObject:@0];
+        }
+        [self.optionsArray[indexPath.section] replaceObjectAtIndex:indexPath.row withObject:@1];
     }
     else{
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        [(NSMutableArray *)self.optionsArray[indexPath.section] replaceObjectAtIndex:indexPath.row withObject:@(3)];
+        if (selected) {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            [(NSMutableArray *)self.optionsArray[indexPath.section] replaceObjectAtIndex:indexPath.row withObject:@(0)];
+        }
+        else{
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            [(NSMutableArray *)self.optionsArray[indexPath.section] replaceObjectAtIndex:indexPath.row withObject:@(1)];
+        }
     }
+    [self.sectionFilterTableView reloadData];
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {

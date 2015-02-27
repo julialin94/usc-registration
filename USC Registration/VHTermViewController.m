@@ -429,7 +429,7 @@
     [self.schoolCollectionView setBackgroundColor:[USColor clearColor]];
     [self.tableView setBackgroundColor:[USColor clearColor]];
     [self.view setBackgroundColor:[USColor JLLightGrayColor]];
-    [self.menuView setBackgroundColor:[UIColor clearColor]];
+    [self.menuView setBackgroundColor:[USColor JLLightGrayColor]];
 
 }
 -(void)viewWillAppear:(BOOL)animated{}

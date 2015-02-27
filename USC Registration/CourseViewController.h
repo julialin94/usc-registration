@@ -10,7 +10,7 @@
 #import "Course.h"
 #import "Section.h"
 #import "FilterSection.h"
-@interface CourseViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface CourseViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, FilterSectionDelegate>
 @property (nonatomic, strong) Course * course;
 @property (nonatomic, strong) FilterSection * filter;
 @property (weak, nonatomic) IBOutlet UIView *detailsView;
@@ -20,5 +20,7 @@
 @property (nonatomic, strong) UIRefreshControl * refreshControl;
 @property (nonatomic, strong) NSArray * arrayOfNavigationBarButtons;
 @property (nonatomic, strong) Section * selectedSection;
+@property (nonatomic, strong) NSMutableArray * arrayOfSections;
+@property (nonatomic, strong) UILabel * noResultsLabel;
 
 @end
