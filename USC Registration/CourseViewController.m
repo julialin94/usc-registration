@@ -102,7 +102,17 @@
     [cell.sessionLabel setText:[NSString stringWithFormat:@"Session: %@", section.sessionCode]];
     [cell.locationLabel setText:[NSString stringWithFormat:@"Location: %@", section.location]];
     [cell.dayLabel setText:[NSString stringWithFormat:@"Days: %@", section.day]];
-    [cell.timeLabel setText:[NSString stringWithFormat:@"Time: %@ - %@", section.beginTime, section.endTime]];
+    
+    NSDateFormatter * df = [[NSDateFormatter alloc] init];
+    df.dateFormat = @"HH:mm";
+    NSDate * start = [df dateFromString:section.beginTime];
+    NSDate * end = [df dateFromString:section.endTime];
+    df.dateFormat = @"hh:mm a";
+    NSString * startDate = [df stringFromDate:start];
+    NSString * endDate = [df stringFromDate:end];
+    
+    
+    [cell.timeLabel setText:[NSString stringWithFormat:@"Time: %@ - %@", startDate, endDate]];
     [cell.unitsLabel setText:[NSString stringWithFormat:@"%ld units", (long)section.unitCode]];
     cell.mapButton.layer.cornerRadius = 15.0;
     return cell;

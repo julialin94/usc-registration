@@ -105,7 +105,7 @@
     cell.arrowImage.hidden = !self.tableViewCollapsed;
     cell.termLabel.text = [[self.isShowingList objectAtIndex:indexPath.row] objectForKey:@"DESCRIPTION"];
     [cell.termLabel setTextColor:[USColor JLGoldColor]];
-    [cell.termLabel setFont:[UIFont fontWithName:@"Roboto" size:50.0]];
+    [cell.termLabel setFont:[UIFont fontWithName:@"Roboto" size:22.0]];
     [cell setBackgroundColor:[USColor JLCardinalColor]];
     // Remove seperator inset
     if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {

@@ -47,6 +47,12 @@
 		89D3959A1AA019EB00562C4D /* FilterCourse.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D395991AA019EB00562C4D /* FilterCourse.m */; };
 		89D3959D1AA019F300562C4D /* FilterSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D3959C1AA019F300562C4D /* FilterSection.m */; };
 		89D395A01AA01F5F00562C4D /* ClassView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D3959F1AA01F5F00562C4D /* ClassView.m */; };
+		89D395B41AA11F9400562C4D /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 89D395A21AA0A88A00562C4D /* Roboto-Black.ttf */; };
+		89D395B51AA11F9400562C4D /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 89D395A31AA0A88A00562C4D /* Roboto-BlackItalic.ttf */; };
+		89D395B61AA11F9400562C4D /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 89D395A41AA0A88A00562C4D /* Roboto-Bold.ttf */; };
+		89D395B71AA11F9400562C4D /* Roboto-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 89D395A51AA0A88A00562C4D /* Roboto-BoldItalic.ttf */; };
+		89D395B81AA11F9400562C4D /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 89D395A71AA0A88A00562C4D /* Roboto-Light.ttf */; };
+		89D395B91AA11F9400562C4D /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 89D395AB1AA0A88A00562C4D /* Roboto-Regular.ttf */; };
 		89ED113E1A93A6EB000565B9 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 89ED113D1A93A6EB000565B9 /* MBProgressHUD.m */; };
 		89F203D71A9AB6680099DAA0 /* VHDepartmentParentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F203D61A9AB6680099DAA0 /* VHDepartmentParentTableViewCell.m */; };
 		89F203DA1A9AF64A0099DAA0 /* CourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F203D91A9AF64A0099DAA0 /* CourseViewController.m */; };
@@ -550,10 +556,13 @@
 				89863BDB1A9C7174000C60AD /* filter@3x.png in Resources */,
 				89863BD91A9C7174000C60AD /* filter.png in Resources */,
 				89F204081A9B32990099DAA0 /* medicine.png in Resources */,
+				89D395B51AA11F9400562C4D /* Roboto-BlackItalic.ttf in Resources */,
 				89863BD71A9C7174000C60AD /* calendar@2x.png in Resources */,
 				89F2040B1A9B32990099DAA0 /* pharmacy.png in Resources */,
 				89F2040E1A9B32990099DAA0 /* rossieredu.png in Resources */,
 				89F203F71A9B32990099DAA0 /* accounting.png in Resources */,
+				89D395B71AA11F9400562C4D /* Roboto-BoldItalic.ttf in Resources */,
+				89D395B61AA11F9400562C4D /* Roboto-Bold.ttf in Resources */,
 				89863BDC1A9C7174000C60AD /* search.png in Resources */,
 				89863BDE1A9C7174000C60AD /* search@3x.png in Resources */,
 				89F2040F1A9B32990099DAA0 /* socialwork.png in Resources */,
@@ -574,13 +583,16 @@
 				2B4206131A876718002ABE64 /* LaunchScreen.xib in Resources */,
 				89F204021A9B32990099DAA0 /* general.png in Resources */,
 				89F204061A9B32990099DAA0 /* innovation.png in Resources */,
+				89D395B91AA11F9400562C4D /* Roboto-Regular.ttf in Resources */,
 				89F203FC1A9B32990099DAA0 /* cinema.png in Resources */,
 				89863BDA1A9C7174000C60AD /* filter@2x.png in Resources */,
 				89F203FA1A9B32990099DAA0 /* art.png in Resources */,
 				89F2040D1A9B32990099DAA0 /* policy.png in Resources */,
+				89D395B41AA11F9400562C4D /* Roboto-Black.ttf in Resources */,
 				89F204051A9B32990099DAA0 /* graduate.png in Resources */,
 				2B4206101A876718002ABE64 /* Images.xcassets in Resources */,
 				DF48BDE21AA0462A00A818DF /* FilterTableViewCell.xib in Resources */,
+				89D395B81AA11F9400562C4D /* Roboto-Light.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

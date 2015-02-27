@@ -770,7 +770,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstItem="MDX-OV-23m" firstAttribute="leading" secondItem="STL-xo-a4x" secondAttribute="leading" constant="8" id="A4m-bY-05n"/>
                                                         <constraint firstItem="Stg-Ew-goY" firstAttribute="width" secondItem="jRC-ez-d8V" secondAttribute="width" id="A97-Za-j5Y"/>
@@ -852,7 +852,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2X9-o1-Idq">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2X9-o1-Idq">
                                 <rect key="frame" x="0.0" y="530" width="600" height="70"/>
                                 <color key="backgroundColor" red="0.043137254901960784" green="0.56862745098039214" blue="0.89803921568627454" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
