@@ -17,8 +17,17 @@
 
 @implementation JLSchoolDepartmentViewController
 
+#pragma mark Calendar
+-(void)showCalendar{
+    if(!self.appDelegate.calendar){
+        self.appDelegate.calendar = [[Calendar alloc] init];
+    }
+    [self.appDelegate.calendar showCalendar];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UIBarButtonItem *calendarButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"calendar"] style:UIBarButtonItemStylePlain target:self action:@selector(showCalendar)];
+    [self.navigationItem setRightBarButtonItem:calendarButton];
     self.appDelegate = [UIApplication sharedApplication].delegate;
     self.title = self.school.schoolCode;
 }

@@ -105,14 +105,6 @@
     [cell.timeLabel setText:[NSString stringWithFormat:@"Time: %@ - %@", section.beginTime, section.endTime]];
     [cell.unitsLabel setText:[NSString stringWithFormat:@"%ld units", (long)section.unitCode]];
     cell.mapButton.layer.cornerRadius = 15.0;
-    [cell.registeredLabel sizeToFit];
-    [cell.sectionLabel sizeToFit];
-    [cell.sessionLabel sizeToFit];
-    [cell.locationLabel sizeToFit];
-    [cell.dayLabel sizeToFit];
-    [cell.timeLabel sizeToFit];
-    [cell.unitsLabel sizeToFit];
-    [cell.instructorLabel sizeToFit];
     return cell;
 }
 -(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -125,6 +117,13 @@
 }
 
 
+#pragma mark Calendar
+-(void)showCalendar{
+    if(!self.appDelegate.calendar){
+        self.appDelegate.calendar = [[Calendar alloc] init];
+    }
+    [self.appDelegate.calendar showCalendar];
+}
 #pragma mark Taps
 -(void)filterPushed{
     if(!self.filter)
@@ -133,7 +132,7 @@
     [self.filter showFilter];
 }
 -(void)calendarPushed{
-    [self performSegueWithIdentifier:@"showCalendar" sender:self];
+    [self showCalendar];
 }
 
 #pragma mark View
@@ -147,6 +146,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.appDelegate = [UIApplication sharedApplication].delegate;
     self.title = self.course.sisCourseID;
     [self.courseDescriptionLabel setText:self.course.courseDescription];
     [self.courseNameLabel setText:self.course.title];

@@ -100,7 +100,11 @@
     self.section = [dict objectForKey:@"SECTION"];
     self.sisCourseID = [dict objectForKey:@"SIS_COURSE_ID"];
     self.termCode = [dict objectForKey:@"TERM_CODE"];
-    self.type = [dict objectForKey:@"TYPE"];
+    str =[dict objectForKey:@"TYPE"];
+    if([str isKindOfClass:[NSNull class]])
+        self.type = @"unknown";
+    else
+        self.type = [dict objectForKey:@"TYPE"];
     self.unitCode = [[dict objectForKey:@"UNIT_CODE"] integerValue];
     return self;
 }

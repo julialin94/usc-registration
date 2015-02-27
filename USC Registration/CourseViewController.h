@@ -10,6 +10,7 @@
 #import "Course.h"
 #import "Section.h"
 #import "FilterSection.h"
+#import "AppDelegate.h"
 @interface CourseViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, FilterSectionDelegate>
 @property (nonatomic, strong) Course * course;
 @property (nonatomic, strong) FilterSection * filter;
@@ -22,5 +23,6 @@
 @property (nonatomic, strong) Section * selectedSection;
 @property (nonatomic, strong) NSMutableArray * arrayOfSections;
 @property (nonatomic, strong) UILabel * noResultsLabel;
+@property (nonatomic, strong) AppDelegate * appDelegate;
 
 @end

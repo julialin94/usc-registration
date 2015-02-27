@@ -194,8 +194,8 @@
                      }];
 }
 -(void)reset{
-    int a = ((NSArray *)self.optionsArray[0]).count;
-    int b = ((NSArray *)self.optionsArray[1]).count;
+    int a = (int)((NSArray *)self.optionsArray[0]).count;
+    int b = (int)((NSArray *)self.optionsArray[1]).count;
     [self.optionsArray removeAllObjects];
     
     NSMutableArray * array1 = [[NSMutableArray alloc] init];

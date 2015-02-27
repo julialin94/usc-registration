@@ -16,6 +16,13 @@
 @end
 
 @implementation CourseListViewController
+#pragma mark Calendar
+-(void)showCalendar{
+    if(!self.appDelegate.calendar){
+        self.appDelegate.calendar = [[Calendar alloc] init];
+    }
+    [self.appDelegate.calendar showCalendar];
+}
 #pragma mark Delegate
 -(void)filtered:(NSArray *)selections{
     NSMutableArray * units = [selections[0] mutableCopy];
@@ -41,7 +48,7 @@
         }
     }
     self.arrayOfCourses = [self.department.courses mutableCopy];
-    for (int a = self.arrayOfCourses.count-1; a>=0; a--) {
+    for (int a = (int)self.arrayOfCourses.count-1; a>=0; a--) {
         Course * c = self.arrayOfCourses[a];
 //        NSLog(@"%lu", (unsigned long)[c.sisCourseID rangeOfString:@"-"].location);
         NSLog(@"course: %@", c);
@@ -61,7 +68,7 @@
                 if (matchesLevel) {
                     //level = b
                     if ([c.sisCourseID rangeOfString:@"-"].location != NSNotFound) {
-                        int index = [c.sisCourseID rangeOfString:@"-"].location;
+                        int index = (int)[c.sisCourseID rangeOfString:@"-"].location;
                         char ch = [c.sisCourseID characterAtIndex:index+1];
                         NSLog(@"%d vs %d", ch, (b+48));
                         if (ch == (b+48)) {
@@ -147,7 +154,7 @@
     [self.filter showFilter];
 }
 -(void)calendarPushed{
-//    [self performSegueWithIdentifier:@"showCalendar" sender:self];
+    [self showCalendar];
 }
 
 #pragma mark View
