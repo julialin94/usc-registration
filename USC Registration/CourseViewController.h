@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "Course.h"
 #import "Section.h"
-#import "FilterSectionViewController.h"
-@interface CourseViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, FilterSectionViewControllerDelegate>
+#import "FilterSection.h"
+@interface CourseViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) Course * course;
+@property (nonatomic, strong) FilterSection * filter;
 @property (weak, nonatomic) IBOutlet UIView *detailsView;
 @property (weak, nonatomic) IBOutlet UILabel *courseNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *courseDescriptionLabel;

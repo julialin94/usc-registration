@@ -15,10 +15,6 @@
 @end
 
 @implementation CourseViewController
-#pragma mark Delegate
--(void)filteredWithCriteria:(NSMutableArray *)criteria{
-    
-}
 #pragma mark View
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.course.sections.count;
@@ -60,7 +56,9 @@
 
 #pragma mark Taps
 -(void)filterPushed{
-    [self performSegueWithIdentifier:@"filter" sender:self];
+    if(!self.filter)
+        self.filter = [[FilterSection alloc] init];
+    [self.filter showFilter];
 }
 -(void)calendarPushed{
     [self performSegueWithIdentifier:@"showCalendar" sender:self];

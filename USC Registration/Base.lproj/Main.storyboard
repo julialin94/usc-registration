@@ -198,42 +198,6 @@
             </objects>
             <point key="canvasLocation" x="-588" y="247"/>
         </scene>
-        <!--Filter Course View Controller-->
-        <scene sceneID="vTd-EJ-hap">
-            <objects>
-                <viewController id="IXc-Q1-FLJ" customClass="FilterCourseViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="K9R-DG-4eH"/>
-                        <viewControllerLayoutGuide type="bottom" id="2VY-wp-FFm"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="mtZ-Yd-Jio">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vGa-7n-Bl3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2258" y="-1112"/>
-        </scene>
-        <!--Filter Section View Controller-->
-        <scene sceneID="bCH-1g-trP">
-            <objects>
-                <viewController id="f4c-hi-dil" customClass="FilterSectionViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="w5q-IJ-ye7"/>
-                        <viewControllerLayoutGuide type="bottom" id="nEA-Yd-zQN"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="AXb-tC-rUP">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="d2O-LZ-zvG" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3062" y="-1112"/>
-        </scene>
         <!--Term View Controller-->
         <scene sceneID="QhE-zr-SKu">
             <objects>
@@ -652,7 +616,6 @@
                     <connections>
                         <outlet property="tableView" destination="U1b-ac-mfw" id="LCf-5w-YAZ"/>
                         <segue destination="Lee-hL-OLD" kind="show" identifier="showSections" id="3Pk-Jb-kGl"/>
-                        <segue destination="IXc-Q1-FLJ" kind="presentation" identifier="filter" modalPresentationStyle="overFullScreen" modalTransitionStyle="coverVertical" id="ZaH-dL-zpO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mc9-DH-Qno" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -905,7 +868,6 @@
                         <outlet property="courseNameLabel" destination="GKI-uz-JOT" id="jly-oa-cMV"/>
                         <outlet property="detailsView" destination="7Xo-az-cIs" id="fAY-ux-Z63"/>
                         <outlet property="tableView" destination="fhg-VJ-IlM" id="fFl-0z-awC"/>
-                        <segue destination="f4c-hi-dil" kind="presentation" identifier="filter" modalPresentationStyle="overFullScreen" modalTransitionStyle="coverVertical" id="46Z-ne-1eD"/>
                         <segue destination="1is-PM-zQV" kind="show" identifier="goToSection" id="U2K-s4-xIh"/>
                     </connections>
                 </viewController>
@@ -957,23 +919,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dPh-Vd-A1h" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="109" y="247"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="JJ0-OL-22G">
-            <objects>
-                <viewController id="3aH-iK-XVS" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ynR-94-HB6"/>
-                        <viewControllerLayoutGuide type="bottom" id="NC6-nu-BLF"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="JBM-fx-XR4">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gSC-XN-BKx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
         </scene>
     </scenes>
     <resources>

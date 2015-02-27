@@ -8,16 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "TermSchedule.h"
-@interface Calendar : UIView
+#import "Popup.h"
+@interface Calendar : Popup
 @property (nonatomic, strong) TermSchedule * termSchedule;
-@property (nonatomic, strong) UIScrollView * scrollView;
-@property (nonatomic, strong) UIButton * backgroundButton;
-//@property (nonatomic, strong) UIView * monday;
-//@property (nonatomic, strong) UIView * tuesday;
-//@property (nonatomic, strong) UIView * wednesday;
-//@property (nonatomic, strong) UIView * thursday;
-//@property (nonatomic, strong) UIView * friday;
-//@property (nonatomic, strong) UIView * tba;
 @property (nonatomic, strong) NSMutableArray * arrayOfDayPanels;
 -(void)showCalendar;
 -(void)hideCalendar;

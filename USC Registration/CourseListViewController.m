@@ -10,15 +10,12 @@
 #import "CourseViewController.h"
 #import "VHCourseTableViewCell.h"
 #import "USColor.h"
+#import "FilterCourse.h"
 @interface CourseListViewController ()
 
 @end
 
 @implementation CourseListViewController
-#pragma mark Delegate
--(void)filteredWithCriteria:(NSMutableArray *)criteria{
-    
-}
 #pragma mark Segue
 -(void)loadForSegue{
     if(!self.course.downloaded){
@@ -46,10 +43,6 @@
         CourseViewController * cvc = [segue destinationViewController];
         cvc.course = self.course;
     }
-    else if([segue.identifier isEqualToString:@""]){
-        FilterCourseViewController * vc = [segue destinationViewController];
-        vc.filter = self.filter;
-    }
 }
 
 #pragma mark UITableViewDelegate/DataSource
@@ -76,10 +69,12 @@
 
 #pragma mark Taps
 -(void)filterPushed{
-    [self performSegueWithIdentifier:@"filter" sender:self];
+    if(!self.filter)
+        self.filter = [[FilterCourse alloc] init];
+    [self.filter showFilter];
 }
 -(void)calendarPushed{
-    [self performSegueWithIdentifier:@"showCalendar" sender:self];
+//    [self performSegueWithIdentifier:@"showCalendar" sender:self];
 }
 
 #pragma mark View
