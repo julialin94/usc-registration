@@ -46,6 +46,7 @@
 		89D395971AA0160800562C4D /* Popup.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D395961AA0160800562C4D /* Popup.m */; };
 		89D3959A1AA019EB00562C4D /* FilterCourse.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D395991AA019EB00562C4D /* FilterCourse.m */; };
 		89D3959D1AA019F300562C4D /* FilterSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D3959C1AA019F300562C4D /* FilterSection.m */; };
+		89D395A01AA01F5F00562C4D /* ClassView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D3959F1AA01F5F00562C4D /* ClassView.m */; };
 		89ED113E1A93A6EB000565B9 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 89ED113D1A93A6EB000565B9 /* MBProgressHUD.m */; };
 		89F203D71A9AB6680099DAA0 /* VHDepartmentParentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F203D61A9AB6680099DAA0 /* VHDepartmentParentTableViewCell.m */; };
 		89F203DA1A9AF64A0099DAA0 /* CourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F203D91A9AF64A0099DAA0 /* CourseViewController.m */; };
@@ -159,6 +160,8 @@
 		89D395991AA019EB00562C4D /* FilterCourse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterCourse.m; sourceTree = "<group>"; };
 		89D3959B1AA019F300562C4D /* FilterSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterSection.h; sourceTree = "<group>"; };
 		89D3959C1AA019F300562C4D /* FilterSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterSection.m; sourceTree = "<group>"; };
+		89D3959E1AA01F5F00562C4D /* ClassView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassView.h; sourceTree = "<group>"; };
+		89D3959F1AA01F5F00562C4D /* ClassView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassView.m; sourceTree = "<group>"; };
 		89ED113C1A93A6EB000565B9 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		89ED113D1A93A6EB000565B9 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		89F203D51A9AB6680099DAA0 /* VHDepartmentParentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VHDepartmentParentTableViewCell.h; path = TableViewCells/VHDepartmentParentTableViewCell.h; sourceTree = "<group>"; };
@@ -266,16 +269,18 @@
 		2B4205FE1A876718002ABE64 /* USC Registration */ = {
 			isa = PBXGroup;
 			children = (
+				2B4206031A876718002ABE64 /* AppDelegate.h */,
+				2B4206041A876718002ABE64 /* AppDelegate.m */,
 				89D395951AA0160800562C4D /* Popup.h */,
 				89D395961AA0160800562C4D /* Popup.m */,
 				89D3958F1A9FC9FA00562C4D /* Calendar.h */,
 				89D395901A9FC9FA00562C4D /* Calendar.m */,
+				89D3959E1AA01F5F00562C4D /* ClassView.h */,
+				89D3959F1AA01F5F00562C4D /* ClassView.m */,
 				89D395981AA019EB00562C4D /* FilterCourse.h */,
 				89D395991AA019EB00562C4D /* FilterCourse.m */,
 				89D3959B1AA019F300562C4D /* FilterSection.h */,
 				89D3959C1AA019F300562C4D /* FilterSection.m */,
-				2B4206031A876718002ABE64 /* AppDelegate.h */,
-				2B4206041A876718002ABE64 /* AppDelegate.m */,
 				2B4206091A876718002ABE64 /* ViewController.h */,
 				2B42060A1A876718002ABE64 /* ViewController.m */,
 				89315FCD1A8C619F0069E10F /* VHTermViewController.h */,
@@ -604,6 +609,7 @@
 				2B8B7F551A94761500DCD321 /* Department.m in Sources */,
 				89D3959A1AA019EB00562C4D /* FilterCourse.m in Sources */,
 				89F203DA1A9AF64A0099DAA0 /* CourseViewController.m in Sources */,
+				89D395A01AA01F5F00562C4D /* ClassView.m in Sources */,
 				8926E77C1A98252B003AF21B /* CourseListViewController.m in Sources */,
 				2B8B7F5E1A94762A00DCD321 /* Session.m in Sources */,
 			);

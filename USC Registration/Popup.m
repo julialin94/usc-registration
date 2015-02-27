@@ -21,12 +21,12 @@
     self.backgroundButton.alpha = 0.0;
     self.scrollView.backgroundColor = [UIColor whiteColor];
     [self addSubview:self.scrollView];
-    self.closeButton = [[UIButton alloc] initWithFrame:CGRectMake(-15, -15, 30, 30)];
+    self.closeButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 15, 30, 30)];
     self.closeButton.backgroundColor = [UIColor blueColor];
     self.closeButton.layer.cornerRadius = self.closeButton.frame.size.width/2;
     [self.closeButton setTitle:@"X" forState:UIControlStateNormal];
     self.closeButton.showsTouchWhenHighlighted = YES;
-    [self.scrollView addSubview:self.closeButton];
+    [self addSubview:self.closeButton];
     return self;
 }
 -(void)show{

@@ -9,6 +9,18 @@
 #import "TermSchedule.h"
 
 @implementation TermSchedule
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    //Encode properties, other class variables, etc
+    [encoder encodeObject:self.dictionaryOfSections forKey:@"dictionary"];
+}
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    if((self = [super init])) {
+        //decode properties, other class vars
+        self.dictionaryOfSections = [decoder decodeObjectForKey:@"dictionary"];
+    }
+    return self;
+}
 -(instancetype)init{
     self = [super init];
     self.dictionaryOfSections = [[NSMutableDictionary alloc] init];

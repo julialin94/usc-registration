@@ -21,14 +21,14 @@
 @property (nonatomic, strong) NSString * name;
 @property (nonatomic, strong) NSString * publishFlag;
 @property (nonatomic, strong) NSString * publishSectionFlag;
-@property (nonatomic) NSInteger registered;
-@property (nonatomic) NSInteger seats;
 @property (nonatomic, strong) NSString * section;
-@property (nonatomic, strong) Session * session;
+//@property (nonatomic, strong) Session * session;
 @property (nonatomic, strong) NSString * sisCourseID;
 @property (nonatomic, strong) NSString * termCode;
 @property (nonatomic, strong) NSString * type;
 @property (nonatomic) NSInteger unitCode;
-@property (nonatomic, strong) NSMutableArray * arrayOfDays;
+@property (nonatomic) NSInteger registered;
+@property (nonatomic) NSInteger seats;
+//@property (nonatomic, strong) NSMutableArray * arrayOfDays;
 @property (nonatomic, strong) NSString * sessionCode;
 @end

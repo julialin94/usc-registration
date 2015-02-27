@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MBProgressHUD.h"
+#import "Section.h"
 @interface AppDelegate ()
 
 @end
@@ -17,6 +18,19 @@ static NSString * baseURL = @"http://petri.usc.edu/socAPI";
 
 -(NSString *)URL{
     return baseURL;
+}
+-(void)addSection:(Section *)section{
+    if([self.termSchedule.dictionaryOfSections objectForKey:section.section] == nil){
+        [self.termSchedule.dictionaryOfSections setObject:section forKey:section.section];
+        NSMutableArray * array = [[NSMutableArray alloc] init];
+        for(Section * s in self.termSchedule.dictionaryOfSections.allValues){
+            NSData *encodedObject = [NSKeyedArchiver archivedDataWithRootObject:s];
+            [array addObject:encodedObject];
+        }
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:array forKey:self.termSchedule.termCode];
+        [defaults synchronize];
+    }
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     return YES;

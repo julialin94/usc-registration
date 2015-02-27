@@ -13,6 +13,7 @@
 #import "USColor.h"
 #import "MBProgressHUD.h"
 #import "JLTermTableViewCell.h"
+#import "Section.h"
 @interface ViewController ()
 
 @end
@@ -60,6 +61,23 @@
         self.tableViewCollapsed = !self.tableViewCollapsed;
         self.selectedTerm = [self.isShowingList objectAtIndex:indexPath.row];
         self.appDelegate.term = [self.selectedTerm objectForKey:@"TERM_CODE"];
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSArray * array = [defaults objectForKey:self.appDelegate.term];
+        if (!self.appDelegate.termSchedule) {
+            self.appDelegate.termSchedule = [[TermSchedule alloc] init];
+        }
+        if(!self.appDelegate.termSchedule.dictionaryOfSections){
+            self.appDelegate.termSchedule.dictionaryOfSections = [[NSMutableDictionary alloc] init];
+        }
+        else{
+            [self.appDelegate.termSchedule.dictionaryOfSections removeAllObjects];
+        }
+        for (NSData *encodedObject in array) {
+            Section * s = [NSKeyedUnarchiver unarchiveObjectWithData:encodedObject];
+            [self.appDelegate.termSchedule.dictionaryOfSections setObject:s forKey:s.section];
+            NSLog(@"Ss: %@", s);
+        }
         [self.isShowingList removeAllObjects];
         [self.isShowingList addObject:self.terms[indexPath.row]];
         [self reloadTableViewWithAnimation:YES];
@@ -262,9 +280,6 @@
 }
 #pragma mark Segue
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-//    NSLog(@"destination: %@", segue.destinationViewController);
-//    VHTermViewController * vc = segue.destinationViewController;
-    self.appDelegate.termSchedule = [[TermSchedule alloc] init];
     self.appDelegate.termSchedule.termCode = self.term.termCode;
     self.appDelegate.termObject = self.term;
 }

@@ -11,7 +11,7 @@
 #import "MBProgressHUD.h"
 #import "TermSchedule.h"
 #import "Calendar.h"
-@class Term;
+@class Term, Section;
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 @property (strong, nonatomic) TermSchedule * termSchedule;
 @property (strong, nonatomic) UIWindow *window;
@@ -26,7 +26,7 @@
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
-
+-(void)addSection:(Section *)section;
 
 @end
 
