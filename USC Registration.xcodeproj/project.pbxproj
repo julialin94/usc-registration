@@ -76,6 +76,8 @@
 		89F2040E1A9B32990099DAA0 /* rossieredu.png in Resources */ = {isa = PBXBuildFile; fileRef = 89F203F51A9B32990099DAA0 /* rossieredu.png */; };
 		89F2040F1A9B32990099DAA0 /* socialwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 89F203F61A9B32990099DAA0 /* socialwork.png */; };
 		89F204121A9B32AD0099DAA0 /* JLSchoolCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F204111A9B32AD0099DAA0 /* JLSchoolCollectionViewCell.m */; };
+		DF48BDE11AA0462A00A818DF /* FilterTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF48BDDF1AA0462A00A818DF /* FilterTableViewCell.m */; };
+		DF48BDE21AA0462A00A818DF /* FilterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF48BDE01AA0462A00A818DF /* FilterTableViewCell.xib */; };
 		DF4A42761A9C730900D2DD06 /* JLSchoolDepartmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF4A42751A9C730900D2DD06 /* JLSchoolDepartmentTableViewCell.m */; };
 /* End PBXBuildFile section */
 
@@ -192,6 +194,9 @@
 		89F203F61A9B32990099DAA0 /* socialwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = socialwork.png; sourceTree = "<group>"; };
 		89F204101A9B32AD0099DAA0 /* JLSchoolCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLSchoolCollectionViewCell.h; sourceTree = "<group>"; };
 		89F204111A9B32AD0099DAA0 /* JLSchoolCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLSchoolCollectionViewCell.m; sourceTree = "<group>"; };
+		DF48BDDE1AA0462A00A818DF /* FilterTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterTableViewCell.h; path = TableViewCells/FilterTableViewCell.h; sourceTree = "<group>"; };
+		DF48BDDF1AA0462A00A818DF /* FilterTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterTableViewCell.m; path = TableViewCells/FilterTableViewCell.m; sourceTree = "<group>"; };
+		DF48BDE01AA0462A00A818DF /* FilterTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterTableViewCell.xib; path = TableViewCells/FilterTableViewCell.xib; sourceTree = "<group>"; };
 		DF4A42741A9C730900D2DD06 /* JLSchoolDepartmentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JLSchoolDepartmentTableViewCell.h; path = TableViewCells/JLSchoolDepartmentTableViewCell.h; sourceTree = "<group>"; };
 		DF4A42751A9C730900D2DD06 /* JLSchoolDepartmentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JLSchoolDepartmentTableViewCell.m; path = TableViewCells/JLSchoolDepartmentTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -231,6 +236,9 @@
 				8926E77E1A983BFB003AF21B /* VHCourseTableViewCell.m */,
 				89F203DB1A9AFE6E0099DAA0 /* SectionTableViewCell.h */,
 				89F203DC1A9AFE6E0099DAA0 /* SectionTableViewCell.m */,
+				DF48BDDE1AA0462A00A818DF /* FilterTableViewCell.h */,
+				DF48BDDF1AA0462A00A818DF /* FilterTableViewCell.m */,
+				DF48BDE01AA0462A00A818DF /* FilterTableViewCell.xib */,
 			);
 			name = TableViewCell;
 			sourceTree = "<group>";
@@ -547,6 +555,7 @@
 				89F2040D1A9B32990099DAA0 /* policy.png in Resources */,
 				89F204051A9B32990099DAA0 /* graduate.png in Resources */,
 				2B4206101A876718002ABE64 /* Images.xcassets in Resources */,
+				DF48BDE21AA0462A00A818DF /* FilterTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,6 +597,7 @@
 				89863BF41A9C9764000C60AD /* ILTranslucentView.m in Sources */,
 				89D395971AA0160800562C4D /* Popup.m in Sources */,
 				89863BED1A9C75F4000C60AD /* VHSectionViewController.m in Sources */,
+				DF48BDE11AA0462A00A818DF /* FilterTableViewCell.m in Sources */,
 				2B8B7F581A94761E00DCD321 /* Course.m in Sources */,
 				2B4206081A876718002ABE64 /* USC_Registration.xcdatamodeld in Sources */,
 				2B8B7F4B1A9471CC00DCD321 /* Data.m in Sources */,

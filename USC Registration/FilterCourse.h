@@ -8,7 +8,12 @@
 
 #import "Popup.h"
 
-@interface FilterCourse : Popup
+@interface FilterCourse : Popup <UITableViewDelegate, UITableViewDataSource>
 -(void)showFilter;
 -(void)hideFilter;
+@property (nonatomic, strong) UITableView * courseFilterTableView;
+@property (nonatomic, strong) NSMutableArray * optionsArray;
+@property (nonatomic, strong) NSMutableArray * unitsArray;
+@property (nonatomic, strong) NSMutableArray * levelsArray;
+@property(retain)  NSIndexPath* lastIndexPath;
 @end
