@@ -231,7 +231,7 @@
             break;
     }
 //    cell.backView.backgroundColor = [UIColor colorWithRed:231.0/225.0 green:234.0/255.0 blue:224.0/255.0 alpha:1.0];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 -(void)tableView:(UITableView *)tableView willDisplayCell:(VHDepartmentParentTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{

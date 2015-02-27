@@ -11,7 +11,9 @@
 @implementation JLTermTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    self.layer.shadowOffset = CGSizeMake(0, 0);
+    self.layer.shadowOpacity = 0.2;
+    self.layer.masksToBounds = NO;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -162,6 +162,12 @@
 		89D3959C1AA019F300562C4D /* FilterSection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterSection.m; sourceTree = "<group>"; };
 		89D3959E1AA01F5F00562C4D /* ClassView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassView.h; sourceTree = "<group>"; };
 		89D3959F1AA01F5F00562C4D /* ClassView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassView.m; sourceTree = "<group>"; };
+		89D395A21AA0A88A00562C4D /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
+		89D395A31AA0A88A00562C4D /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
+		89D395A41AA0A88A00562C4D /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		89D395A51AA0A88A00562C4D /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BoldItalic.ttf"; sourceTree = "<group>"; };
+		89D395A71AA0A88A00562C4D /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		89D395AB1AA0A88A00562C4D /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		89ED113C1A93A6EB000565B9 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		89ED113D1A93A6EB000565B9 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		89F203D51A9AB6680099DAA0 /* VHDepartmentParentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VHDepartmentParentTableViewCell.h; path = TableViewCells/VHDepartmentParentTableViewCell.h; sourceTree = "<group>"; };
@@ -299,6 +305,7 @@
 				2B42062E1A8768A4002ABE64 /* USColor.h */,
 				2B42062F1A8768A4002ABE64 /* USColor.m */,
 				2B4206061A876718002ABE64 /* USC_Registration.xcdatamodeld */,
+				89D395A11AA0A87F00562C4D /* Fonts */,
 				DF744C441A9B181500460D28 /* CollectionViewCell */,
 				2B0C51391A94989400FA9FBB /* TableViewCell */,
 				2B8B7F4C1A9471D100DCD321 /* Data */,
@@ -381,6 +388,19 @@
 				89863BF31A9C9764000C60AD /* ILTranslucentView.m */,
 			);
 			name = ILTranslucentView;
+			sourceTree = "<group>";
+		};
+		89D395A11AA0A87F00562C4D /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				89D395A21AA0A88A00562C4D /* Roboto-Black.ttf */,
+				89D395A31AA0A88A00562C4D /* Roboto-BlackItalic.ttf */,
+				89D395A41AA0A88A00562C4D /* Roboto-Bold.ttf */,
+				89D395A51AA0A88A00562C4D /* Roboto-BoldItalic.ttf */,
+				89D395A71AA0A88A00562C4D /* Roboto-Light.ttf */,
+				89D395AB1AA0A88A00562C4D /* Roboto-Regular.ttf */,
+			);
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 		89ED113F1A93A6F2000565B9 /* External Libraries */ = {

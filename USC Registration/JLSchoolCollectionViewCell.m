@@ -18,6 +18,7 @@
     self.circleView.layer.cornerRadius = 50;
     [self.circleView.layer setBorderColor: [[UIColor blackColor] CGColor]];
     [self.circleView.layer setBorderWidth: 2.0];
-    self.backgroundColor = [UIColor colorWithRed:231.0/255.0 green:234.0/255.0 blue:224.0/225.0 alpha:1.0];
+//    self.backgroundColor = [UIColor colorWithRed:231.0/255.0 green:234.0/255.0 blue:224.0/225.0 alpha:1.0];
+    self.backgroundColor = [UIColor lightTextColor];
 }
 @end

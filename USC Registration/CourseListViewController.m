@@ -164,6 +164,8 @@
         self.noResultsLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.tableView.frame.origin.x, 64+self.tableView.frame.origin.y, self.tableView.frame.size.width, 30)];
         self.noResultsLabel.textAlignment = NSTextAlignmentCenter;
         self.noResultsLabel.text = @"No results found :(";
+        if(self.arrayOfCourses.count == 0)
+            [self.view addSubview:self.noResultsLabel];
     }
 }
 - (void)viewDidLoad {

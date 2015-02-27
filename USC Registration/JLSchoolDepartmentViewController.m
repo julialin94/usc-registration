@@ -30,6 +30,8 @@
     [self.navigationItem setRightBarButtonItem:calendarButton];
     self.appDelegate = [UIApplication sharedApplication].delegate;
     self.title = self.school.schoolCode;
+    [self.tableView setBackgroundColor:[USColor clearColor]];
+    [self.view setBackgroundColor:[USColor JLLightGrayColor]];
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.school.departments.count;
@@ -51,8 +53,6 @@
     [cell.departmentLabel setText:department];
     [cell.iconLabel setTextColor:[UIColor blackColor]];
     [cell.departmentLabel setTextColor:[USColor JLCardinalColor]];
-    
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
