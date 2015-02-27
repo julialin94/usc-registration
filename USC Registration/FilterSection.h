@@ -8,9 +8,14 @@
 
 #import "Popup.h"
 
+@protocol FilterSectionDelegate <NSObject>
+@required
+- (void) filtered: (NSArray*)selections;
+@end
 @interface FilterSection : Popup <UITableViewDelegate, UITableViewDataSource>
 -(void)showFilter;
 -(void)hideFilter;
+@property (nonatomic, strong) id <FilterSectionDelegate> delegate;
 @property (nonatomic, strong) UITableView * sectionFilterTableView;
 @property (nonatomic, strong) NSMutableArray * optionsArray;
 @property (nonatomic, strong) NSMutableArray * daysArray;

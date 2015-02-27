@@ -66,7 +66,10 @@
         else
             [str appendString:@" AM"];
         timeLabel.text = str;
-        timeLabel.font = [UIFont systemFontOfSize:10.0];
+        if(newWidth>50)
+            timeLabel.font = [UIFont systemFontOfSize:10.0];
+        else
+            timeLabel.font = [UIFont systemFontOfSize:8.0];
         timeLabel.textAlignment = NSTextAlignmentRight;
         [self.scrollView addSubview:timeLabel];
     }
@@ -79,7 +82,7 @@
     }
     AppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
     CGFloat startY = newWidth+30+450;
-    CGFloat endY = newWidth+30+450;
+    CGFloat endY = newWidth+30+450+30;
     if(![self.termSchedule contentEquals:appDelegate.termSchedule]){
         //has been updated, regenerate views
         for(int a = 0; a<appDelegate.termSchedule.dictionaryOfSections.allValues.count; a++){

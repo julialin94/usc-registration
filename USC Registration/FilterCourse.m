@@ -79,52 +79,38 @@
     UIView *sectionHeaderView = [[UIView alloc] initWithFrame:
                                  CGRectMake(0, 0, tableView.frame.size.width, 60.0)];
     sectionHeaderView.backgroundColor = [UIColor clearColor];
-    
+    UIView * background = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 30)];
+    background.backgroundColor = [UIColor colorWithRed:153.0/255.0 green:0 blue:0 alpha:1.0];
+    [sectionHeaderView addSubview:background];
+    UIButton * doneButton = [[UIButton alloc] initWithFrame:CGRectMake(tableView.frame.size.width-30, 0, 30, 30)];
+    UIButton * resetButton = [[UIButton alloc] initWithFrame:CGRectMake(tableView.frame.size.width-70, 3, 24, 24)];
     self.closeButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-    self.closeButton.backgroundColor = [UIColor lightGrayColor];
-    [self.closeButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    [sectionHeaderView addSubview:self.closeButton];
+    [sectionHeaderView addSubview:doneButton];
+    [sectionHeaderView addSubview:resetButton];
+    
+    self.closeButton.backgroundColor = [UIColor clearColor];
+    [self.closeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.closeButton setTitle:@"X" forState:UIControlStateNormal];
     self.closeButton.showsTouchWhenHighlighted = YES;
     [self.closeButton addTarget:self action:@selector(hideFilter) forControlEvents:UIControlEventTouchUpInside];
-    [sectionHeaderView addSubview:self.closeButton];
     
-    UIButton * doneButton = [[UIButton alloc] initWithFrame:CGRectMake(30+(tableView.frame.size.width-30)/2, 0, (tableView.frame.size.width-30)/2, 30)];
-    doneButton.backgroundColor = [UIColor lightGrayColor];
-    [doneButton setTitle:@"Filter" forState:UIControlStateNormal];
+    
+    doneButton.backgroundColor = [UIColor clearColor];
+    doneButton.contentMode = UIViewContentModeScaleAspectFit;
+    resetButton.contentMode = UIViewContentModeScaleAspectFit;
+    [doneButton setImage:[UIImage imageNamed:@"whiteFilter"] forState:UIControlStateNormal];
     [doneButton addTarget:self action:@selector(filterDone) forControlEvents:UIControlEventTouchUpInside];
-    [sectionHeaderView addSubview:doneButton];
-    UIButton * resetButton = [[UIButton alloc] initWithFrame:CGRectMake(30, 0, (tableView.frame.size.width-30)/2, 30)];
-    resetButton.backgroundColor = [UIColor lightGrayColor];
-    [resetButton setTitle:@"Reset" forState:UIControlStateNormal];
+    resetButton.backgroundColor = [UIColor clearColor];
+    [resetButton setImage:[UIImage imageNamed:@"undo"] forState:UIControlStateNormal];
     [resetButton addTarget:self action:@selector(reset) forControlEvents:UIControlEventTouchUpInside];
-    [sectionHeaderView addSubview:resetButton];
     UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(10, 40, tableView.frame.size.width, 30)];
     label.text = @"Units";
     [sectionHeaderView addSubview:label];
-    doneButton.titleLabel.textAlignment = NSTextAlignmentCenter;
-    resetButton.titleLabel.textAlignment = NSTextAlignmentCenter;
-    UIView * line1 = [[UIView alloc] initWithFrame:CGRectMake((tableView.frame.size.width-30)/2-1, 0, 1, 30)];
-    UIView * line2 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 30)];
-    line1.backgroundColor = [UIColor darkGrayColor];
-    line2.backgroundColor = [UIColor darkGrayColor];
-    [doneButton addSubview:line2];
-    [resetButton addSubview:line1];
-    [doneButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    [resetButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     doneButton.showsTouchWhenHighlighted = YES;
     resetButton.showsTouchWhenHighlighted = YES;
     
-    UIView * line3 = [[UIView alloc] initWithFrame:CGRectMake(29, 0, 1, 30)];
-    UIView * line4 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 30)];
-    line3.backgroundColor = [UIColor darkGrayColor];
-    line4.backgroundColor = [UIColor darkGrayColor];
-    [resetButton addSubview:line4];
-    [self.closeButton addSubview:line3];
     
-    
-    UIView * line5 = [[UIView alloc] initWithFrame:CGRectMake(0, 28, tableView.frame.size.width, 2)];
-    line5.backgroundColor = [UIColor darkGrayColor];
-    [sectionHeaderView addSubview:line5];
     
     return sectionHeaderView;
 }
@@ -161,7 +147,7 @@
     self.courseFilterTableView.delegate = (id) self;
 //    self.courseFilterTableView.allowsMultipleSelection = YES;
     
-    self.unitsArray = [[NSMutableArray alloc] initWithObjects: @"1.0", @"2.0", @"3.0", @"4.0", @"5.0 +", nil];
+    self.unitsArray = [[NSMutableArray alloc] initWithObjects: @"1.0", @"2.0", @"3.0", @"4.0", @"5.0+", nil];
     self.levelsArray = [[NSMutableArray alloc] initWithObjects: @"000-Level", @"100-Level", @"200-Level", @"300-Level", @"400-Level", @"500-Level", @"600-Level", @"700-Level", @"800-Level", nil];
     self.optionsArray = [[NSMutableArray alloc] init];
     NSMutableArray * array1 = [[NSMutableArray alloc] init];
@@ -180,10 +166,32 @@
     return self;
 }
 -(void)showFilter{
-    [self show];
+    [self bringSubviewToFront:self.backgroundButton];
+    [[UIApplication sharedApplication].keyWindow addSubview:self];
+    [[UIApplication sharedApplication].keyWindow bringSubviewToFront:self];
+    [self addSubview:self.backgroundButton];
+    [self sendSubviewToBack:self.backgroundButton];
+    [UIView animateWithDuration:0.2
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         self.backgroundButton.alpha = 0.7;
+                     }
+                     completion:^(BOOL finished){
+                         
+                     }];
 }
 -(void)hideFilter{
-    [self hide];
+    [UIView animateWithDuration:0.2
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         self.backgroundButton.alpha = 0.0;
+                     }
+                     completion:^(BOOL finished){
+                         [self.backgroundButton removeFromSuperview];
+                         [self removeFromSuperview];
+                     }];
 }
 -(void)reset{
     int a = ((NSArray *)self.optionsArray[0]).count;
