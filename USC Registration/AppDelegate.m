@@ -20,17 +20,31 @@ static NSString * baseURL = @"http://petri.usc.edu/socAPI";
     return baseURL;
 }
 -(void)addSection:(Section *)section{
-    if([self.termSchedule.dictionaryOfSections objectForKey:section.section] == nil){
-        [self.termSchedule.dictionaryOfSections setObject:section forKey:section.section];
-        NSMutableArray * array = [[NSMutableArray alloc] init];
-        for(Section * s in self.termSchedule.dictionaryOfSections.allValues){
-            NSData *encodedObject = [NSKeyedArchiver archivedDataWithRootObject:s];
-            [array addObject:encodedObject];
-        }
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setObject:array forKey:self.termSchedule.termCode];
-        [defaults synchronize];
+    NSLog(@"section: %@", section.section);
+    [self.savedSections setObject:@1 forKey:section.section];
+    [self.termSchedule.dictionaryOfSections setObject:section forKey:section.section];
+    NSMutableArray * array = [[NSMutableArray alloc] init];
+    for(Section * s in self.termSchedule.dictionaryOfSections.allValues){
+        NSData *encodedObject = [NSKeyedArchiver archivedDataWithRootObject:s];
+        [array addObject:encodedObject];
     }
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:array forKey:self.termSchedule.termCode];
+    [defaults setObject:self.savedSections forKey:[NSString stringWithFormat:@"%@saved", self.termSchedule.termCode]];
+    [defaults synchronize];
+}
+-(void)removeSection:(Section *)section{
+    [self.savedSections removeObjectForKey:section.section];
+    [self.termSchedule.dictionaryOfSections removeObjectForKey:section.section];
+    NSMutableArray * array = [[NSMutableArray alloc] init];
+    for(Section * s in self.termSchedule.dictionaryOfSections.allValues){
+        NSData *encodedObject = [NSKeyedArchiver archivedDataWithRootObject:s];
+        [array addObject:encodedObject];
+    }
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:array forKey:self.termSchedule.termCode];
+    [defaults setObject:self.savedSections forKey:[NSString stringWithFormat:@"%@saved", self.termSchedule.termCode]];
+    [defaults synchronize];
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     return YES;

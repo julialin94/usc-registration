@@ -25,4 +25,7 @@
 +(id)JLDarkBlueColor{
     return [super colorWithRed:10.0/255.0 green:67.0/255.0 blue:102.0/255.0 alpha:1.0];
 }
++(id)JLDarkRedColor{
+    return [super colorWithRed:133.0/255.0 green:13.0/255.0 blue:13.0/255.0 alpha:1.0];
+}
 @end

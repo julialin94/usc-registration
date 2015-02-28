@@ -33,13 +33,11 @@
 
 #pragma mark UICollectionViewDelegate/DataSource
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    self.selectedSchool = self.term.schools[indexPath.row];
+    self.selectedSchool = self.arrayOfSchools[indexPath.row];
     [self performSegueWithIdentifier:@"goToSchoolDepartment" sender:self];
 }
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    //double rtn = ceil((self.term.schools.count)/2);
-    //return rtn;
-    return self.term.schools.count;
+    return self.arrayOfSchools.count;
 }
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(JLSchoolCollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath NS_AVAILABLE_IOS(8_0){
     cell.schoolIconView.alpha = 0.0;
@@ -54,7 +52,7 @@
                          cell.circleView.alpha = 1.0;
                      }
                      completion:nil];
-    School * s = self.term.schools[indexPath.row];
+    School * s = self.arrayOfSchools[indexPath.row];
     if(!s.shown){
         cell.circleView.transform = CGAffineTransformMakeScale(0.1, 0.1);
         cell.schoolIconView.transform = CGAffineTransformMakeScale(0.1, 0.1);
@@ -84,12 +82,11 @@
 
 }
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
     JLSchoolCollectionViewCell * cell;
     cell = [collectionView dequeueReusableCellWithReuseIdentifier: @"school" forIndexPath:indexPath];
     cell.layer.shouldRasterize = YES;
     cell.layer.rasterizationScale = [UIScreen mainScreen].scale;
-    NSString * school = ((School*)self.term.schools[indexPath.row]).schoolDescription;
+    NSString * school = ((School*)self.arrayOfSchools[indexPath.row]).schoolDescription;
     
     UIImage * image;
     if([school hasPrefix: @"Leventhal"]){
@@ -191,10 +188,10 @@
     switch (self.index) {
         case 0:
         case 1:
-            rtn = self.term.departments.count;
+            rtn = self.arrayOfDepartments.count;
             break;
         case 2:
-            rtn = self.term.prefixedDepartments.count;
+            rtn = self.arrayOfPrefixes.count;
             break;
     }
     return rtn;
@@ -208,8 +205,8 @@
             if (cell == nil) {
                 cell = [[VHDepartmentTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"department"];
             }
-            NSString * department = ((Department*)self.term.departments[indexPath.row]).departmentDescription;
-            NSString * departmentCode = ((Department*)self.term.departments[indexPath.row]).departmentCode;
+            NSString * department = ((Department*)self.arrayOfDepartments[indexPath.row]).departmentDescription;
+            NSString * departmentCode = ((Department*)self.arrayOfDepartments[indexPath.row]).departmentCode;
             [cell.iconLabel setText:departmentCode];
             [cell.departmentLabel setText:department];
             [cell.iconLabel setTextColor:[UIColor blackColor]];
@@ -221,8 +218,8 @@
             if (cell == nil) {
                 cell = [[VHPrefixTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"department"];
             }
-            NSString * department = ((Department*)self.term.prefixedDepartments[indexPath.row]).departmentDescription;
-            NSString * departmentCode = ((Department*)self.term.prefixedDepartments[indexPath.row]).departmentCode;
+            NSString * department = ((Department*)self.arrayOfPrefixes[indexPath.row]).departmentDescription;
+            NSString * departmentCode = ((Department*)self.arrayOfPrefixes[indexPath.row]).departmentCode;
             [cell.iconLabel setText:departmentCode];
             [cell.departmentLabel setText:department];
             [cell.iconLabel setTextColor:[USColor JLCardinalColor]];
@@ -239,11 +236,11 @@
     switch (self.index) {
         case 0:
         case 1:{
-            d = [self.term.departments objectAtIndex:indexPath.row];
+            d = [self.arrayOfDepartments objectAtIndex:indexPath.row];
         }
             break;
         case 2:{
-            d = [self.term.prefixedDepartments objectAtIndex:indexPath.row];
+            d = [self.arrayOfPrefixes objectAtIndex:indexPath.row];
         }
             break;
     }
@@ -275,11 +272,11 @@
         }
             break;
         case 1:{
-            self.selectedDepartment = [self.term.departments objectAtIndex:indexPath.row];
+            self.selectedDepartment = [self.arrayOfDepartments objectAtIndex:indexPath.row];
         }
             break;
         case 2:{
-            self.selectedDepartment = [self.term.prefixedDepartments objectAtIndex:indexPath.row];
+            self.selectedDepartment = [self.arrayOfPrefixes objectAtIndex:indexPath.row];
         }
             break;
     }
@@ -288,6 +285,7 @@
 }
 #pragma mark Segue
 -(void)loadForSegue{
+    [self cancel];
     if(!self.selectedDepartment.downloaded){
         self.appDelegate.progressHUD.labelText = @"Please wait.";
         self.appDelegate.progressHUD.detailsLabelText = [NSString stringWithFormat:@"Loading %@.", self.selectedDepartment.departmentCode];
@@ -314,14 +312,109 @@
         vc.department = self.selectedDepartment;
     }
     else if([segue.identifier isEqualToString:@"goToSchoolDepartment"]){
+        [self cancel];
         JLSchoolDepartmentViewController * vc = [segue destinationViewController];
         vc.school = self.selectedSchool;
     }
 }
-
+#pragma mark UITextFieldDelegate
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [self cancel];
+    return YES;
+}
+-(void)textFieldDidChange :(UITextField *)theTextField{
+    if (theTextField.text.length == 0) {
+        self.arrayOfDepartments = self.term.departments;
+        self.arrayOfSchools = self.term.schools;
+        self.arrayOfPrefixes = self.term.prefixedDepartments;
+        [self.tableView reloadData];
+        [self.schoolCollectionView reloadData];
+        return;
+    }
+    NSPredicate *predicateDepartments = [NSPredicate predicateWithFormat:@"(%K CONTAINS[c] %@) OR (%K CONTAINS[c] %@)", @"departmentDescription", theTextField.text, @"departmentCode", theTextField.text];
+    self.arrayOfDepartments = [self.term.departments filteredArrayUsingPredicate:predicateDepartments];
+    NSPredicate *predicateSchools = [NSPredicate predicateWithFormat:@"%K CONTAINS[c] %@", @"schoolDescription", theTextField.text];
+    self.arrayOfSchools = [self.term.schools filteredArrayUsingPredicate:predicateSchools];
+    NSPredicate *predicatePrefixes = [NSPredicate predicateWithFormat:@"(%K CONTAINS[c] %@) OR (%K CONTAINS[c] %@)", @"departmentDescription", theTextField.text, @"departmentCode", theTextField.text];
+    self.arrayOfPrefixes = [self.term.prefixedDepartments filteredArrayUsingPredicate:predicatePrefixes];
+    [self.tableView reloadData];
+    [self.schoolCollectionView reloadData];
+}
 #pragma mark Taps
--(void)searchPushed{
-    NSLog(@"SEARCH!");
+-(void)searchPushed{//show
+    if (!self.searchView.hidden) {
+        return;
+    }
+    self.redSearchView.hidden = NO;
+    self.redSearchView.alpha = 0.0;
+    self.searchView.hidden = NO;
+    self.searchView.alpha = 0.0;
+    [UIView animateWithDuration:0.3
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         self.redSearchView.alpha = 1.0;
+                     }
+                     completion:nil];
+    [self.searchBar becomeFirstResponder];
+    [UIView animateWithDuration:0.3
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         self.searchView.alpha = 0.8;
+                         self.searchView.frame = CGRectOffset(self.searchView.frame, -self.searchView.frame.size.width-20, 0.0);
+                     }
+                     completion:^(BOOL completed){
+                         [UIView animateWithDuration:0.1
+                                               delay:0.0
+                                             options:UIViewAnimationOptionCurveEaseInOut
+                                          animations:^{
+                                              self.searchView.alpha = 1.0;
+                                              self.searchView.frame = CGRectOffset(self.searchView.frame, 20, 0.0);
+                                          }
+                                          completion:^(BOOL completed){
+                                              [UIView animateWithDuration:0.05
+                                                                    delay:0.0
+                                                                  options:UIViewAnimationOptionCurveEaseInOut
+                                                               animations:^{
+                                                                   self.searchView.frame = CGRectOffset(self.searchView.frame, -10, 0.0);
+                                                               }
+                                                               completion:^(BOOL completed){
+                                                                   [UIView animateWithDuration:0.025
+                                                                                         delay:0.0
+                                                                                       options:UIViewAnimationOptionCurveEaseInOut
+                                                                                    animations:^{
+                                                                                        self.searchView.frame = CGRectOffset(self.searchView.frame, 10, 0.0);
+                                                                                    }
+                                                                                    completion:nil];
+                                                               }];
+                                              }];
+                         }];
+}
+-(void)cancel{
+    if (self.searchView.hidden) {
+        return;
+    }
+    [self.searchBar resignFirstResponder];
+    [UIView animateWithDuration:0.4
+                          delay:0.0
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         self.searchView.alpha = 0.0;
+                         self.searchView.frame = CGRectOffset(self.searchView.frame, self.searchView.frame.size.width, 0.0);
+                     }
+                     completion:^(BOOL completed){
+                         self.searchView.hidden = YES;
+                         [UIView animateWithDuration:0.3
+                                               delay:0.0
+                                             options:UIViewAnimationOptionCurveEaseInOut
+                                          animations:^{
+                                              self.redSearchView.alpha = 0.0;
+                                          }
+                                          completion:^(BOOL completed){
+                                              self.redSearchView.hidden = YES;
+                                          }];
+                     }];
 }
 -(void)calendarPushed{
     [self showCalendar];
@@ -421,20 +514,52 @@
     self.schoolCollectionView.hidden = NO;
     self.tableView.hidden = YES;
     self.index = 0;
-    UIBarButtonItem *calendarButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"calendar"] style:UIBarButtonItemStylePlain target:self action:@selector(calendarPushed)];
-    UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"search"] style:UIBarButtonItemStylePlain target:self action:@selector(searchPushed)];
-    self.arrayOfNavigationBarButtons = [NSArray arrayWithObjects:searchButton, calendarButton, nil];
-    [self.navigationItem setRightBarButtonItems:self.arrayOfNavigationBarButtons];
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.schoolCollectionView setBackgroundColor:[USColor clearColor]];
     [self.tableView setBackgroundColor:[USColor clearColor]];
     [self.view setBackgroundColor:[USColor JLLightGrayColor]];
     [self.menuView setBackgroundColor:[USColor JLLightGrayColor]];
-
+    
+    
+    
+    
+    UIBarButtonItem *calendarButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"calendar"] style:UIBarButtonItemStylePlain target:self action:@selector(calendarPushed)];
+    UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(searchPushed)];
+    self.arrayOfNavigationBarButtons = [NSArray arrayWithObjects:searchButton, calendarButton, nil];
+    [self.navigationItem setRightBarButtonItems:self.arrayOfNavigationBarButtons];
+    
+    
+    self.arrayOfDepartments = self.term.departments;
+    self.arrayOfSchools = self.term.schools;
+    self.arrayOfPrefixes = self.term.prefixedDepartments;
+    
 }
 -(void)viewWillAppear:(BOOL)animated{}
 -(void)viewDidAppear:(BOOL)animated{
     CGRect frame = self.schoolLabel.frame;
+    if (!self.searchView) {
+        CGRect windowFrame = [UIApplication sharedApplication].keyWindow.frame;
+        self.searchView = [[UIView alloc] initWithFrame:CGRectMake(0, 20, windowFrame.size.width, 44)];
+        self.searchView.hidden = YES;
+        self.searchView.backgroundColor = [USColor clearColor];
+        self.redSearchView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, windowFrame.size.width, 64)];
+        self.redSearchView.hidden = YES;
+        self.redSearchView.backgroundColor = [USColor JLCardinalColor];
+        [[UIApplication sharedApplication].keyWindow addSubview:self.redSearchView];
+        [[UIApplication sharedApplication].keyWindow addSubview:self.searchView];
+        self.cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(windowFrame.size.width-100, 0, 100, 44)];
+        self.cancelButton.backgroundColor = [UIColor clearColor];
+        self.searchBar.frame = CGRectMake(10, 7, windowFrame.size.width-110, 30);
+        [self.searchView addSubview:self.searchBar];
+        [self.cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
+        [self.cancelButton addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
+        [self.searchView addSubview:self.cancelButton];
+        self.searchView.frame = CGRectOffset(self.searchView.frame, self.searchView.frame.size.width, 0.0);
+        self.searchBar.delegate = (id)self;
+        [self.searchBar addTarget:self
+                      action:@selector(textFieldDidChange:)
+            forControlEvents:UIControlEventEditingChanged];
+    }
     if(!self.lineView){
         self.lineView = [[UIView alloc] initWithFrame:CGRectMake(frame.origin.x, frame.origin.y+frame.size.height+1, frame.size.width, 6)];
         self.lineView.layer.cornerRadius = 2.0;
@@ -452,13 +577,13 @@
     }
 }
 -(void)reloadView{
-    for (Data * d in self.term.departments) {
+    for (Data * d in self.arrayOfDepartments) {
         d.shown = NO;
     }
-    for (Data * d in self.term.prefixedDepartments) {
+    for (Data * d in self.arrayOfPrefixes) {
         d.shown = NO;
     }
-    for (Data * d in self.term.schools) {
+    for (Data * d in self.arrayOfSchools) {
         d.shown = NO;
     }
     [UIView animateWithDuration:0.2

@@ -63,6 +63,12 @@
         self.appDelegate.term = [self.selectedTerm objectForKey:@"TERM_CODE"];
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString * str = [NSString stringWithFormat:@"%@saved", self.appDelegate.term];
+        self.appDelegate.savedSections = [[defaults objectForKey:str] mutableCopy];
+        NSLog(@"saved: %@", self.appDelegate.savedSections);
+        if (!self.appDelegate.savedSections) {
+            self.appDelegate.savedSections = [[NSMutableDictionary alloc] init];
+        }
         NSArray * array = [defaults objectForKey:self.appDelegate.term];
         if (!self.appDelegate.termSchedule) {
             self.appDelegate.termSchedule = [[TermSchedule alloc] init];

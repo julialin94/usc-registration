@@ -19,6 +19,7 @@
 @property (strong, nonatomic) Term * termObject;
 @property (strong, nonatomic) Calendar * calendar;
 @property (nonatomic, strong) MBProgressHUD * progressHUD;
+@property (nonatomic, strong) NSMutableDictionary * savedSections;
 -(NSString *)URL;
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -27,6 +28,7 @@
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 -(void)addSection:(Section *)section;
+-(void)removeSection:(Section *)section;
 
 @end
 

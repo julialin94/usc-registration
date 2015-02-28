@@ -8,6 +8,7 @@
 
 #import "VHSectionViewController.h"
 #import "TermSchedule.h"
+#import "USColor.h"
 @interface VHSectionViewController ()
 
 @end
@@ -41,16 +42,38 @@
     df.dateFormat = @"hh:mm a";
     
     self.timesLabel.text = [NSString stringWithFormat:@"%@ to %@", [df stringFromDate:start], [df stringFromDate:end]];
-    self.courseNameLabel.text = [NSString stringWithFormat:@"%@ %@", self.section.sisCourseID, self.section.type];;
+    if ([self.section.type isEqualToString:@"unknown"]) {
+        self.courseNameLabel.text = self.section.sisCourseID;
+    }
+    else{
+        self.courseNameLabel.text = [NSString stringWithFormat:@"%@ %@", self.section.sisCourseID, self.section.type];
+    }
     self.sectionNumberLabel.text = [NSString stringWithFormat:@"Section: %@", self.section.section];
     self.sessionLabel.text = [NSString stringWithFormat:@"Session: %@", self.section.sessionCode];
-    
-    
+    NSLog(@"object: %@", [self.appDelegate.savedSections objectForKey:self.section.section]);
+    if ([self.appDelegate.savedSections objectForKey:self.section.section] == nil) {
+        //leave the button the way it is
+        [self.addButton setTitle:@"Add" forState:UIControlStateNormal];
+        self.addButton.backgroundColor = [USColor JLDarkBlueColor];
+    }
+    else{
+        [self.addButton setTitle:@"Remove" forState:UIControlStateNormal];
+        self.addButton.backgroundColor = [USColor JLDarkRedColor];
+    }
     
     
     
 }
 - (IBAction)addSectionAction:(id)sender {
-    [self.appDelegate addSection:self.section];
+    if ([self.addButton.titleLabel.text isEqualToString:@"Add"]) {
+        [self.appDelegate addSection:self.section];
+        [self.addButton setTitle:@"Remove" forState:UIControlStateNormal];
+        self.addButton.backgroundColor = [USColor JLDarkRedColor];
+    }
+    else{
+        [self.appDelegate removeSection:self.section];
+        [self.addButton setTitle:@"Add" forState:UIControlStateNormal];
+        self.addButton.backgroundColor = [USColor JLDarkBlueColor];
+    }
 }
 @end

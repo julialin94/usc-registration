@@ -14,4 +14,5 @@
 +(id)JLLightGrayColor;
 +(id)JLLightBlueColor;
 +(id)JLDarkBlueColor;
++(id)JLDarkRedColor;
 @end

@@ -36,6 +36,7 @@
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
             <string>Roboto-Regular</string>
+            <string>Roboto-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -474,12 +475,19 @@
                         <outlet property="prefixLabel" destination="hfT-Jm-DYy" id="kLh-ff-vnF"/>
                         <outlet property="schoolCollectionView" destination="l8U-Yh-JJC" id="gjK-7r-4Ta"/>
                         <outlet property="schoolLabel" destination="VZh-0D-8lq" id="zBP-gL-UZT"/>
+                        <outlet property="searchBar" destination="cN5-dA-zQ9" id="L0J-8K-MNs"/>
                         <outlet property="tableView" destination="FUe-uo-GNm" id="3Ya-bw-EsI"/>
                         <segue destination="HPU-dY-fwO" kind="show" identifier="goToCourses" id="bzd-Aa-4bI"/>
                         <segue destination="dx6-VF-bqW" kind="show" identifier="goToSchoolDepartment" id="yee-Sn-oSQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kid-KZ-chv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" minimumFontSize="17" clearButtonMode="whileEditing" id="cN5-dA-zQ9">
+                    <rect key="frame" x="0.0" y="0.0" width="97" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no" enablesReturnKeyAutomatically="YES"/>
+                </textField>
             </objects>
             <point key="canvasLocation" x="879" y="247"/>
         </scene>
@@ -1144,15 +1152,15 @@
     </scenes>
     <resources>
         <image name="backArrow" width="20" height="20"/>
-        <image name="calendar-1" width="1200" height="1200"/>
-        <image name="clock" width="1200" height="1200"/>
+        <image name="calendar-1" width="40" height="40"/>
+        <image name="clock" width="40" height="40"/>
         <image name="down_Arrow" width="120" height="120"/>
         <image name="goldShield" width="400" height="400"/>
-        <image name="location" width="1200" height="1200"/>
-        <image name="seat" width="1200" height="1200"/>
+        <image name="location" width="40" height="40"/>
+        <image name="seat" width="40" height="40"/>
         <image name="smallGoldShield" width="300" height="300"/>
-        <image name="teacher" width="1200" height="1200"/>
-        <image name="units" width="1200" height="1200"/>
+        <image name="teacher" width="40" height="40"/>
+        <image name="units" width="40" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="bzd-Aa-4bI"/>

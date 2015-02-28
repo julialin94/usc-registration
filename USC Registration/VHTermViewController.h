@@ -10,8 +10,7 @@
 #import "Term.h"  
 #import "AppDelegate.h"
 #import "Department.h"
-@interface VHTermViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
-
+@interface VHTermViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITextFieldDelegate>
 @property (nonatomic, strong) AppDelegate * appDelegate;
 @property (weak, nonatomic) IBOutlet UILabel *schoolLabel;
 @property (weak, nonatomic) IBOutlet UILabel *prefixLabel;
@@ -30,6 +29,17 @@
 @property (nonatomic, strong) NSDictionary * schools;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UICollectionView *schoolCollectionView;
+@property (strong, nonatomic) IBOutlet UITextField *searchBar;
+@property (nonatomic, strong) UIView * searchView;
+@property (nonatomic, strong) UIView * redSearchView;
+@property (nonatomic, strong) UIButton * cancelButton;
+
+
+@property (nonatomic, strong) NSArray * arrayOfSchools;
+@property (nonatomic, strong) NSArray * arrayOfDepartments;
+@property (nonatomic, strong) NSArray * arrayOfPrefixes;
+
+
 - (IBAction)backAction:(id)sender;
 
 
