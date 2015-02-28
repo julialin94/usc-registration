@@ -94,7 +94,7 @@
         NSInteger hour = 7+a;
         NSMutableString * str = [NSMutableString stringWithFormat:@""];
         if(hour > 12)
-            [str appendFormat:@"%d", hour-12];
+            [str appendFormat:@"%ld", hour-12];
         else
             [str appendFormat:@"%ld", (long)hour];
         if (hour >= 12)
