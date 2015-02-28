@@ -701,7 +701,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.82377657695427864" green="0.83583611203022734" blue="0.89756851602121224" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="MV6-xs-te3" firstAttribute="top" secondItem="GKI-uz-JOT" secondAttribute="bottom" constant="8" id="627-Wa-JKS"/>
                                     <constraint firstAttribute="trailing" secondItem="GKI-uz-JOT" secondAttribute="trailing" constant="8" id="LtP-At-oJo"/>

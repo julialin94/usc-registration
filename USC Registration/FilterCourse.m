@@ -59,7 +59,7 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 0) {
-        return 70;
+        return 90;
     }
     else return 30;
 }
@@ -79,15 +79,19 @@
     UIView *sectionHeaderView = [[UIView alloc] initWithFrame:
                                  CGRectMake(0, 0, tableView.frame.size.width, 60.0)];
     sectionHeaderView.backgroundColor = [UIColor clearColor];
-    UIView * background = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 30)];
+    UIView * background = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 50)];
     background.backgroundColor = [UIColor colorWithRed:153.0/255.0 green:0 blue:0 alpha:1.0];
     [sectionHeaderView addSubview:background];
-    UIButton * doneButton = [[UIButton alloc] initWithFrame:CGRectMake(tableView.frame.size.width-30, 0, 30, 30)];
-    UIButton * resetButton = [[UIButton alloc] initWithFrame:CGRectMake(tableView.frame.size.width-70, 3, 24, 24)];
-    self.closeButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    UIButton * doneButton = [[UIButton alloc] initWithFrame:CGRectMake(tableView.frame.size.width-40, 10, 30, 30)];
+    self.resetButton = [[UIButton alloc] initWithFrame:CGRectMake(tableView.frame.size.width-75, 11, 25, 25)];
+    self.resetButton.showsTouchWhenHighlighted = YES;
+    doneButton.contentMode = UIViewContentModeScaleAspectFit;
+    self.resetButton.contentMode = UIViewContentModeScaleAspectFit;
+    self.closeButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+    self.closeButton.titleLabel.font = [UIFont fontWithName:@"Roboto" size:25.0];
     [sectionHeaderView addSubview:self.closeButton];
     [sectionHeaderView addSubview:doneButton];
-    [sectionHeaderView addSubview:resetButton];
+    [sectionHeaderView addSubview:self.resetButton];
     
     self.closeButton.backgroundColor = [UIColor clearColor];
     [self.closeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -98,17 +102,17 @@
     
     doneButton.backgroundColor = [UIColor clearColor];
     doneButton.contentMode = UIViewContentModeScaleAspectFit;
-    resetButton.contentMode = UIViewContentModeScaleAspectFit;
+    self.resetButton.contentMode = UIViewContentModeScaleAspectFit;
     [doneButton setImage:[UIImage imageNamed:@"whiteFilter"] forState:UIControlStateNormal];
     [doneButton addTarget:self action:@selector(filterDone) forControlEvents:UIControlEventTouchUpInside];
-    resetButton.backgroundColor = [UIColor clearColor];
-    [resetButton setImage:[UIImage imageNamed:@"undo"] forState:UIControlStateNormal];
-    [resetButton addTarget:self action:@selector(reset) forControlEvents:UIControlEventTouchUpInside];
-    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(10, 40, tableView.frame.size.width, 30)];
+    self.resetButton.backgroundColor = [UIColor clearColor];
+    [self.resetButton setImage:[UIImage imageNamed:@"undo"] forState:UIControlStateNormal];
+    [self.resetButton addTarget:self action:@selector(reset) forControlEvents:UIControlEventTouchUpInside];
+    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(10, 60, tableView.frame.size.width, 30)];
     label.text = @"Units";
     [sectionHeaderView addSubview:label];
     doneButton.showsTouchWhenHighlighted = YES;
-    resetButton.showsTouchWhenHighlighted = YES;
+    self.resetButton.showsTouchWhenHighlighted = YES;
     
     
     
@@ -162,7 +166,7 @@
     [self.optionsArray addObject: array2];
     
     [self addSubview:self.courseFilterTableView];
-    
+    self.backgroundButton.enabled = NO;
     return self;
 }
 -(void)showFilter{
@@ -194,8 +198,13 @@
                      }];
 }
 -(void)reset{
-    int a = (int)((NSArray *)self.optionsArray[0]).count;
-    int b = (int)((NSArray *)self.optionsArray[1]).count;
+//    NSLog(@"reset");
+//    [UIView animateWithDuration:1.0 delay:0.0 options: UIViewAnimationOptionCurveLinear animations:^{
+//        CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI);
+//        self.resetButton.transform = transform;
+//    } completion:NULL];
+//    int a = (int)((NSArray *)self.optionsArray[0]).count;
+//    int b = (int)((NSArray *)self.optionsArray[1]).count;
     [self.optionsArray removeAllObjects];
     
     NSMutableArray * array1 = [[NSMutableArray alloc] init];

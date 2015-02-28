@@ -19,5 +19,6 @@
 @property (nonatomic, strong) NSMutableArray * optionsArray;
 @property (nonatomic, strong) NSMutableArray * unitsArray;
 @property (nonatomic, strong) NSMutableArray * levelsArray;
+@property (nonatomic, strong) UIButton * resetButton;
 @property(retain)  NSIndexPath* lastIndexPath;
 @end

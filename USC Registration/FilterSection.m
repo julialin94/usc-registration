@@ -66,7 +66,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 0) {
-        return 70;
+        return 90;
     }
     else return 30;
 }
@@ -126,12 +126,17 @@
     UIView *sectionHeaderView = [[UIView alloc] initWithFrame:
                                  CGRectMake(0, 0, tableView.frame.size.width, 60.0)];
     sectionHeaderView.backgroundColor = [UIColor clearColor];
-    UIView * background = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 30)];
+    UIView * background = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 50)];
     background.backgroundColor = [UIColor colorWithRed:153.0/255.0 green:0 blue:0 alpha:1.0];
     [sectionHeaderView addSubview:background];
-    UIButton * doneButton = [[UIButton alloc] initWithFrame:CGRectMake(tableView.frame.size.width-30, 0, 30, 30)];
-    UIButton * resetButton = [[UIButton alloc] initWithFrame:CGRectMake(tableView.frame.size.width-70, 3, 24, 24)];
-    self.closeButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    UIButton * doneButton = [[UIButton alloc] initWithFrame:CGRectMake(tableView.frame.size.width-40, 10, 30, 30)];
+    UIButton * resetButton = [[UIButton alloc] initWithFrame:CGRectMake(tableView.frame.size.width-75, 11, 25, 25)];
+    
+    resetButton.showsTouchWhenHighlighted = YES;
+    doneButton.contentMode = UIViewContentModeScaleAspectFit;
+    resetButton.contentMode = UIViewContentModeScaleAspectFit;
+    self.closeButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
+    self.closeButton.titleLabel.font = [UIFont fontWithName:@"Roboto" size:25.0];
     [sectionHeaderView addSubview:self.closeButton];
     [sectionHeaderView addSubview:doneButton];
     [sectionHeaderView addSubview:resetButton];
@@ -151,7 +156,7 @@
     resetButton.backgroundColor = [UIColor clearColor];
     [resetButton setImage:[UIImage imageNamed:@"undo"] forState:UIControlStateNormal];
     [resetButton addTarget:self action:@selector(reset) forControlEvents:UIControlEventTouchUpInside];
-    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(10, 40, tableView.frame.size.width, 30)];
+    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(10, 40, tableView.frame.size.width, 50)];
     label.text = @"Exclude Days";
     [sectionHeaderView addSubview:label];
     doneButton.showsTouchWhenHighlighted = YES;
@@ -203,7 +208,7 @@
     
     [self addSubview:self.sectionFilterTableView];
 
-    
+    self.backgroundButton.enabled = NO;
     return self;
 }
 -(void)showFilter{
