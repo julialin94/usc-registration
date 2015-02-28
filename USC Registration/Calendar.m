@@ -159,6 +159,7 @@
                 [self.arrayOfDayPanels[4] addSubview:cv];
             }
             if ([s.day containsString:@"tba"]) {
+                numInTBA++;
                 ClassView * cv = [c copy];
                 cv.delegate = self;
                 [self.arrayOfClassViews[5] addObject:cv];
