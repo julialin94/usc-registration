@@ -65,7 +65,6 @@
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString * str = [NSString stringWithFormat:@"%@saved", self.appDelegate.term];
         self.appDelegate.savedSections = [[defaults objectForKey:str] mutableCopy];
-        NSLog(@"saved: %@", self.appDelegate.savedSections);
         if (!self.appDelegate.savedSections) {
             self.appDelegate.savedSections = [[NSMutableDictionary alloc] init];
         }
@@ -278,9 +277,6 @@
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    // The request has failed for some reason!
-    // Check the error var
-    NSLog(@"connection failed: %@", error);
     self.doneConnecting = YES;
     UIAlertView * av = [[UIAlertView alloc] initWithTitle:@"Connection error!" message:@"Please check your internet connection." delegate:self cancelButtonTitle:@"OK!" otherButtonTitles:nil];
     [av show];

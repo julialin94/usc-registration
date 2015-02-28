@@ -40,7 +40,8 @@
     NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
     self.downloaded = YES;
     if(error ) {
-        NSLog(@"Course error: %@", error);
+        UIAlertView * av = [[UIAlertView alloc] initWithTitle:@"Connection error!" message:@"Please check your internet connection." delegate:self cancelButtonTitle:@"OK!" otherButtonTitles:nil];
+        [av show];
     }
     else{
         self.sections = [[NSMutableArray alloc] init];

@@ -174,7 +174,7 @@
     self.title = self.department.departmentCode;
     self.refreshControl = [[UIRefreshControl alloc] init];
     self.refreshControl.backgroundColor = [UIColor clearColor];
-    self.refreshControl.tintColor = [UIColor orangeColor];
+    self.refreshControl.tintColor = [UIColor darkGrayColor];
     [self.tableView addSubview:self.refreshControl];
     [self.refreshControl addTarget:self
                             action:@selector(reloadCourses)

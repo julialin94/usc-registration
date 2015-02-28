@@ -41,7 +41,6 @@
 		89863BDE1A9C7174000C60AD /* search@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89863BD51A9C7174000C60AD /* search@3x.png */; };
 		89863BED1A9C75F4000C60AD /* VHSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89863BEC1A9C75F4000C60AD /* VHSectionViewController.m */; };
 		89863BF01A9C7CC7000C60AD /* TermSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 89863BEF1A9C7CC7000C60AD /* TermSchedule.m */; };
-		89863BF41A9C9764000C60AD /* ILTranslucentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 89863BF31A9C9764000C60AD /* ILTranslucentView.m */; };
 		89D395911A9FC9FA00562C4D /* Calendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D395901A9FC9FA00562C4D /* Calendar.m */; };
 		89D395971AA0160800562C4D /* Popup.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D395961AA0160800562C4D /* Popup.m */; };
 		89D3959A1AA019EB00562C4D /* FilterCourse.m in Sources */ = {isa = PBXBuildFile; fileRef = 89D395991AA019EB00562C4D /* FilterCourse.m */; };
@@ -156,8 +155,6 @@
 		89863BEC1A9C75F4000C60AD /* VHSectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VHSectionViewController.m; sourceTree = "<group>"; };
 		89863BEE1A9C7CC7000C60AD /* TermSchedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TermSchedule.h; path = RegistrationData/TermSchedule.h; sourceTree = "<group>"; };
 		89863BEF1A9C7CC7000C60AD /* TermSchedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TermSchedule.m; path = RegistrationData/TermSchedule.m; sourceTree = "<group>"; };
-		89863BF21A9C9764000C60AD /* ILTranslucentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILTranslucentView.h; sourceTree = "<group>"; };
-		89863BF31A9C9764000C60AD /* ILTranslucentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILTranslucentView.m; sourceTree = "<group>"; };
 		89D3958F1A9FC9FA00562C4D /* Calendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Calendar.h; sourceTree = "<group>"; };
 		89D395901A9FC9FA00562C4D /* Calendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Calendar.m; sourceTree = "<group>"; };
 		89D395951AA0160800562C4D /* Popup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Popup.h; sourceTree = "<group>"; };
@@ -283,34 +280,12 @@
 			children = (
 				2B4206031A876718002ABE64 /* AppDelegate.h */,
 				2B4206041A876718002ABE64 /* AppDelegate.m */,
-				89D395951AA0160800562C4D /* Popup.h */,
-				89D395961AA0160800562C4D /* Popup.m */,
-				89D3958F1A9FC9FA00562C4D /* Calendar.h */,
-				89D395901A9FC9FA00562C4D /* Calendar.m */,
-				89D3959E1AA01F5F00562C4D /* ClassView.h */,
-				89D3959F1AA01F5F00562C4D /* ClassView.m */,
-				89D395981AA019EB00562C4D /* FilterCourse.h */,
-				89D395991AA019EB00562C4D /* FilterCourse.m */,
-				89D3959B1AA019F300562C4D /* FilterSection.h */,
-				89D3959C1AA019F300562C4D /* FilterSection.m */,
-				2B4206091A876718002ABE64 /* ViewController.h */,
-				2B42060A1A876718002ABE64 /* ViewController.m */,
-				89315FCD1A8C619F0069E10F /* VHTermViewController.h */,
-				89315FCE1A8C619F0069E10F /* VHTermViewController.m */,
-				89863BC31A9C6338000C60AD /* JLSchoolDepartmentViewController.h */,
-				89863BC41A9C6338000C60AD /* JLSchoolDepartmentViewController.m */,
-				8926E77A1A98252B003AF21B /* CourseListViewController.h */,
-				8926E77B1A98252B003AF21B /* CourseListViewController.m */,
-				89F203D81A9AF64A0099DAA0 /* CourseViewController.h */,
-				89F203D91A9AF64A0099DAA0 /* CourseViewController.m */,
-				89863BEB1A9C75F4000C60AD /* VHSectionViewController.h */,
-				89863BEC1A9C75F4000C60AD /* VHSectionViewController.m */,
 				2B42060C1A876718002ABE64 /* Main.storyboard */,
 				2B42060F1A876718002ABE64 /* Images.xcassets */,
 				2B4206111A876718002ABE64 /* LaunchScreen.xib */,
-				2B42062E1A8768A4002ABE64 /* USColor.h */,
-				2B42062F1A8768A4002ABE64 /* USColor.m */,
 				2B4206061A876718002ABE64 /* USC_Registration.xcdatamodeld */,
+				89EC332E1AA19A5300B4D111 /* ViewController */,
+				89EC332D1AA19A4300B4D111 /* Popup */,
 				89D395A11AA0A87F00562C4D /* Fonts */,
 				DF744C441A9B181500460D28 /* CollectionViewCell */,
 				2B0C51391A94989400FA9FBB /* TableViewCell */,
@@ -324,6 +299,8 @@
 		2B4205FF1A876718002ABE64 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2B42062E1A8768A4002ABE64 /* USColor.h */,
+				2B42062F1A8768A4002ABE64 /* USColor.m */,
 				2B4206001A876718002ABE64 /* Info.plist */,
 				2B4206011A876718002ABE64 /* main.m */,
 			);
@@ -387,15 +364,6 @@
 			path = "School Icons";
 			sourceTree = "<group>";
 		};
-		89863BF11A9C975A000C60AD /* ILTranslucentView */ = {
-			isa = PBXGroup;
-			children = (
-				89863BF21A9C9764000C60AD /* ILTranslucentView.h */,
-				89863BF31A9C9764000C60AD /* ILTranslucentView.m */,
-			);
-			name = ILTranslucentView;
-			sourceTree = "<group>";
-		};
 		89D395A11AA0A87F00562C4D /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -409,10 +377,45 @@
 			name = Fonts;
 			sourceTree = "<group>";
 		};
+		89EC332D1AA19A4300B4D111 /* Popup */ = {
+			isa = PBXGroup;
+			children = (
+				89D395951AA0160800562C4D /* Popup.h */,
+				89D395961AA0160800562C4D /* Popup.m */,
+				89D3958F1A9FC9FA00562C4D /* Calendar.h */,
+				89D395901A9FC9FA00562C4D /* Calendar.m */,
+				89D3959E1AA01F5F00562C4D /* ClassView.h */,
+				89D3959F1AA01F5F00562C4D /* ClassView.m */,
+				89D395981AA019EB00562C4D /* FilterCourse.h */,
+				89D395991AA019EB00562C4D /* FilterCourse.m */,
+				89D3959B1AA019F300562C4D /* FilterSection.h */,
+				89D3959C1AA019F300562C4D /* FilterSection.m */,
+			);
+			name = Popup;
+			sourceTree = "<group>";
+		};
+		89EC332E1AA19A5300B4D111 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2B4206091A876718002ABE64 /* ViewController.h */,
+				2B42060A1A876718002ABE64 /* ViewController.m */,
+				89315FCD1A8C619F0069E10F /* VHTermViewController.h */,
+				89315FCE1A8C619F0069E10F /* VHTermViewController.m */,
+				89863BC31A9C6338000C60AD /* JLSchoolDepartmentViewController.h */,
+				89863BC41A9C6338000C60AD /* JLSchoolDepartmentViewController.m */,
+				8926E77A1A98252B003AF21B /* CourseListViewController.h */,
+				8926E77B1A98252B003AF21B /* CourseListViewController.m */,
+				89F203D81A9AF64A0099DAA0 /* CourseViewController.h */,
+				89F203D91A9AF64A0099DAA0 /* CourseViewController.m */,
+				89863BEB1A9C75F4000C60AD /* VHSectionViewController.h */,
+				89863BEC1A9C75F4000C60AD /* VHSectionViewController.m */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
 		89ED113F1A93A6F2000565B9 /* External Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				89863BF11A9C975A000C60AD /* ILTranslucentView */,
 				89ED11401A93A6FD000565B9 /* MBProgress */,
 			);
 			name = "External Libraries";
@@ -631,7 +634,6 @@
 				2B8B7F4F1A94720B00DCD321 /* Term.m in Sources */,
 				2B4206301A8768A4002ABE64 /* USColor.m in Sources */,
 				8965BE171A987B5600A973F4 /* JLTermTableViewCell.m in Sources */,
-				89863BF41A9C9764000C60AD /* ILTranslucentView.m in Sources */,
 				89D395971AA0160800562C4D /* Popup.m in Sources */,
 				89863BED1A9C75F4000C60AD /* VHSectionViewController.m in Sources */,
 				DF48BDE11AA0462A00A818DF /* FilterTableViewCell.m in Sources */,
