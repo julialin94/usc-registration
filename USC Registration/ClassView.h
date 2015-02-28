@@ -22,6 +22,7 @@
 @property (nonatomic) BOOL hasConflict;
 @property (nonatomic, strong) UILabel * label;
 @property (nonatomic, strong) UILabel * label2;
+@property (nonatomic, strong) UILabel * locationLabel;
 - (instancetype)initWithSection:(Section *)section andWidth:(CGFloat) width andCount:(NSInteger)count andLabel:(UILabel *)label andNumberInTBA:(NSInteger)num;
 -(void)deselect;
 -(void)conflict;

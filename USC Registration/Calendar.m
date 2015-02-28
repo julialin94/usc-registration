@@ -24,11 +24,17 @@
     
 }
 -(BOOL)overlapView1:(UIView *)view1 andView2:(UIView *)view2{
-    if (CGRectContainsRect([view1 frame], [view2 frame])) {
+    
+    CGRect frame1 = [view1 frame];
+    CGRect frame2 = [view2 frame];
+    CGRect intersection = CGRectIntersection(frame1, frame2);
+    if(CGRectIsNull(intersection)) {
+        return NO;
+    }
+    else {
         NSLog(@"Overlap!");
         return YES;
     }
-    return NO;
 }
 -(instancetype)init{
     self = [super init];
@@ -88,9 +94,9 @@
         NSInteger hour = 7+a;
         NSMutableString * str = [NSMutableString stringWithFormat:@""];
         if(hour > 12)
-            [str appendFormat:@"%ld", hour-12];
+            [str appendFormat:@"%d", hour-12];
         else
-            [str appendFormat:@"%ld", hour];
+            [str appendFormat:@"%ld", (long)hour];
         if (hour >= 12)
             //PM
             [str appendString:@" PM"];
@@ -124,8 +130,9 @@
             classLabel.text = [NSString stringWithFormat:@" %d. %@", (a+1), [s description]];
             classLabel.font = [UIFont systemFontOfSize:14.0];
             classLabel.layer.cornerRadius = 5.0f;
-            classLabel.numberOfLines = 0;
+            classLabel.numberOfLines = 1;
             classLabel.clipsToBounds = YES;
+            classLabel.adjustsFontSizeToFitWidth = YES;
             [self.scrollView addSubview:classLabel];
             ClassView * c = [[ClassView alloc] initWithSection:s andWidth:((UIView *)self.arrayOfDayPanels[0]).frame.size.width andCount:(a+1) andLabel:classLabel andNumberInTBA:numInTBA];
             if ([s.day containsString:@"M"]) {

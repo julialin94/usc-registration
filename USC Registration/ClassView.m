@@ -80,22 +80,17 @@
     self.layer.borderColor = [USColor JLDarkBlueColor].CGColor;
     self.layer.borderWidth = 1.0f;
     self.backgroundColor = [USColor JLLightBlueColor];
-    self.label2 = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, width-10, 10)];
-    self.label2.font = [UIFont fontWithName:@"Roboto" size:12.0];
-    self.label2.text = [NSString stringWithFormat:@"%ld.", (long)count];
+    self.label2 = [[UILabel alloc] initWithFrame:CGRectMake(5, 2, width-10, 20)];
+    self.label2.font = [UIFont fontWithName:@"Roboto" size:10.0];
+    self.label2.text = [NSString stringWithFormat:@"%@", section.location];
+    self.label2.textAlignment = NSTextAlignmentCenter;
+    self.label2.adjustsFontSizeToFitWidth = YES;
+    self.label2.numberOfLines = 1;
     [self addSubview:self.label2];
     return self;
 }
 -(id)copy{
     ClassView * cv = [[ClassView alloc] initWithSection:self.s andWidth:self.width andCount:self.count andLabel:self.label andNumberInTBA:self.tbaCount];
-//    cv.frame = self.frame;
-//    cv.layer.borderColor = [USColor JLDarkBlueColor].CGColor;
-//    cv.layer.borderWidth = 1.0f;
-//    cv.backgroundColor = [USColor JLLightBlueColor];
-//    UILabel * label2 = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, self.width-10, 10)];
-//    label2.font = [UIFont fontWithName:@"Roboto" size:12.0];
-//    label2.text = [NSString stringWithFormat:@"%ld.", (long)self.count];
-//    [cv addSubview:label2];
     return cv;
 }
 @end

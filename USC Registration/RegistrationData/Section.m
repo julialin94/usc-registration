@@ -12,7 +12,7 @@
 -(NSString *)description{
     NSString * day = [self.day isEqualToString:@"tba"]? @"TBA" : self.day;
     NSString * time = [self.beginTime isEqualToString:@"TBA"]? @"TBA" : [NSString stringWithFormat:@"%@ to %@", self.beginTime, self.endTime];
-    return [NSString stringWithFormat:@"%@ at %@ on %@. %ld units.", self.sisCourseID, time, day, self.unitCode];
+    return [NSString stringWithFormat:@"%@ at %@ on %@ in %@.", self.sisCourseID, time, day, self.location];
 }
 - (void)encodeWithCoder:(NSCoder *)encoder {
     //Encode properties, other class variables, etc
