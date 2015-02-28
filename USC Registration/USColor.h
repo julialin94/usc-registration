@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface USColor : UIColor
-+(id)JLCardinalColor;
-+(id)JLGoldColor;
-+(id)JLLightGrayColor;
-+(id)JLLightBlueColor;
-+(id)JLDarkBlueColor;
-+(id)JLDarkRedColor;
++(UIColor*)JLCardinalColor;
++(UIColor*)JLGoldColor;
++(UIColor*)JLLightGrayColor;
++(UIColor*)JLLightBlueColor;
++(UIColor*)JLDarkBlueColor;
++(UIColor*)JLDarkRedColor;
++(UIColor*)JLDarkGoldColor;
 @end

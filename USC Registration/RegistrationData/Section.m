@@ -10,7 +10,9 @@
 
 @implementation Section
 -(NSString *)description{
-    return [NSString stringWithFormat:@"%@(%@) from %@ to %@ on %@", self.sisCourseID, self.section, self.beginTime, self.endTime, self.day];
+    NSString * day = [self.day isEqualToString:@"tba"]? @"TBA" : self.day;
+    NSString * time = [self.beginTime isEqualToString:@"TBA"]? @"TBA" : [NSString stringWithFormat:@"%@ to %@", self.beginTime, self.endTime];
+    return [NSString stringWithFormat:@"%@ at %@ on %@. %ld units.", self.sisCourseID, time, day, self.unitCode];
 }
 - (void)encodeWithCoder:(NSCoder *)encoder {
     //Encode properties, other class variables, etc

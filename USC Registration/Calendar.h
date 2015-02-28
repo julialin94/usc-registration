@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "TermSchedule.h"
 #import "Popup.h"
-@interface Calendar : Popup
+#import "ClassView.h"
+@interface Calendar : Popup <ClassViewDelegate>
 @property (nonatomic, strong) TermSchedule * termSchedule;
 @property (nonatomic, strong) NSMutableArray * arrayOfDayPanels;
+@property (nonatomic, strong) NSMutableArray * arrayOfClassViews;
 -(void)showCalendar;
 -(void)hideCalendar;
 @end

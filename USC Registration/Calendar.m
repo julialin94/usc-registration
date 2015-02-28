@@ -11,14 +11,32 @@
 #import "Section.h"
 #import "ClassView.h"
 #import "USColor.h"
+#import "Term.h"
 @implementation Calendar
-
+-(void)selectedClassView:(id)c{
+    for (NSArray * arr in self.arrayOfClassViews) {
+        for (ClassView * cv in arr) {
+            if (c != cv) {
+                [cv deselect];
+            }
+        }
+    }
+    
+}
+-(BOOL)overlapView1:(UIView *)view1 andView2:(UIView *)view2{
+    if (CGRectContainsRect([view1 frame], [view2 frame])) {
+        NSLog(@"Overlap!");
+        return YES;
+    }
+    return NO;
+}
 -(instancetype)init{
     self = [super init];
     self.scrollView.backgroundColor = [USColor JLLightGrayColor];
     return self;
 }
 -(void)showCalendar{
+    AppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
     for (UIView * subview in self.scrollView.subviews) {
         [subview removeFromSuperview];
     }
@@ -26,9 +44,20 @@
     CGFloat width = frame.size.width - 30.0;
     [self.backgroundButton addTarget:self action:@selector(hideCalendar) forControlEvents:UIControlEventTouchUpInside];
     self.arrayOfDayPanels = [[NSMutableArray alloc] init];
+    self.arrayOfClassViews = [[NSMutableArray alloc] init];
+    [self.arrayOfClassViews addObject:[[NSMutableArray alloc] init]];
+    [self.arrayOfClassViews addObject:[[NSMutableArray alloc] init]];
+    [self.arrayOfClassViews addObject:[[NSMutableArray alloc] init]];
+    [self.arrayOfClassViews addObject:[[NSMutableArray alloc] init]];
+    [self.arrayOfClassViews addObject:[[NSMutableArray alloc] init]];
+    [self.arrayOfClassViews addObject:[[NSMutableArray alloc] init]];
     self.scrollView.clipsToBounds = YES;
     UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, 30)];
-    label.text = @"Schedule";
+    NSString * str = appDelegate.termObject.termDescription;
+    NSString * char1 = [str substringWithRange:NSMakeRange(0, 1)];
+    str = [[str substringFromIndex:1] lowercaseString];
+    NSInteger unitCount = 0;
+    
     label.textAlignment = NSTextAlignmentCenter;
     NSArray * days = [NSArray arrayWithObjects:@"M", @"T", @"W", @"TH", @"F", @"TBA", nil];
     [self.scrollView addSubview:label];
@@ -53,7 +82,7 @@
     for (int a = 0; a<16; a++) {
         UIView * lineView = [[UIView alloc] initWithFrame:CGRectMake(newWidth-5, 30*a+newWidth+label.frame.size.height, 6*newWidth, 1)];
         lineView.backgroundColor = [UIColor grayColor];
-        lineView.alpha = 0.7;
+        lineView.alpha = 0.5;
         [self.scrollView addSubview:lineView];
         UILabel * timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 30.0*a+newWidth+label.frame.size.height-10, newWidth-15, 20)];
         NSInteger hour = 7+a;
@@ -82,35 +111,59 @@
         //        timeLabel.text =
         [self.scrollView addSubview:lineView];
     }
-    AppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
     CGFloat startY = newWidth+30+450;
     CGFloat endY = newWidth+30+450+30;
+    NSInteger numInTBA = 0;
     if(![self.termSchedule contentEquals:appDelegate.termSchedule]){
         //has been updated, regenerate views
         for(int a = 0; a<appDelegate.termSchedule.dictionaryOfSections.allValues.count; a++){
             Section * s = appDelegate.termSchedule.dictionaryOfSections.allValues[a];
-            NSLog(@"Calendar s: %@", s);
-            ClassView * c = [[ClassView alloc] initWithSection:s andWidth:((UIView *)self.arrayOfDayPanels[0]).frame.size.width];
+            unitCount += s.unitCode;
+            endY = startY + 30*a+30+30+30;
+            UILabel * classLabel = [[UILabel alloc ] initWithFrame:CGRectMake(10, startY + 30*a+30, width-20, 30)];
+            classLabel.text = [NSString stringWithFormat:@" %d. %@", (a+1), [s description]];
+            classLabel.font = [UIFont systemFontOfSize:14.0];
+            classLabel.layer.cornerRadius = 5.0f;
+            classLabel.numberOfLines = 0;
+            classLabel.clipsToBounds = YES;
+            [self.scrollView addSubview:classLabel];
+            ClassView * c = [[ClassView alloc] initWithSection:s andWidth:((UIView *)self.arrayOfDayPanels[0]).frame.size.width andCount:(a+1) andLabel:classLabel andNumberInTBA:numInTBA];
             if ([s.day containsString:@"M"]) {
-                [self.arrayOfDayPanels[0] addSubview:[c copy]];
+                ClassView * cv = [c copy];
+                cv.delegate = self;
+                [self.arrayOfClassViews[0] addObject:cv];
+                [self.arrayOfDayPanels[0] addSubview:cv];
             }
             if ([s.day containsString:@"T"]) {
-                [self.arrayOfDayPanels[1] addSubview:[c copy]];
+                ClassView * cv = [c copy];
+                cv.delegate = self;
+                [self.arrayOfClassViews[1] addObject:cv];
+                [self.arrayOfDayPanels[1] addSubview:cv];
             }
             if ([s.day containsString:@"W"]) {
-                [self.arrayOfDayPanels[2] addSubview:[c copy]];
+                ClassView * cv = [c copy];
+                cv.delegate = self;
+                [self.arrayOfClassViews[2] addObject:cv];
+                [self.arrayOfDayPanels[2] addSubview:cv];
             }
             if ([s.day containsString:@"H"]) {
-                [self.arrayOfDayPanels[3] addSubview:[c copy]];
+                ClassView * cv = [c copy];
+                cv.delegate = self;
+                [self.arrayOfClassViews[3] addObject:cv];
+                [self.arrayOfDayPanels[3] addSubview:cv];
             }
             if ([s.day containsString:@"F"]) {
-                [self.arrayOfDayPanels[4] addSubview:[c copy]];
+                ClassView * cv = [c copy];
+                cv.delegate = self;
+                [self.arrayOfClassViews[4] addObject:cv];
+                [self.arrayOfDayPanels[4] addSubview:cv];
             }
-            endY = startY + 30*a+30+30+30;
-            UILabel * classLabel = [[UILabel alloc ] initWithFrame:CGRectMake(10, startY + 30*a+30, 6*newWidth, 30)];
-            classLabel.text = [s description];
-            classLabel.font = [UIFont systemFontOfSize:14.0];
-            [self.scrollView addSubview:classLabel];
+            if ([s.day containsString:@"tba"]) {
+                ClassView * cv = [c copy];
+                cv.delegate = self;
+                [self.arrayOfClassViews[5] addObject:cv];
+                [self.arrayOfDayPanels[5] addSubview:cv];
+            }
         }
         self.termSchedule = appDelegate.termSchedule;
     }
@@ -123,6 +176,19 @@
     self.closeButton.showsTouchWhenHighlighted = YES;
     [self.scrollView addSubview:self.closeButton];
     [self.closeButton addTarget:self action:@selector(hideCalendar) forControlEvents:UIControlEventTouchUpInside];
+    for (int a = 0; a<self.arrayOfClassViews.count; a++) {
+        for (int b = 0; b<((NSArray*)self.arrayOfClassViews[a]).count; b++) {
+            for (int c = b+1; c<((NSArray*)self.arrayOfClassViews[a]).count; c++) {
+                if ([self overlapView1:self.arrayOfClassViews[a][b] andView2:self.arrayOfClassViews[a][c]]) {
+                    [(ClassView *)self.arrayOfClassViews[a][b] conflict];
+                    [(ClassView *)self.arrayOfClassViews[a][c] conflict];
+                }
+            }
+        }
+    }
+    
+    label.text = [NSString stringWithFormat:@"%@%@ Schedule (%ld Units)", char1, str, (long)unitCount];
+    
     [self show];
 }
 -(void)hideCalendar{

@@ -34,14 +34,23 @@
     self.locationLabel.text = self.section.location;
     self.teacherLabel.text = self.section.instructor;
     self.seatsLabel.text = [NSString stringWithFormat:@"%ld/%ld registered", (long)self.section.registered, (long)self.section.seats];
-    self.daysLabel.text = self.section.day;
-    NSDateFormatter * df = [[NSDateFormatter alloc] init];
-    df.dateFormat = @"HH:mm";
-    NSDate * start = [df dateFromString:self.section.beginTime];
-    NSDate * end = [df dateFromString:self.section.endTime];
-    df.dateFormat = @"hh:mm a";
-    
-    self.timesLabel.text = [NSString stringWithFormat:@"%@ to %@", [df stringFromDate:start], [df stringFromDate:end]];
+    if ([self.section.day isEqualToString:@"tba"]) {
+        self.daysLabel.text = @"TBA";
+    }
+    else{
+        self.daysLabel.text = self.section.day;
+    }
+    if ([self.section.beginTime isEqualToString:@"TBA"]) {
+        self.timesLabel.text = @"TBA";
+    }
+    else{
+        NSDateFormatter * df = [[NSDateFormatter alloc] init];
+        df.dateFormat = @"HH:mm";
+        NSDate * start = [df dateFromString:self.section.beginTime];
+        NSDate * end = [df dateFromString:self.section.endTime];
+        df.dateFormat = @"hh:mm a";
+        self.timesLabel.text = [NSString stringWithFormat:@"%@ to %@", [df stringFromDate:start], [df stringFromDate:end]];
+    }
     if ([self.section.type isEqualToString:@"unknown"]) {
         self.courseNameLabel.text = self.section.sisCourseID;
     }
