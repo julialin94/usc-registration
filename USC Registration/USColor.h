@@ -12,4 +12,6 @@
 +(id)JLCardinalColor;
 +(id)JLGoldColor;
 +(id)JLLightGrayColor;
++(id)JLLightBlueColor;
++(id)JLDarkBlueColor;
 @end

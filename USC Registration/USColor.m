@@ -19,4 +19,10 @@
 +(id)JLLightGrayColor{
     return [super groupTableViewBackgroundColor];
 }
++(id)JLLightBlueColor{
+    return [super colorWithRed:11.0/255.0 green:145.0/255.0 blue:229.0/255.0 alpha:1.0];
+}
++(id)JLDarkBlueColor{
+    return [super colorWithRed:10.0/255.0 green:67.0/255.0 blue:102.0/255.0 alpha:1.0];
+}
 @end

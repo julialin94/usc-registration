@@ -10,11 +10,12 @@
 #import "AppDelegate.h"
 #import "Section.h"
 #import "ClassView.h"
+#import "USColor.h"
 @implementation Calendar
 
 -(instancetype)init{
     self = [super init];
-    
+    self.scrollView.backgroundColor = [USColor JLLightGrayColor];
     return self;
 }
 -(void)showCalendar{
@@ -36,9 +37,10 @@
     for(CGFloat a = 0; a<6; a++){
         UIView * dayPanel = [[UIView alloc] initWithFrame:CGRectMake(a*newWidth+newWidth - 5, newWidth+label.frame.size.height, newWidth, 450.0)];
         UILabel * dayLabel = [[UILabel alloc] initWithFrame:CGRectMake(newWidth*a+newWidth + inset - 5, inset+label.frame.size.height, newWidth-2*inset, newWidth-2*inset)];
+        dayPanel.backgroundColor = [UIColor clearColor];
         dayLabel.font = [UIFont systemFontOfSize:10.0];
         dayLabel.textAlignment = NSTextAlignmentCenter;
-        dayLabel.backgroundColor = [UIColor blueColor];
+        dayLabel.backgroundColor = [USColor JLDarkBlueColor];
         dayLabel.layer.cornerRadius = (newWidth-2*inset)/2.0;
         dayLabel.text = days[(int)a];
         dayLabel.textColor = [UIColor whiteColor];

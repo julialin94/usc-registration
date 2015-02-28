@@ -40,7 +40,7 @@
     NSDate * end = [df dateFromString:self.section.endTime];
     df.dateFormat = @"hh:mm a";
     
-    self.timesLabel.text = [NSString stringWithFormat:@"%@\nto\n%@", [df stringFromDate:start], [df stringFromDate:end]];
+    self.timesLabel.text = [NSString stringWithFormat:@"%@ to %@", [df stringFromDate:start], [df stringFromDate:end]];
     self.courseNameLabel.text = [NSString stringWithFormat:@"%@ %@", self.section.sisCourseID, self.section.type];;
     self.sectionNumberLabel.text = [NSString stringWithFormat:@"Section: %@", self.section.section];
     self.sessionLabel.text = [NSString stringWithFormat:@"Session: %@", self.section.sessionCode];
