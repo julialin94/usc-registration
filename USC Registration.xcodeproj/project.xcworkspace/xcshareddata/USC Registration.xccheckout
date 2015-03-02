@@ -10,6 +10,8 @@
 	<string>USC Registration</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>078CF03D3D232223F23303461BBA87A9BBB888A9</key>
+		<string>https://github.com/USC-MobileAppCompetition/HoLi.git</string>
 		<key>0F4A8CF78770687BB519C9679E358B180A1FACE3</key>
 		<string>https://github.com/julialin94/usc-registration.git</string>
 	</dict>
@@ -17,17 +19,27 @@
 	<string>USC Registration.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>0F4A8CF78770687BB519C9679E358B180A1FACE3</key>
+		<key>078CF03D3D232223F23303461BBA87A9BBB888A9</key>
 		<string>../..</string>
+		<key>0F4A8CF78770687BB519C9679E358B180A1FACE3</key>
+		<string>../../../sourcetree</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/julialin94/usc-registration.git</string>
+	<string>https://github.com/USC-MobileAppCompetition/HoLi.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>0F4A8CF78770687BB519C9679E358B180A1FACE3</string>
+	<string>078CF03D3D232223F23303461BBA87A9BBB888A9</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>078CF03D3D232223F23303461BBA87A9BBB888A9</string>
+			<key>IDESourceControlWCCName</key>
+			<string>HoLi</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

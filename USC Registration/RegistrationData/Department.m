@@ -30,11 +30,20 @@
     NSData * data = [NSURLConnection sendSynchronousRequest:request
                                           returningResponse:&response
                                                       error:nil];
+    NSLog(@"data: %@", data);
+    if (data == nil) {
+        UIAlertView * av = [[UIAlertView alloc] initWithTitle:@"Connection error!" message:@"Please check your internet connection." delegate:nil cancelButtonTitle:@"OK!" otherButtonTitles:nil];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [av show];
+        });
+        return;
+    }
     NSError * error;
     NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
     self.downloaded = YES;
     if(error){
-        UIAlertView * av = [[UIAlertView alloc] initWithTitle:@"Connection error!" message:@"Please check your internet connection." delegate:self cancelButtonTitle:@"OK!" otherButtonTitles:nil];
+        UIAlertView * av = [[UIAlertView alloc] initWithTitle:@"Connection error!" message:@"Please check your internet connection." delegate:nil cancelButtonTitle:@"OK!" otherButtonTitles:nil];
         [av show];
     }
     else{

@@ -107,7 +107,7 @@
         self.type = @"unknown";
     else
         self.type = [dict objectForKey:@"TYPE"];
-    self.unitCode = [[dict objectForKey:@"UNIT_CODE"] integerValue];
+    self.unitCode = [[dict objectForKey:@"MIN_UNITS"] integerValue];
     
     if (![self.beginTime isEqualToString:@"TBA"]) {
         NSDateFormatter * df = [[NSDateFormatter alloc] init];
