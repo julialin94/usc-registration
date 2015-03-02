@@ -249,7 +249,7 @@
     //gets term details
     if(code == nil)
         code = @"";
-    NSString * url = [NSString stringWithFormat:@"%@/terms/%@", [self.appDelegate URL], code];
+    NSString * url = [NSString stringWithFormat:@"%@/Terms/%@", [self.appDelegate URL], code];
     NSLog(@"request URL: %@", url);
     [self performRequestWithURL:url andSender:sender];
 }

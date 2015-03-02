@@ -22,7 +22,7 @@
     self.preregistrationEndDate = [dict objectForKey:@"PRE_REG_END_DATE"];
     self.preregistrationStartDate = [dict objectForKey:@"PRE_REG_START_DATE"];
     self.termCode = [dict objectForKey:@"TERM_CODE"];
-    NSString * url = [NSString stringWithFormat:@"%@/schools", [self.appDelegate URL]];
+    NSString * url = [NSString stringWithFormat:@"%@/Schools", [self.appDelegate URL]];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     NSURLResponse *response;
     NSData * data = [NSURLConnection sendSynchronousRequest:request
@@ -42,10 +42,10 @@
     }
     
     NSSortDescriptor *sortDescriptor;
-    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"schoolDescription"
-                                                 ascending:YES];
-    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-    self.schools = [[self.schools sortedArrayUsingDescriptors:sortDescriptors] mutableCopy];
+//    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"schoolDescription"
+//                                                 ascending:YES];
+    NSArray *sortDescriptors;// = [NSArray arrayWithObject:sortDescriptor];
+//    self.schools = [[self.schools sortedArrayUsingDescriptors:sortDescriptors] mutableCopy];
     for (School * s in self.schools) {
 //        NSLog(@"%@", s.schoolDescription);
         for (Department * d in s.departments) {

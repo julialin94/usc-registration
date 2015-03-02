@@ -24,7 +24,7 @@
     return self;
 }
 -(void) downloadData{
-    NSString * url = [NSString stringWithFormat:@"%@/courses/%@/%@", [self.appDelegate URL], self.appDelegate.term, self.departmentCode];
+    NSString * url = [NSString stringWithFormat:@"%@/Courses/%@/%@", [self.appDelegate URL], self.appDelegate.term, self.departmentCode];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     NSURLResponse *response;
     NSData * data = [NSURLConnection sendSynchronousRequest:request

@@ -13,7 +13,8 @@
 
 @end
 
-static NSString * baseURL = @"http://petri.usc.edu/socAPI";
+static NSString * baseURL = @"http://vincentho.me/regAPI";
+//static NSString * baseURL = @"http://petri.usc.edu/socAPI";
 @implementation AppDelegate
 
 -(NSString *)URL{
